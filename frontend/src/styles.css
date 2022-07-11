@@ -11816,6 +11816,9 @@ html {
 .masthead .masthead-subheading {
   font-size: 1.25rem;
 }
+.masthead-avatar {
+  border-radius: 150px;
+}
 .masthead .masthead-avatar {
   width: 15rem;
 }
