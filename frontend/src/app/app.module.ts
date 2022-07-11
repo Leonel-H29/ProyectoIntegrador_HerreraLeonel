@@ -11,6 +11,7 @@ import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { DerechoComponent } from './components/header/derecho/derecho.component';
 import { IzquierdoComponent } from './components/header/izquierdo/izquierdo.component';
+import { HardSkillsComponent } from './components/hard-skills/hard-skills.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { IzquierdoComponent } from './components/header/izquierdo/izquierdo.comp
     ProyectosComponent,
     FooterComponent,
     DerechoComponent,
-    IzquierdoComponent
+    IzquierdoComponent,
+    HardSkillsComponent
   ],
   imports: [
     BrowserModule,
