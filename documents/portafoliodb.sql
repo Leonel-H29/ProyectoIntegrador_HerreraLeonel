@@ -21,7 +21,7 @@ USE `portafolio` ;
 -- Table `portafolio`.`persona`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`persona` (
-  `idpersona` INT NOT NULL,
+  `idpersona` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(60) NOT NULL,
   `apellido` VARCHAR(60) NOT NULL,
   `provincia` VARCHAR(45) NOT NULL,
@@ -40,7 +40,7 @@ ENGINE = InnoDB;
 -- Table `portafolio`.`tipo_empleo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`tipo_empleo` (
-  `idtipo_empleo` INT NOT NULL,
+  `idtipo_empleo` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idtipo_empleo`))
 ENGINE = InnoDB
@@ -51,7 +51,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `portafolio`.`experiencia_laboral`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`experiencia_laboral` (
-  `idexperiencia` INT NOT NULL,
+  `idexperiencia` INT NOT NULL AUTO_INCREMENT,
   `nombre_empresa` VARCHAR(45) NOT NULL,
   `fecha_inicio` DATE NOT NULL,
   `fecha_fin` DATE NULL,
@@ -80,7 +80,7 @@ COLLATE = utf8_bin;
 -- Table `portafolio`.`proyectos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`proyectos` (
-  `idproyecto` INT NOT NULL,
+  `idproyecto` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NULL,
   `descripcion` TEXT(200) NULL,
   `fecha_inicio` DATE NOT NULL,
@@ -103,7 +103,7 @@ COLLATE = utf8_bin;
 -- Table `portafolio`.`educacion`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`educacion` (
-  `ideducacion` INT NOT NULL,
+  `ideducacion` INT NOT NULL AUTO_INCREMENT,
   `nombre_institucion` VARCHAR(45) NOT NULL,
   `fecha_inicio` DATE NOT NULL,
   `fecha_fin` DATE NULL,
@@ -125,7 +125,7 @@ COLLATE = utf8_bin;
 -- Table `portafolio`.`skills`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `portafolio`.`skills` (
-  `idskill` INT NOT NULL,
+  `idskill` INT NOT NULL AUTO_INCREMENT,
   `skill` VARCHAR(20) NOT NULL,
   `idpersona` INT NOT NULL,
   PRIMARY KEY (`idskill`, `idpersona`),
