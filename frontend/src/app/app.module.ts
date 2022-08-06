@@ -12,6 +12,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DerechoComponent } from './components/header/derecho/derecho.component';
 import { IzquierdoComponent } from './components/header/izquierdo/izquierdo.component';
 import { HardSkillsComponent } from './components/hard-skills/hard-skills.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,10 @@ import { HardSkillsComponent } from './components/hard-skills/hard-skills.compon
     FooterComponent,
     DerechoComponent,
     IzquierdoComponent,
-    HardSkillsComponent
+    HardSkillsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
