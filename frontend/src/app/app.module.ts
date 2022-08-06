@@ -13,6 +13,8 @@ import { DerechoComponent } from './components/header/derecho/derecho.component'
 import { IzquierdoComponent } from './components/header/izquierdo/izquierdo.component';
 import { HardSkillsComponent } from './components/hard-skills/hard-skills.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     DerechoComponent,
     IzquierdoComponent,
     HardSkillsComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
