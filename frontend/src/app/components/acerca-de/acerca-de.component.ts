@@ -8,14 +8,15 @@ import { PersonaService } from 'src/app/service/persona.service';
   styleUrls: ['./acerca-de.component.css'],
 })
 export class AcercaDeComponent implements OnInit {
-  //persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '', '');
-  listPersona: persona[] = new Array<persona>();
+  persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '', '');
+
+  id: any;
   constructor(public personaService: PersonaService) {}
 
   ngOnInit(): void {
-    this.personaService.getPersonas().subscribe((data) => {
-      this.listPersona = data;
-      console.log(this.listPersona);
+    this.personaService.getPersona(this.id).subscribe((data) => {
+      this.persona = data;
+      console.log(this.persona);
     });
   }
 }

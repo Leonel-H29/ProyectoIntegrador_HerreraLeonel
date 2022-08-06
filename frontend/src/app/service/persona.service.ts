@@ -12,7 +12,11 @@ export class PersonaService {
 
   constructor(private http: HttpClient) {}
 
-  public getPersonas(): Observable<persona[]> {
+  public getListPersonas(): Observable<persona[]> {
     return this.http.get<persona[]>(this.URL + this.URLApi);
+  }
+
+  public getPersona(id: any): Observable<any> {
+    return this.http.get(this.URL + id);
   }
 }

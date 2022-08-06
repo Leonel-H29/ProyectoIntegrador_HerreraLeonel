@@ -59,4 +59,10 @@ public class PersonaController {
         perServ.editarPersona(id, nNombre, nApellido, nDescripcion, nProvincia, nPais, nCodigoP, nFechaN, nTelefono, nCorreo, nFoto);
                 
     }
+    
+    @GetMapping("/personas/{id}")
+    public Persona findPersona(@PathVariable Long id){
+        Persona persona = perServ.buscarPersona(id);
+        return persona;
+    }
 }

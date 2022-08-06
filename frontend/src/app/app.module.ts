@@ -15,6 +15,7 @@ import { HardSkillsComponent } from './components/hard-skills/hard-skills.compon
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
     HardSkillsComponent,
     LoginComponent,
     HomeComponent,
+    PerfilComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
