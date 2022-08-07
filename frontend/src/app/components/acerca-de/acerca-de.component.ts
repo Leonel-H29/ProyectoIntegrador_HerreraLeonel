@@ -11,7 +11,6 @@ import { ActivatedRoute } from '@angular/router';
 export class AcercaDeComponent implements OnInit {
   persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '', '');
 
-  //id?: number;
   constructor(
     public personaService: PersonaService,
     private activatedRouter: ActivatedRoute
