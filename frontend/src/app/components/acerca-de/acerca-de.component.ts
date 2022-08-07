@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-acerca-de',
@@ -10,11 +11,15 @@ import { PersonaService } from 'src/app/service/persona.service';
 export class AcercaDeComponent implements OnInit {
   persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '', '');
 
-  id: any;
-  constructor(public personaService: PersonaService) {}
+  //id?: number;
+  constructor(
+    public personaService: PersonaService,
+    private activatedRouter: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.personaService.getPersona(this.id).subscribe((data) => {
+    const id = this.activatedRouter.snapshot.params['id'];
+    this.personaService.getPersona(id).subscribe((data) => {
       this.persona = data;
       console.log(this.persona);
     });

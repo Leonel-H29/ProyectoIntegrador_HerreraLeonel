@@ -16,7 +16,7 @@ export class PersonaService {
     return this.http.get<persona[]>(this.URL + this.URLApi);
   }
 
-  public getPersona(id: any): Observable<any> {
-    return this.http.get(this.URL + id);
+  public getPersona(id: number): Observable<persona> {
+    return this.http.get<persona>(this.URL + id);
   }
 }
