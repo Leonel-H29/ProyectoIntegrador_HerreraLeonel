@@ -23,12 +23,12 @@ DROP TABLE IF EXISTS `educacion`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `educacion` (
-  `ideducacion` int NOT NULL AUTO_INCREMENT,
+  `ideducacion` int NOT NULL,
   `nombre_institucion` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `descripcion` text COLLATE utf8mb3_bin,
-  `idpersona` int NOT NULL,
+  `idpersona` bigint NOT NULL,
   PRIMARY KEY (`ideducacion`,`idpersona`),
   KEY `fk_educacion_persona1_idx` (`idpersona`),
   CONSTRAINT `fk_educacion_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`)
@@ -52,12 +52,12 @@ DROP TABLE IF EXISTS `experiencia_laboral`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `experiencia_laboral` (
-  `idexperiencia` int NOT NULL AUTO_INCREMENT,
+  `idexperiencia` int NOT NULL,
   `nombre_empresa` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `descripcion` text COLLATE utf8mb3_bin,
-  `idpersona` int NOT NULL,
+  `idpersona` bigint NOT NULL,
   `idtipo_empleo` int NOT NULL,
   PRIMARY KEY (`idexperiencia`,`idpersona`,`idtipo_empleo`),
   KEY `fk_experiencia_laboral_persona_idx` (`idpersona`),
@@ -84,7 +84,7 @@ DROP TABLE IF EXISTS `persona`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `persona` (
-  `idpersona` int NOT NULL AUTO_INCREMENT,
+  `idpersona` bigint NOT NULL,
   `nombre` varchar(60) COLLATE utf8mb3_bin NOT NULL,
   `apellido` varchar(60) COLLATE utf8mb3_bin NOT NULL,
   `provincia` varchar(45) COLLATE utf8mb3_bin NOT NULL,
@@ -95,10 +95,12 @@ CREATE TABLE `persona` (
   `correo` varchar(45) COLLATE utf8mb3_bin NOT NULL,
   `descripcion` text COLLATE utf8mb3_bin,
   `foto_perfil_url` varchar(100) COLLATE utf8mb3_bin DEFAULT NULL,
-  `username` varchar(15) COLLATE utf8mb3_bin DEFAULT NULL,
-  `password` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
-  PRIMARY KEY (`idpersona`)
-) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+  `password` varchar(15) COLLATE utf8mb3_bin NOT NULL,
+  `username` varchar(15) COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`idpersona`),
+  UNIQUE KEY `UK_ncbsevha4d6vgv2y8smn6keyn` (`username`),
+  UNIQUE KEY `correo_UNIQUE` (`correo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,13 +120,13 @@ DROP TABLE IF EXISTS `proyectos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proyectos` (
-  `idproyecto` int NOT NULL AUTO_INCREMENT,
+  `idproyecto` int NOT NULL,
   `nombre` varchar(45) COLLATE utf8mb3_bin DEFAULT NULL,
   `descripcion` text COLLATE utf8mb3_bin,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `url_proyecto` varchar(100) COLLATE utf8mb3_bin DEFAULT NULL,
-  `idpersona` int NOT NULL,
+  `idpersona` bigint NOT NULL,
   PRIMARY KEY (`idproyecto`,`idpersona`),
   KEY `fk_proyectos_persona1_idx` (`idpersona`),
   CONSTRAINT `fk_proyectos_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`)
@@ -141,6 +143,30 @@ LOCK TABLES `proyectos` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rol`
+--
+
+DROP TABLE IF EXISTS `rol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `rol` (
+  `idrol` int NOT NULL AUTO_INCREMENT,
+  `rol_nombre` varchar(255) COLLATE utf8mb3_bin NOT NULL,
+  PRIMARY KEY (`idrol`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rol`
+--
+
+LOCK TABLES `rol` WRITE;
+/*!40000 ALTER TABLE `rol` DISABLE KEYS */;
+INSERT INTO `rol` VALUES (1,'ROL_USER'),(2,'ROL ADMIN');
+/*!40000 ALTER TABLE `rol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `skills`
 --
 
@@ -148,9 +174,9 @@ DROP TABLE IF EXISTS `skills`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `skills` (
-  `idskill` int NOT NULL AUTO_INCREMENT,
+  `idskill` int NOT NULL,
   `skill` varchar(20) COLLATE utf8mb3_bin NOT NULL,
-  `idpersona` int NOT NULL,
+  `idpersona` bigint NOT NULL,
   PRIMARY KEY (`idskill`,`idpersona`),
   KEY `fk_skills_persona1_idx` (`idpersona`),
   CONSTRAINT `fk_skills_persona1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`)
@@ -174,7 +200,7 @@ DROP TABLE IF EXISTS `tipo_empleo`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tipo_empleo` (
-  `idtipo_empleo` int NOT NULL AUTO_INCREMENT,
+  `idtipo_empleo` int NOT NULL,
   `tipo` varchar(45) NOT NULL,
   PRIMARY KEY (`idtipo_empleo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -188,6 +214,32 @@ LOCK TABLES `tipo_empleo` WRITE;
 /*!40000 ALTER TABLE `tipo_empleo` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tipo_empleo` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario_rol`
+--
+
+DROP TABLE IF EXISTS `usuario_rol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario_rol` (
+  `idpersona` bigint NOT NULL,
+  `idrol` int NOT NULL,
+  PRIMARY KEY (`idpersona`,`idrol`),
+  KEY `FK772rw294omyd1mwl1b8wkf0yh` (`idrol`),
+  CONSTRAINT `FK772rw294omyd1mwl1b8wkf0yh` FOREIGN KEY (`idrol`) REFERENCES `rol` (`idrol`),
+  CONSTRAINT `FK9sytui1ifwv5ucophux7hlna4` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_bin;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario_rol`
+--
+
+LOCK TABLES `usuario_rol` WRITE;
+/*!40000 ALTER TABLE `usuario_rol` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario_rol` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -198,4 +250,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-08-07 13:17:24
+-- Dump completed on 2022-08-13 22:27:54

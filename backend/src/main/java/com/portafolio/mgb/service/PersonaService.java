@@ -6,40 +6,41 @@ import com.portafolio.mgb.repository.PersonaRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import javax.transaction.Transactional;
 //import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class PersonaService implements IPersonaService {
-    
+
     @Autowired
     public PersonaRepository RepoPers;
 
     @Override
     public List<Persona> verPersonas() {
-        try{
+        try {
             List<Persona> personas = RepoPers.findAll();
-            if(!personas.isEmpty()){
+            if (!personas.isEmpty()) {
                 //System.out.println("Listado de personas: " + personas);
                 return personas;
-            }
-            else{
+            } else {
                 personas = new ArrayList<Persona>();
                 //System.out.println("Vacio");
                 return personas;
             }
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
             return new ArrayList<Persona>();
         }
-        
+
     }
 
     @Override
     public void crearPersona(Persona pers) {
-        try{
+        try {
             RepoPers.save(pers);
             System.out.println("La persona ya se encuentra registrada");
             System.out.println(pers);
@@ -51,12 +52,11 @@ public class PersonaService implements IPersonaService {
             else{
                 System.out.println("La persona ya se encuentra registrada");
             }
-            */
-        }
-        catch(Exception ex){
+             */
+        } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
-        
+
     }
 
     @Override
@@ -70,11 +70,12 @@ public class PersonaService implements IPersonaService {
             LocalDate nFechaN,
             String nTelefono,
             String nCorreo,
-            String nFoto
+            String nFoto,
+            String nUsername, 
+            String nPassword
     ) {
-        
-        
-        try{
+
+        try {
             Persona persona = buscarPersona(id);
             persona.setNombre(nNombre);
             persona.setApellido(nApellido);
@@ -86,11 +87,12 @@ public class PersonaService implements IPersonaService {
             persona.setTelefono(nTelefono);
             persona.setCorreo(nCorreo);
             persona.setFoto_perfil_url(nFoto);
+            persona.setUsername(nUsername);
+            persona.setPassword(nPassword);
             System.out.println(persona);
             RepoPers.save(persona);
             //return persona;
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
             //return new Persona();
         }
@@ -100,22 +102,37 @@ public class PersonaService implements IPersonaService {
     public Persona buscarPersona(Long id) {
         /*
         Si encuentra a la persona la retorna en caso contrario devolvera null
-        */
+         */
         System.out.println(RepoPers.findById(id).orElse(null));
-       return RepoPers.findById(id).orElse(null);
+        return RepoPers.findById(id).orElse(null);
     }
 
     @Override
     public void eliminarPersona(Long id) {
         RepoPers.deleteById(id);
-        
-        try{
+
+        try {
             RepoPers.deleteById(id);
             System.out.println("Persona eliminada");
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
     }
     
+    @Override
+    public Optional<Persona> getByUsername(String username) {
+        //RepoPers.findBy(example, queryFunction)
+        return RepoPers.findByUsername(username);
+        
+    }
+    @Override
+    public boolean existsByUsername(String username) {
+        return RepoPers.existsByUsername(username);
+    }
+    @Override
+    public boolean existsByCorreo(String correo) {
+        return RepoPers.existsByCorreo(correo);
+    }
+
+
 }
