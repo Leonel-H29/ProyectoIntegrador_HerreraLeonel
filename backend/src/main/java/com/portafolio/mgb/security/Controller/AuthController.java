@@ -1,15 +1,17 @@
 package com.portafolio.mgb.security.Controller;
 
-import com.portafolio.mgb.model.Persona;
+
+
 import com.portafolio.mgb.security.Dto.JwtDto;
 import com.portafolio.mgb.security.Dto.LoginUsuario;
 import com.portafolio.mgb.security.Dto.NuevoUsuario;
 import com.portafolio.mgb.security.Entidad.Rol;
+import com.portafolio.mgb.security.Entidad.Usuario;
 import com.portafolio.mgb.security.Enums.RolNombre;
 import com.portafolio.mgb.security.Services.RolService;
-//import com.portafolio.mgb.security.Services.UsuarioService;
+import com.portafolio.mgb.security.Services.UsuarioService;
 import com.portafolio.mgb.security.jwt.JwtProvider;
-import com.portafolio.mgb.service.PersonaService;
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.validation.Valid;
@@ -40,7 +42,7 @@ public class AuthController {
     @Autowired
     AuthenticationManager authManager;
     @Autowired
-    PersonaService usuarioService;
+    UsuarioService usuarioService;
     @Autowired
     RolService rolService;
     @Autowired
@@ -53,7 +55,7 @@ public class AuthController {
                 return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
             }
 
-            if (usuarioService.existsByUsername(NUsuario.getUsername())) {
+            if (usuarioService.existsByUserName(NUsuario.getUsername())) {
                 return new ResponseEntity(new Mensaje("El nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
             }
 
@@ -61,7 +63,7 @@ public class AuthController {
                 return new ResponseEntity(new Mensaje("El mail ya existe"), HttpStatus.BAD_REQUEST);
             }
 
-            Persona usuario = new Persona(NUsuario.getNombre(), NUsuario.getApellido(), NUsuario.getDescripcion(), NUsuario.getProvincia(), NUsuario.getPais(), NUsuario.getCodigo_postal(), NUsuario.getFecha_nacimiento(), NUsuario.getTelefono(), NUsuario.getCorreo(), NUsuario.getFoto_perfil_url(), NUsuario.getUsername(), passEncoder.encode(NUsuario.getPassword()));
+            Usuario usuario = new Usuario(NUsuario.getCorreo(),NUsuario.getUsername(),passEncoder.encode(NUsuario.getPassword()));
 
             Set<Rol> roles = new HashSet<>();
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -70,13 +72,13 @@ public class AuthController {
                 roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
             }
             usuario.setRoles(roles);
-            //usuarioService.save(usuario);
-            usuarioService.crearPersona(usuario);
+            usuarioService.save(usuario);
+            
 
             return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
         } catch (Exception ex) {
             System.out.println("No se ha podido realizar: " + ex.getMessage());
-            return new ResponseEntity(new Mensaje("El mail ya existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -96,7 +98,7 @@ public class AuthController {
         }
         catch(AuthenticationException ex){
             System.out.println("No se ha podido realizar: " + ex.getMessage());
-            return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }

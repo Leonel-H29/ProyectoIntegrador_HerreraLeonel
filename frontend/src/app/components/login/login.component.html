@@ -9,8 +9,9 @@
     />
 
     <p id="profile-name" class="profile-name-card"></p>
-    <form class="form-signin">
+    <form class="form-signin" #f="ngForm" (ngSubmit)="onLogin()" novalidate>
       <span id="reauth-email" class="reauth-email"></span>
+      <!--
       <input
         type="email"
         id="inputEmail"
@@ -19,24 +20,39 @@
         required
         autofocus
       />
+      -->
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required
+        autofocus
+        [(ngModel)]="username"
+      />
       <input
         type="password"
-        id="inputPassword"
+        id="password"
+        name="password"
         class="form-control"
         placeholder="Password"
         required
+        [(ngModel)]="password"
       />
+      <!--
       <div id="remember" class="checkbox">
         <label>
           <input type="checkbox" value="remember-me" /> Remember me
         </label>
       </div>
+      -->
       <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
-        Sign in
+        Login
       </button>
     </form>
     <!-- /form -->
-    <a href="#" class="forgot-password"> Forgot the password? </a>
+    <!-- <a href="#" class="forgot-password"> Forgot the password? </a> -->
   </div>
   <!-- /card-container -->
 </div>

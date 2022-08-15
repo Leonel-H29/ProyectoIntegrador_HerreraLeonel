@@ -6,9 +6,7 @@ import com.portafolio.mgb.repository.PersonaRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import javax.transaction.Transactional;
-//import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,10 +67,7 @@ public class PersonaService implements IPersonaService {
             int nCodigoP,
             LocalDate nFechaN,
             String nTelefono,
-            String nCorreo,
-            String nFoto,
-            String nUsername, 
-            String nPassword
+            String nFoto
     ) {
 
         try {
@@ -85,10 +80,9 @@ public class PersonaService implements IPersonaService {
             persona.setCodigo_postal(nCodigoP);
             persona.setFecha_nacimiento(nFechaN);
             persona.setTelefono(nTelefono);
-            persona.setCorreo(nCorreo);
+
             persona.setFoto_perfil_url(nFoto);
-            persona.setUsername(nUsername);
-            persona.setPassword(nPassword);
+
             System.out.println(persona);
             RepoPers.save(persona);
             //return persona;
@@ -118,21 +112,5 @@ public class PersonaService implements IPersonaService {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
     }
-    
-    @Override
-    public Optional<Persona> getByUsername(String username) {
-        //RepoPers.findBy(example, queryFunction)
-        return RepoPers.findByUsername(username);
-        
-    }
-    @Override
-    public boolean existsByUsername(String username) {
-        return RepoPers.existsByUsername(username);
-    }
-    @Override
-    public boolean existsByCorreo(String correo) {
-        return RepoPers.existsByCorreo(correo);
-    }
-
 
 }

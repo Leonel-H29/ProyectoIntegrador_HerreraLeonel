@@ -108,7 +108,23 @@
     aria-label="Toggle navigation"
     title="Iniciar sesion"
     (click)="login()"
+    *ngIf="!isLogged"
   >
     LOGIN
+  </button>
+
+  <button
+    class="text-uppercase font-weight-bold bg-primary text-white rounded"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarResponsive"
+    aria-controls="navbarResponsive"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    title="Cerrar sesion"
+    (click)="onLogOut()"
+    *ngIf="isLogged"
+  >
+    LOGOUT
   </button>
 </div>

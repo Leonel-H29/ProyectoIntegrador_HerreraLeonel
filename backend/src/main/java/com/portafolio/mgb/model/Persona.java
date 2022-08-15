@@ -55,43 +55,22 @@ public class Persona {
     @Size(min = 0, max = 12, message = "La longitud del telefono no es valida")
     private String telefono;
 
-    @NotNull
-    @Column(unique = true)
-    @Size(min = 1, max = 45, message = "La longitud del correo no es valida")
-    private String correo;
-
     @Size(min = 0, max = 100, message = "La longitud del link de perfil no es valida")
     private String foto_perfil_url;
-
-    @NotNull
-    @Column(unique = true)
-    @Size(min = 6, max = 15, message = "La longitud del username no es valida")
-    private String username;
-
-    @NotNull
-    @Size(min = 6, max = 15, message = "La longitud del password no es valida")
-    private String password;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idpersona"), inverseJoinColumns = @JoinColumn(name = "idrol"))
-    private Set<Rol> roles = new HashSet<>();
 
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String descripcion, String provincia, String pais, int codigo_postal, LocalDate fecha_nacimiento, String telefono, String correo, String foto_perfil_url, String username, String password) {
+    public Persona(String nombre, String apellido, String descripcion, String provincia, String pais, int codigo_postal, LocalDate fecha_nacimiento, String telefono, String foto_perfil_url) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.descripcion = descripcion;
         this.provincia = provincia;
         this.pais = pais;
         this.codigo_postal = codigo_postal;
-        this.fecha_nacimiento = fecha_nacimiento;
+        this.fecha_nacimiento = fecha_nacimiento;        
         this.telefono = telefono;
-        this.correo = correo;
         this.foto_perfil_url = foto_perfil_url;
-        this.username = username;
-        this.password = password;
     }
 
 }

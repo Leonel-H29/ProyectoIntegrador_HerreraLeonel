@@ -73,6 +73,7 @@ html {
   box-sizing: border-box;
 }
 
+.form-signin #inputUsername,
 .form-signin #inputEmail,
 .form-signin #inputPassword {
   direction: ltr;

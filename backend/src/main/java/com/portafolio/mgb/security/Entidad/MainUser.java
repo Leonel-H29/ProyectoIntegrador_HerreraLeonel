@@ -1,6 +1,5 @@
 package com.portafolio.mgb.security.Entidad;
 
-import com.portafolio.mgb.model.Persona;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,9 +23,9 @@ public class MainUser implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static MainUser build(Persona persona) {
-        List<GrantedAuthority> authorities = persona.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
-        return new MainUser(persona.getUsername(), persona.getCorreo(), persona.getPassword(), authorities);
+    public static MainUser build(Usuario usuario) {
+        List<GrantedAuthority> authorities = usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol.getRolNombre().name())).collect(Collectors.toList());
+        return new MainUser(usuario.getUsername(), usuario.getCorreo(), usuario.getPassword(), authorities);
     }
 
     @Override

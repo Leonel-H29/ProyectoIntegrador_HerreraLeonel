@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/service/token.service';
 
 @Component({
   selector: 'app-derecho',
@@ -7,10 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./derecho.component.css'],
 })
 export class DerechoComponent implements OnInit {
-  constructor(private router: Router) {}
+  isLogged = false;
+
+  constructor(private router: Router, private tokenService: TokenService) {}
 
   login() {
     this.router.navigate(['/login']);
   }
-  ngOnInit(): void {}
+
+  ngOnInit(): void {
+    if (this.tokenService.getToken()) this.isLogged = true;
+    else this.isLogged = false;
+  }
+
+  onLogOut(): void {
+    this.tokenService.Logout();
+    window.location.reload();
+  }
 }

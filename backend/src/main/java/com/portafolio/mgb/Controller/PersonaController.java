@@ -3,15 +3,15 @@ package com.portafolio.mgb.Controller;
 import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.model.Persona;
 import java.time.LocalDate;
-//import java.util.ArrayList;
+
 import java.util.List;
-import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -53,12 +53,9 @@ public class PersonaController {
             @RequestParam("codigo_postal") int nCodigoP,
             @RequestParam("fecha_nacimiento") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate nFechaN,
             @RequestParam("telefono") String nTelefono,
-            @RequestParam("correo") String nCorreo,
-            @RequestParam("foto_perfil_url") String nFoto,
-            @RequestParam("username") String nUsername,
-            @RequestParam("password") String nPassword
+            @RequestParam("foto_perfil_url") String nFoto
     ) {
-        perServ.editarPersona(id, nNombre, nApellido, nDescripcion, nProvincia, nPais, nCodigoP, nFechaN, nTelefono, nCorreo, nFoto, nUsername, nPassword);
+        perServ.editarPersona(id, nNombre, nApellido, nDescripcion, nProvincia, nPais, nCodigoP, nFechaN, nTelefono, nFoto);
 
     }
 
@@ -67,15 +64,4 @@ public class PersonaController {
         return perServ.buscarPersona(id);
     }
 
-    @GetMapping("/personas/{username}")
-    public Optional<Persona> findByUsername(@PathVariable String username) {
-        Optional<Persona> persona = perServ.getByUsername(username);
-        return persona;
-    }
-
-    @GetMapping("/personas/{correo}")
-    public boolean findByCorreo(@PathVariable String correo) {
-        return perServ.existsByCorreo(correo);
-
-    }
 }

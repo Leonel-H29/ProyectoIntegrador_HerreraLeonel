@@ -14,9 +14,11 @@ def random_personas(cantidad: int = 500, url: str = "http://127.0.0.1:8080/")->N
         persona["provincia"] = fake.city()
         persona["pais"] = fake.country()
         persona["codigo_postal"] = fake.postcode()
-        persona["correo"] = fake.email()
+        #persona["correo"] = fake.email()
         persona["foto_perfil_url"] = fake.domain_name()
         persona["telefono"] = ""
+        #persona["username"] = persona["nombre"] + "-" + str(i)
+        #persona["password"] = "123456"
 
         r = requests.post(url, json=persona)
         # print(persona)
