@@ -1,9 +1,11 @@
 package com.portafolio.mgb.model;
 
 import com.portafolio.mgb.security.Entidad.Rol;
+import com.portafolio.mgb.security.Entidad.Usuario;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -57,6 +60,10 @@ public class Persona {
 
     @Size(min = 0, max = 100, message = "La longitud del link de perfil no es valida")
     private String foto_perfil_url;
+    
+    //@JoinColumn(name="idusuario", unique=true)
+    //@OneToOne(cascade=CascadeType.ALL)
+    //private Usuario usuario;
 
     public Persona() {
     }

@@ -1,27 +1,25 @@
 export class persona {
   idpersona?: number;
-  nombre: String;
-  apellido: String;
-  descripcion: String;
-  provincia: String;
-  pais: String;
+  nombre: string;
+  apellido: string;
+  descripcion: string;
+  provincia: string;
+  pais: string;
   codigo_postal: number;
   fecha_nacimiento: Date;
-  telefono: String;
-  correo: String;
-  foto_perfil_url: String;
+  telefono: string;
+  foto_perfil_url: string;
 
   constructor(
-    nombre: String,
-    apellido: String,
-    descripcion: String,
-    provincia: String,
-    pais: String,
+    nombre: string,
+    apellido: string,
+    descripcion: string,
+    provincia: string,
+    pais: string,
     codigo_postal: number,
     fecha_nacimiento: Date,
-    telefono: String,
-    correo: String,
-    foto_perfil_url: String
+    telefono: string,
+    foto_perfil_url: string
   ) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -31,7 +29,6 @@ export class persona {
     this.codigo_postal = codigo_postal;
     this.fecha_nacimiento = fecha_nacimiento;
     this.telefono = telefono;
-    this.correo = correo;
     this.foto_perfil_url = foto_perfil_url;
   }
 }

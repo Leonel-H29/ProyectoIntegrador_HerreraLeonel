@@ -19,4 +19,8 @@ export class AuthService {
   public Login(loginUser: LoginUser): Observable<JwtDto> {
     return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUser);
   }
+
+  public getByUsername(username: string): Observable<any> {
+    return this.httpClient.get<any>(this.authURL + username);
+  }
 }
