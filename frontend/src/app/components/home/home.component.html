@@ -5,6 +5,21 @@
   </div>
   <ul>
     <li *ngFor="let per of listPersona">
+      <div *ngIf="per.idpersona == null; else TemplatePerfil">
+        <img
+          src="src/assets/resourses/img/perfil.png"
+          alt="Foto de perfil"
+          title="Foto de perfil"
+        />
+      </div>
+      <div *></div>
+      <ng-template #TemplatePerfil>
+        <img
+          src="per.foto_perfil_url"
+          alt="Foto de perfil"
+          title="Foto de perfil"
+        />
+      </ng-template>
       <a [routerLink]="['perfil/', per.idpersona]"
         >{{ per.nombre }} {{ per.apellido }}</a
       >
@@ -12,4 +27,5 @@
   </ul>
 </header>
 <app-footer></app-footer>
+
 <!-- {{ listPersona }} -->
