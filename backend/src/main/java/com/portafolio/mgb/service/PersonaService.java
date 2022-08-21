@@ -103,11 +103,16 @@ public class PersonaService implements IPersonaService {
 
     @Override
     public void eliminarPersona(Long id) {
-        RepoPers.deleteById(id);
+        //RepoPers.deleteById(id);
 
         try {
-            RepoPers.deleteById(id);
-            System.out.println("Persona eliminada");
+            if (RepoPers.existsById(id)) {
+                RepoPers.deleteById(id);
+                System.out.println("Persona eliminada");
+            } else {
+                System.out.println("No existe persona con el id: " + id);
+            }
+
         } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }

@@ -23,8 +23,8 @@ export class PersonaService {
   }
 
   public getPersona(id: number): Observable<persona> {
-    let usuario = this.user.getByUsername(this.token.getUsername());
-    let listPersona = this.getListPersonas();
+    //let usuario = this.user.getByUsername(this.token.getUsername());
+    //let listPersona = this.getListPersonas();
     return this.http.get<persona>(this.URL + id);
   }
 }

@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+  # Angular js Frontend
+  frontend:
+    ports:
+      - 4200:4200
+    container_name: frontend
+    build:
+      context: frontend
+      dockerfile: frontend.Dockerfile
+    volumes:
+      - "./nginx/conf:/etc/nginx/conf.d"
+    image: frontend:1.0
+    networks:
+      - portafolio-network
+
+  # Sprint Boot Backend
+  backend:
+    ports:
+      - 8000:8080
+    environment:
+      container_name: backend
+    build:
+      context: backend
+      dockerfile: backend.Dockerfile
+    depends_on:
+      - database
+    volumes:
+      - "./backend:/usr/src/backend"
+    image: backend:1.0
+    networks:
+      - portafolio-network
+
+  database:
+    image: mysql:8.0
+    container_name: mysql-portafolio
+    volumes:
+      - ./database:/var/lib/mysql:rw
+    environment:
+      MYSQL_ROOT_PASSWORD: "contraseña"
+      MYSQL_ROOT_DATABASE: "portafolio"
+      MYSQL_USER: "admin"
+      MYSQL_PASSWORD: "contraseña"
+      #MYSQL_ALLOW_EMPTY_PASSWORD: true
+      #MYSQL_RANDOM_ROOT_PASSWORD: "contraseña"
+    networks:
+      - portafolio-network
+    ports:
+      - 23306:3306
+
+networks:
+  portafolio-network:

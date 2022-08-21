@@ -12,5 +12,48 @@
       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
       <div class="divider-custom-line"></div>
     </div>
+    <button
+      title="Agregar experiencia"
+      routerLink="/createexp"
+      *ngIf="isLogged"
+    >
+      <i class="fa-solid fa-circle-plus"></i>
+    </button>
+
+    <div *ngFor="let Experiencia of expe">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ Experiencia.nombre_empresa }}</h5>
+          <div></div>
+          <h6
+            class="card-subtitle mb-2 text-muted"
+            *ngIf="Experiencia.fecha_fin == null; else TemplateFechaFin"
+          >
+            Desde: {{ Experiencia.fecha_inicio }}
+          </h6>
+          <!--
+          <h6
+            class="card-subtitle mb-2 text-muted"
+          >
+            Tipo Empleo: {{ Experiencia.idtipo_empleo }}
+          </h6>
+          ---->
+
+          <p class="card-text" *ngIf="Experiencia.descripcion != null">
+            {{ Experiencia.descripcion }}
+          </p>
+
+          <ng-template #TemplateFechaFin>
+            <h6
+              class="card-subtitle mb-2 text-muted"
+              *ngIf="Experiencia.fecha_fin == null; else TemplateFechaFin"
+            >
+              Desde: {{ Experiencia.fecha_inicio }} - Hasta:
+              {{ Experiencia.fecha_fin }}
+            </h6>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
