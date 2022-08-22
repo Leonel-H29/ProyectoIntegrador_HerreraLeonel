@@ -10,6 +10,7 @@ import com.portafolio.mgb.security.Entidad.Usuario;
 import com.portafolio.mgb.security.Enums.RolNombre;
 import com.portafolio.mgb.security.Services.RolService;
 import com.portafolio.mgb.security.Services.UsuarioService;
+import com.portafolio.mgb.security.conexion.ConexionBD;
 import com.portafolio.mgb.security.jwt.JwtProvider;
 
 import java.util.HashSet;
@@ -50,10 +51,18 @@ public class AuthController {
     RolService rolService;
     @Autowired
     JwtProvider jwtProvider;
+    @Autowired
+    ConexionBD conexionBD;
+    
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
         try {
+            /*
+            if(!conexionBD.IsConnected()){
+                return new ResponseEntity(new Mensaje("No se pudo conectar a la base de datos"), HttpStatus.BAD_REQUEST);
+            }
+            */
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
             }
@@ -88,6 +97,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         try{
+            /*
+            if(!conexionBD.IsConnected()){
+                return new ResponseEntity(new Mensaje("No se pudo conectar a la base de datos"), HttpStatus.BAD_REQUEST);
+            }*/
             if (bindingResult.hasErrors()) {
             return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
         }

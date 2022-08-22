@@ -1,5 +1,5 @@
 export class Experiencialab {
-  id?: number;
+  idexperiencia?: number;
   nombre_empresa: string;
   fecha_inicio: Date;
   fecha_fin: Date;

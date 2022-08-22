@@ -7,3 +7,8 @@ documents/*.r00
 documents/*.r01
 documents/*.gz
 documents/*.tar.bz2
+/nginx
+/.vscode
+/database
+/.git
+/.gitignore

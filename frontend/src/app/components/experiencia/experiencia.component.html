@@ -13,6 +13,8 @@
       <div class="divider-custom-line"></div>
     </div>
     <button
+      type="button"
+      class="btn btn-outline-dark"
       title="Agregar experiencia"
       routerLink="/createexp"
       *ngIf="isLogged"
@@ -44,14 +46,25 @@
           </p>
 
           <ng-template #TemplateFechaFin>
-            <h6
-              class="card-subtitle mb-2 text-muted"
-              *ngIf="Experiencia.fecha_fin == null; else TemplateFechaFin"
-            >
+            <h6 class="card-subtitle mb-2 text-muted">
               Desde: {{ Experiencia.fecha_inicio }} - Hasta:
               {{ Experiencia.fecha_fin }}
             </h6>
           </ng-template>
+
+          <div class="d-grid gap-2 col-1 mx-auto" *ngIf="isLogged">
+            <button
+              class="btn btn-primary"
+              type="button"
+              title="Editar"
+              routerLink="/editexp/{{ Experiencia.idexperiencia }}"
+            >
+              <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
+            </button>
+            <button class="btn btn-primary" type="button" title="Eliminar">
+              <i class="fa-solid fa-trash"></i><b> Eliminar</b>
+            </button>
+          </div>
         </div>
       </div>
     </div>

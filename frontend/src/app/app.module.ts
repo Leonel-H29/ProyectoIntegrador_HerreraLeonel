@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
+import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { NewExperienciaComponent } from './components/experiencia/new-experienci
     HomeComponent,
     PerfilComponent,
     NewExperienciaComponent,
+    EditExperienciaComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],

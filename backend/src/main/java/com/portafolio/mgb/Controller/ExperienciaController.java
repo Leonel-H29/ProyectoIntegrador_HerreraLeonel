@@ -92,4 +92,17 @@ public class ExperienciaController {
         ExpServ.EliminarExperiencia(id);
         return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable int id){
+        if(ExpServ.buscarExperiencia(id)==null){
+            return new ResponseEntity(ExpServ.buscarExperiencia(id), HttpStatus.BAD_REQUEST);
+        }
+        
+        return new ResponseEntity(ExpServ.buscarExperiencia(id), HttpStatus.OK);
+    }
+    /*
+    @GetMapping("/{id}")
+    public Experiencia find(@PathVariable int id){
+        return ExpServ.buscarExperiencia(id);
+    }*/
 }
