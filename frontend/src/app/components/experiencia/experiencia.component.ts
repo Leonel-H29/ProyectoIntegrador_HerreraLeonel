@@ -10,6 +10,8 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class ExperienciaComponent implements OnInit {
   expe: Experiencialab[] = [];
+  experienciaAeliminar: Experiencialab;
+
   constructor(
     private expService: ExperiencialabService,
     private tokenService: TokenService
@@ -44,5 +46,9 @@ export class ExperienciaComponent implements OnInit {
         }
       );
     }
+  }
+
+  getExperienciaAEliminar(experiencia: Experiencialab): void {
+    this.experienciaAeliminar = experiencia;
   }
 }

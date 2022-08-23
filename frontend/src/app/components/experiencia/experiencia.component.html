@@ -61,10 +61,64 @@
             >
               <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
             </button>
-            <button class="btn btn-primary" type="button" title="Eliminar">
+            <button
+              class="btn btn-primary"
+              type="button"
+              title="Eliminar"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="getExperienciaAEliminar(Experiencia)"
+            >
               <i class="fa-solid fa-trash"></i><b> Eliminar</b>
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            Eliminar experiencia
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" *ngIf="experienciaAeliminar != undefined">
+          ¿Esta seguro de eliminar la experiencia
+          {{ experienciaAeliminar.nombre_empresa }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            title="Cerrar"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="DeleteExperiencia(experienciaAeliminar.idexperiencia)"
+            title="Eliminar"
+          >
+            Eliminar
+          </button>
         </div>
       </div>
     </div>

@@ -5,17 +5,18 @@
   </div>
   <ul>
     <li *ngFor="let per of listPersona">
-      <div *ngIf="per.idpersona == null; else TemplatePerfil">
+      <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
         <img
-          src="src/assets/resourses/img/perfil.png"
+          src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
+          style="width: 6rem; height: 6rem"
           alt="Foto de perfil"
           title="Foto de perfil"
         />
       </div>
-      <div *></div>
       <ng-template #TemplatePerfil>
         <img
-          src="per.foto_perfil_url"
+          src="{{ per.foto_perfil_url }}"
+          style="width: 6rem; height: 6rem"
           alt="Foto de perfil"
           title="Foto de perfil"
         />

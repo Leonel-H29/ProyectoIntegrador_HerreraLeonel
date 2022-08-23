@@ -11,4 +11,4 @@ nginx/
 .vscode/
 database/
 .git/
-*.gitignore
+.gitignore

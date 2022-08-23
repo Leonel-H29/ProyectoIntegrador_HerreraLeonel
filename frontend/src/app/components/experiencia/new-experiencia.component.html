@@ -1,87 +1,92 @@
-<div class="container">
-  <!-- Contact Section Heading-->
-  <h2
-    class="page-section-heading text-center text-uppercase text-secondary mb-0"
-  >
-    Nueva Experiencia
-  </h2>
-  <!-- Icon Divider-->
-  <div class="divider-custom">
-    <div class="divider-custom-line"></div>
-    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-    <div class="divider-custom-line"></div>
-  </div>
-  <!-- Contact Section Form-->
-  <div class="row justify-content-center">
-    <div class="col-lg-8 col-xl-7">
-      <form id="contactForm" (ngSubmit)="OnCreate()" novalidate #f="ngForm">
-        <!-- Nombre de la empresa-->
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            id="nombreE"
-            type="text"
-            placeholder="Ingrese el nombre de la empresa"
-            data-sb-validations="required"
-            [(ngModel)]="nombreE"
-          />
-          <label for="name">Nombre de la empresa</label>
-          <div class="invalid-feedback" data-sb-feedback="nombreE:required">
-            Este campo es obligatorio
+<app-header></app-header>
+<header class="masthead text-center">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Nueva Experiencia
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="OnCreate()" novalidate #f="ngForm">
+          <!-- Nombre de la empresa-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="nombreE"
+              type="text"
+              placeholder="Ingrese el nombre de la empresa"
+              data-sb-validations="required"
+              [(ngModel)]="nombreE"
+            />
+            <label for="name">Nombre de la empresa</label>
+            <div class="invalid-feedback" data-sb-feedback="nombreE:required">
+              Este campo es obligatorio
+            </div>
           </div>
-        </div>
 
-        <!-- Descripcion-->
-        <div class="form-floating mb-3">
-          <textarea
-            class="form-control"
-            id="descripcion"
-            type="text"
-            placeholder="Escriba una descripcion"
-            style="height: 10rem"
-            [(ngModel)]="descripcion"
-          ></textarea>
-          <label for="descripcion">Descripcion</label>
-        </div>
-        <!-- Fecha de Inicio-->
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            id="fechaInicio"
-            type="date"
-            placeholder="Fecha de inicio"
-            data-sb-validations="required,fechaInicio"
-            [(ngModel)]="fechaInicio"
-          />
-          <label for="fechaInicio">Fecha de inicio</label>
-          <div class="invalid-feedback" data-sb-feedback="fechaInicio:required">
-            Este campo es obligatorio
+          <!-- Descripcion-->
+          <div class="form-floating mb-3">
+            <textarea
+              class="form-control"
+              id="descripcion"
+              type="text"
+              placeholder="Escriba una descripcion"
+              style="height: 10rem"
+              [(ngModel)]="descripcion"
+            ></textarea>
+            <label for="descripcion">Descripcion</label>
           </div>
-          <div
-            class="invalid-feedback"
-            data-sb-feedback="fechaInicio:fechaInicio"
-          >
-            La fecha no es valida
+          <!-- Fecha de Inicio-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="fechaInicio"
+              type="date"
+              placeholder="Fecha de inicio"
+              data-sb-validations="required,fechaInicio"
+              [(ngModel)]="fechaInicio"
+            />
+            <label for="fechaInicio">Fecha de inicio</label>
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="fechaInicio:required"
+            >
+              Este campo es obligatorio
+            </div>
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="fechaInicio:fechaInicio"
+            >
+              La fecha no es valida
+            </div>
           </div>
-        </div>
-        <!-- Fecha de Final-->
-        <div class="form-floating mb-3">
-          <input
-            class="form-control"
-            id="fechaFin"
-            type="date"
-            placeholder="Fecha Final"
-            data-sb-validations="fechaFin"
-            [(ngModel)]="fechaFin"
-          />
-          <label for="fechaInicio">Fecha Final</label>
+          <!-- Fecha de Final-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="fechaFin"
+              type="date"
+              placeholder="Fecha Final"
+              data-sb-validations="fechaFin"
+              [(ngModel)]="fechaFin"
+            />
+            <label for="fechaInicio">Fecha Final</label>
 
-          <div class="invalid-feedback" data-sb-feedback="fechaFin:fechaFin">
-            La fecha no es valida
+            <div class="invalid-feedback" data-sb-feedback="fechaFin:fechaFin">
+              La fecha no es valida
+            </div>
           </div>
-        </div>
-        <!-- Phone number input-->
-        <!--
+          <!-- Phone number input-->
+          <!--
         <div class="form-floating mb-3">
           <input
             class="form-control"
@@ -97,36 +102,40 @@
         </div>
         -->
 
-        <!-- Submit success message-->
-        <!---->
-        <!-- This is what your users will see when the form-->
-        <!-- has successfully submitted-->
-        <div class="d-none" id="submitSuccessMessage">
-          <div class="text-center mb-3">
-            <div class="fw-bolder">Form submission successful!</div>
-            To activate this form, sign up at
-            <br />
-            <a href="https://startbootstrap.com/solution/contact-forms"
-              >https://startbootstrap.com/solution/contact-forms</a
-            >
+          <!-- Submit success message-->
+          <!---->
+          <!-- This is what your users will see when the form-->
+          <!-- has successfully submitted-->
+          <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center mb-3">
+              <div class="fw-bolder">Form submission successful!</div>
+              To activate this form, sign up at
+              <br />
+              <a href="https://startbootstrap.com/solution/contact-forms"
+                >https://startbootstrap.com/solution/contact-forms</a
+              >
+            </div>
           </div>
-        </div>
-        <!-- Submit error message-->
-        <!---->
-        <!-- This is what your users will see when there is-->
-        <!-- an error submitting the form-->
-        <div class="d-none" id="submitErrorMessage">
-          <div class="text-center text-danger mb-3">Error sending message!</div>
-        </div>
-        <!-- Submit Button-->
-        <button
-          class="btn btn-primary btn-xl disabled"
-          id="submitButton"
-          type="submit"
-        >
-          ENVIAR
-        </button>
-      </form>
+          <!-- Submit error message-->
+          <!---->
+          <!-- This is what your users will see when there is-->
+          <!-- an error submitting the form-->
+          <div class="d-none" id="submitErrorMessage">
+            <div class="text-center text-danger mb-3">
+              Error sending message!
+            </div>
+          </div>
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl disabled"
+            id="submitButton"
+            type="submit"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
     </div>
   </div>
-</div>
+</header>
+<app-footer></app-footer>
