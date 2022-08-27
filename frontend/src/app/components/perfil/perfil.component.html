@@ -1,6 +1,10 @@
 <app-header></app-header>
+
 <app-acerca-de></app-acerca-de>
-<app-experiencia></app-experiencia>
+<app-experiencia
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-experiencia>
 <app-educacion></app-educacion>
 <!--
 <div class="accordion" id="accordionExample">

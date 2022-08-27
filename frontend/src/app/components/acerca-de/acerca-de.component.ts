@@ -9,8 +9,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./acerca-de.component.css'],
 })
 export class AcercaDeComponent implements OnInit {
-  //persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '', '');
-  persona!: persona;
+  persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  //persona!: persona;
 
   constructor(
     public personaService: PersonaService,

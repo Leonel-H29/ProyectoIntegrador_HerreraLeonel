@@ -16,8 +16,8 @@
       type="button"
       class="btn btn-outline-dark"
       title="Agregar experiencia"
-      routerLink="/createexp"
-      *ngIf="isLogged"
+      routerLink="/createexp/{{ Persona.idpersona }}"
+      *ngIf="isLogged && Persona != undefined"
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -25,7 +25,7 @@
     <div *ngFor="let Experiencia of expe">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">{{ Experiencia.nombre_empresa }}</h5>
+          <h3 class="card-title">{{ Experiencia.nombre_empresa }}</h3>
           <div></div>
           <h6
             class="card-subtitle mb-2 text-muted"
