@@ -11,6 +11,7 @@
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/repository/TipoEmpleoRepository.java
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/security/Entidad/Rol.java
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/Controller/PersonaController.java
+/media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/security/conexion/ConexionBD.java
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/security/Dto/NuevoUsuario.java
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/security/repository/UsuarioRepository.java
 /media/leonel/Datos/Leo/Argentina Programa/YoProgramo/Proyecto Final/ProyectoIntegrador_HerreraLeonel/backend/src/main/java/com/portafolio/mgb/security/jwt/JwtProvider.java

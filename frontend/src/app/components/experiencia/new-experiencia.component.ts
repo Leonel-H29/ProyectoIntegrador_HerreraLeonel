@@ -25,7 +25,7 @@ export class NewExperienciaComponent implements OnInit {
   NPersona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
 
   ListaTiposEmpleos: TipoEmpleo[];
-  Persona: persona;
+  //Persona: persona;
 
   constructor(
     private Expeserv: ExperiencialabService,
@@ -77,16 +77,12 @@ export class NewExperienciaComponent implements OnInit {
     //this.Persona = this.PersServ.getPersona(id);
     this.PersServ.getPersona(id).subscribe(
       (data) => {
-        this.Persona = data;
+        this.NPersona = data;
         //console.log(this.Persona);
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
       }
     );
-
-    //if (this.Persona) {
-    //this.idPersona = this.Persona.idpersona;
-    //}
   }
 }

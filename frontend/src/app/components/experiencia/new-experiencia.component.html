@@ -14,12 +14,13 @@
       <div class="divider-custom-line"></div>
     </div>
     <!-- Contact Section Form-->
-    <div class="row justify-content-center" *ngIf="Persona != undefined">
+    <div class="row justify-content-center" *ngIf="NPersona != undefined">
       <div class="col-lg-8 col-xl-7">
         <form id="contactForm" (ngSubmit)="OnCreate()" novalidate #f="ngForm">
-          {{ Persona.idpersona }}, {{ Persona.nombre }}, {{ Persona.apellido }}
+          {{ NPersona.idpersona }}, {{ NPersona.nombre }},
+          {{ NPersona.apellido }}
           <!-- Id Persona-->
-          <!--
+
           <div class="form-floating mb-3">
             <input
               class="form-control"
@@ -27,13 +28,12 @@
               name="idPersona"
               type="number"
               data-sb-validations="required"
-              [(ngModel)]="idPersona"
-              value="{{ Persona.idpersona }}"
+              [(ngModel)]="NPersona"
+              value="{{ NPersona.idpersona }}"
               disabled="true"
             />
-            <label for="name">ID Persona</label>
+            <label for="name">Persona</label>
           </div>
-          -->
           <!-- Nombre de la empresa-->
           <div class="form-floating mb-3">
             <input
@@ -107,10 +107,7 @@
             </div>
           </div>
           <!-- Tipo de empleo-->
-          <div *ngFor="let tipo of ListaTiposEmpleos">
-            {{ tipo.idtipo_empleo }}-{{ tipo.tipo }}
-          </div>
-          <!--
+
           <div class="form-floating mb-3">
             <select
               class="form-select"
@@ -119,12 +116,9 @@
               name="idTipo"
               type="number"
               data-sb-validations="idTipo"
-              [(ngModel)]="idTipo"
+              [(ngModel)]="NTipo"
             >
-              <option
-                [value]="tipo.idtipo_empleo"
-                *ngFor="let tipo of ListaTiposEmpleos"
-              >
+              <option [value]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
                 {{ tipo.tipo }}
               </option>
             </select>
@@ -134,7 +128,6 @@
               El tipo de empleo no es valido
             </div>
           </div>
-          -->
 
           <!-- Submit success message-->
           <!---->

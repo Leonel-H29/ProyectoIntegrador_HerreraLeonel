@@ -29,6 +29,7 @@ com/portafolio/mgb/security/Controller/Mensaje.class
 com/portafolio/mgb/Interface/IExperienciaService.class
 com/portafolio/mgb/security/Entidad/MainUser.class
 com/portafolio/mgb/Controller/ExperienciaController.class
+com/portafolio/mgb/security/conexion/ConexionBD.class
 com/portafolio/mgb/model/Persona.class
 com/portafolio/mgb/Interface/ITipoEmpleoService.class
 com/portafolio/mgb/security/Dto/NuevoUsuario.class
