@@ -1,6 +1,7 @@
 package com.portafolio.mgb.model;
 
 //import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,7 +33,6 @@ public class Educacion {
     @NotNull
     private LocalDate fecha_inicio;
     
-    @NotNull
     private LocalDate fecha_fin;
     
     @Size(min = 0, max = 200, message = "La longitud de la descripcion no es valida")
@@ -40,7 +40,7 @@ public class Educacion {
     
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "idpersona")
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Persona persona;
 
     public Educacion() {
