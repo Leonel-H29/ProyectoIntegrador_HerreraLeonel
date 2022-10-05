@@ -31,7 +31,7 @@
             class="card-subtitle mb-2 text-muted"
             *ngIf="Experiencia.fecha_fin == null; else TemplateFechaFin"
           >
-            Desde: {{ Experiencia.fecha_inicio }}
+            Desde: {{ Experiencia.fecha_inicio| date:'dd/MM/y' }}
           </h6>
           <!--
           <h6
@@ -47,8 +47,8 @@
 
           <ng-template #TemplateFechaFin>
             <h6 class="card-subtitle mb-2 text-muted">
-              Desde: {{ Experiencia.fecha_inicio }} - Hasta:
-              {{ Experiencia.fecha_fin }}
+              Desde: {{ Experiencia.fecha_inicio | date:'dd/MM/y' }} - Hasta:
+              {{ Experiencia.fecha_fin | date:'dd/MM/y' }}
             </h6>
           </ng-template>
 
