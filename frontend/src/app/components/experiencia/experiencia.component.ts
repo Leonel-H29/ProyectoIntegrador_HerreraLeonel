@@ -45,14 +45,16 @@ export class ExperienciaComponent implements OnInit {
   CargarExperiencias(): void {
     this.expService.ListaExp().subscribe(
       (data) => {
+        /*
         data.forEach((element) => {
           console.log(element);
           if (element.persona.idpersona == this.Persona.idpersona) {
             this.expe.push(element);
           }
         });
-        //this.expe = data;
-        //console.log('Experiencia: ', this.expe);
+        */
+        this.expe = data;
+        console.log('Experiencia: ', this.expe);
       },
       (err) => {
         alert('Se encontro un error en la lista');
