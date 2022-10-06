@@ -34,40 +34,40 @@ public class EducacionController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Educacion exp) {
-        if (StringUtils.isBlank(exp.getNombre_institucion())) {
+    public ResponseEntity<?> create(@RequestBody Educacion educ) {
+        if (StringUtils.isBlank(educ.getNombre_institucion())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
        
 
-        if (ChronoUnit.DAYS.between(exp.getFecha_inicio(), exp.getFecha_fin()) < 0) {
+        if (ChronoUnit.DAYS.between(educ.getFecha_inicio(), educ.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }       
-        Educacion educacion = new Educacion(exp.getNombre_institucion(), exp.getFecha_inicio(), exp.getFecha_fin(), exp.getDescripcion(), exp.getPersona());
+        Educacion educacion = new Educacion(educ.getNombre_institucion(), educ.getFecha_inicio(), educ.getFecha_fin(), educ.getDescripcion(), educ.getPersona());
         EduServ.GuardarEducacion(educacion);
         return new ResponseEntity(new Mensaje("Educacion agregada"), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Educacion exp) {
+    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Educacion educ) {
         //Valido el id
         if (!EduServ.existsById(id)) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
         }
         //Controlo que el nombre no este en blanco
-        if (StringUtils.isBlank(exp.getNombre_institucion())) {
+        if (StringUtils.isBlank(educ.getNombre_institucion())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         //Controlo que la fecha de inicio no sea mayor a la de final
-        if (ChronoUnit.DAYS.between(exp.getFecha_inicio(), exp.getFecha_fin()) < 0) {
+        if (ChronoUnit.DAYS.between(educ.getFecha_inicio(), educ.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }
         Educacion educacion = EduServ.buscarEducacion(id);
-        educacion.setNombre_institucion(exp.getNombre_institucion());
-        educacion.setDescripcion(exp.getDescripcion());
-        educacion.setFecha_inicio(exp.getFecha_inicio());
-        educacion.setFecha_fin(exp.getFecha_fin());
-        educacion.setPersona(exp.getPersona());
+        educacion.setNombre_institucion(educ.getNombre_institucion());
+        educacion.setDescripcion(educ.getDescripcion());
+        educacion.setFecha_inicio(educ.getFecha_inicio());
+        educacion.setFecha_fin(educ.getFecha_fin());
+        educacion.setPersona(educ.getPersona());
         EduServ.GuardarEducacion(educacion);
         return new ResponseEntity(new Mensaje("Educacion actualizada"), HttpStatus.OK);
 
