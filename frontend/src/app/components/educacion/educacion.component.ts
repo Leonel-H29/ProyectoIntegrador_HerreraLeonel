@@ -42,7 +42,7 @@ export class EducacionComponent implements OnInit {
   }
 
   CargarEducaciones(): void {
-    this.eduService.ListaExp().subscribe(
+    this.eduService.ListaEdu().subscribe(
       (data) => {
         /*
         data.forEach((element) => {

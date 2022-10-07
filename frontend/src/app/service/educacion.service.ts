@@ -7,27 +7,27 @@ import { Educacion } from '../model/educacion';
   providedIn: 'root'
 })
 export class EducacionService {
-  expURL = 'http://localhost:8080/educacion/';
+  eduURL = 'http://localhost:8080/educacion/';
 
   constructor(private httpClient: HttpClient) {}
 
-  public ListaExp(): Observable<Educacion[]> {
-    return this.httpClient.get<Educacion[]>(this.expURL + 'list');
+  public ListaEdu(): Observable<Educacion[]> {
+    return this.httpClient.get<Educacion[]>(this.eduURL + 'list');
   }
 
   public GetEducacion(id: number): Observable<Educacion> {
-    return this.httpClient.get<Educacion>(this.expURL + id);
+    return this.httpClient.get<Educacion>(this.eduURL + id);
   }
 
-  public SaveEducacion(expe: Educacion): Observable<any> {
-    return this.httpClient.post<any>(this.expURL + 'create', expe);
+  public SaveEducacion(edu: Educacion): Observable<any> {
+    return this.httpClient.post<any>(this.eduURL + 'create', edu);
   }
 
-  public UpdateEducacion(id: number, expe: Educacion): Observable<any> {
-    return this.httpClient.put<any>(this.expURL + 'update/' + id, expe);
+  public UpdateEducacion(id: number, edu: Educacion): Observable<any> {
+    return this.httpClient.put<any>(this.eduURL + 'update/' + id, edu);
   }
 
   public DeleteEducacion(id: number): Observable<any> {
-    return this.httpClient.delete<any>(this.expURL + 'delete/' + id);
+    return this.httpClient.delete<any>(this.eduURL + 'delete/' + id);
   }
 }
