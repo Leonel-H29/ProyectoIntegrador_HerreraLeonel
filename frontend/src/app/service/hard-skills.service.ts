@@ -6,7 +6,7 @@ import { HardSkills } from '../model/hard-skills';
 @Injectable({
   providedIn: 'root'
 })
-export class HardSkillservice {
+export class HardSkillService {
 
   hsURL = 'http://localhost:8080/hardskill/';
   constructor(private httpClient: HttpClient) { }
