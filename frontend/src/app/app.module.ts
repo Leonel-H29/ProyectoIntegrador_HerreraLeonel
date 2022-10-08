@@ -19,6 +19,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { FormsModule } from '@angular/forms';
 import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,13 @@ import { EditExperienciaComponent } from './components/experiencia/edit-experien
     NewExperienciaComponent,
     EditExperienciaComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    NgCircleProgressModule.forRoot({})
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
