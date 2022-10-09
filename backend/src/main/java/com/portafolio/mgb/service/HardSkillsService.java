@@ -19,8 +19,8 @@ public class HardSkillsService implements IHardSkillsService{
     @Autowired
     HardSkillsRepository HskillRepo;
     
-    @Autowired
-    PersonaRepository PerRepo;
+    //@Autowired
+    //PersonaRepository PerRepo;
 
     @Override
     public List<HardSkills> listHardSkills() {
@@ -52,9 +52,6 @@ public class HardSkillsService implements IHardSkillsService{
             if (skill != null) {
                 HskillRepo.SaveSkillSQL(skill.getSkill(), skill.getPorcentaje(), skill.getPersona().getIdpersona());
                 //HskillRepo.save(skill);
-                //Persona persona = skill.getPersona();
-                //persona.setHardSkill();
-                //PerRepo.save(persona);
             } else {
                 System.out.println("No se ha podido guardar la skill");
             }

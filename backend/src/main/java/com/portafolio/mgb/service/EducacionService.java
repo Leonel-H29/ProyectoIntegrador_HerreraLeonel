@@ -3,6 +3,7 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IEducacionService;
 import com.portafolio.mgb.model.Educacion;
 import com.portafolio.mgb.repository.EducacionRepository;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -45,7 +46,8 @@ public class EducacionService implements IEducacionService{
     public void GuardarEducacion(Educacion edu) {
         try {
             if (edu != null) {
-                EduRepo.save(edu);
+                //EduRepo.save(edu);
+                EduRepo.SaveEducacionSQL(edu.getNombre_institucion(), edu.getFecha_inicio(), edu.getFecha_fin(), edu.getDescripcion(), edu.getPersona().getIdpersona());
             } else {
                 System.out.println("No se ha podido guardar la educacion");
             }

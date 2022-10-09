@@ -59,7 +59,7 @@ public class EducacionController {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         //Controlo que la fecha de inicio no sea mayor a la de final
-        if (ChronoUnit.DAYS.between(educ.getFecha_inicio(), educ.getFecha_fin()) < 0) {
+        if (educ.getFecha_fin() !=  null && ChronoUnit.DAYS.between(educ.getFecha_inicio(), educ.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }
         Educacion educacion = EduServ.buscarEducacion(id);

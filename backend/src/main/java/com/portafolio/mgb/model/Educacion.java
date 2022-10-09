@@ -38,6 +38,9 @@ public class Educacion {
     @Size(min = 0, max = 200, message = "La longitud de la descripcion no es valida")
     private String descripcion;
     
+    //@NotNull
+    //private long idpersona;
+    
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "idpersona")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
