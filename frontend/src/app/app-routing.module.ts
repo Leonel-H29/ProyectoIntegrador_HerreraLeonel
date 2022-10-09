@@ -1,3 +1,4 @@
+import { NewHardSkillsComponent } from './components/hard-skills/new-hard-skills.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'perfil/:id', component: PerfilComponent },
   { path: 'createexp/:id', component: NewExperienciaComponent },
   { path: 'editexp/:id', component: EditExperienciaComponent },
+  {path: 'createhs/:id', component: NewHardSkillsComponent}
 ];
 
 @NgModule({

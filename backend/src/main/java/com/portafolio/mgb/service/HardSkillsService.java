@@ -2,7 +2,9 @@ package com.portafolio.mgb.service;
 
 import com.portafolio.mgb.Interface.IHardSkillsService;
 import com.portafolio.mgb.model.HardSkills;
+import com.portafolio.mgb.model.Persona;
 import com.portafolio.mgb.repository.HardSkillsRepository;
+import com.portafolio.mgb.repository.PersonaRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -16,6 +18,9 @@ public class HardSkillsService implements IHardSkillsService{
     
     @Autowired
     HardSkillsRepository HskillRepo;
+    
+    @Autowired
+    PersonaRepository PerRepo;
 
     @Override
     public List<HardSkills> listHardSkills() {
@@ -45,7 +50,11 @@ public class HardSkillsService implements IHardSkillsService{
     public void GuardarHardSkills(HardSkills skill) {
         try {
             if (skill != null) {
-                HskillRepo.save(skill);
+                HskillRepo.SaveSkillSQL(skill.getSkill(), skill.getPorcentaje(), skill.getPersona().getIdpersona());
+                //HskillRepo.save(skill);
+                //Persona persona = skill.getPersona();
+                //persona.setHardSkill();
+                //PerRepo.save(persona);
             } else {
                 System.out.println("No se ha podido guardar la skill");
             }

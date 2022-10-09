@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
-
+import { NewHardSkillsComponent } from './components/hard-skills/new-hard-skills.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +39,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     PerfilComponent,
     NewExperienciaComponent,
     EditExperienciaComponent,
+    NewHardSkillsComponent,
   ],
   imports: [
     BrowserModule,
