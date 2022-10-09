@@ -15,11 +15,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./new-experiencia.component.css'],
 })
 export class NewExperienciaComponent implements OnInit {
-  nombreE: string = '';
-  descripcion: string = '';
-  fechaInicio: Date = new Date();
-  fechaFin: Date = new Date();
-  //idTipo: number = 0;
+  NnombreE: string = '';
+  NDescripcion: string = '';
+  NfechaInicio: Date = new Date();
+  NfechaFin: Date = new Date();
+  idTipo: number = 0;
   //idPersona: number = 0;
   NTipo: TipoEmpleo = new TipoEmpleo('');
   NPersona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
@@ -42,27 +42,40 @@ export class NewExperienciaComponent implements OnInit {
   }
 
   OnCreate() {
-    const expe = new Experiencialab(
-      this.nombreE,
-      this.fechaInicio,
-      this.fechaFin,
-      this.descripcion,
-      //this.idPersona,
-      //this.idTipo
-      this.NPersona,
-      this.NTipo
-    );
-    this.Expeserv.SaveExperiencia(expe).subscribe(
-      (data) => {
-        alert('Experiencia añadida');
-        this.router.navigate(['']);
+    this.getNewTipoEmpleo(this.idTipo);
+    if(this.NTipo){
+      const expe = new Experiencialab(
+        this.NnombreE,
+        this.NfechaInicio,
+        this.NfechaFin,
+        this.NDescripcion,
+        this.NPersona,
+        this.NTipo
+      );
+      this.Expeserv.SaveExperiencia(expe).subscribe(
+        (data) => {
+          alert('Experiencia añadida');
+          this.router.navigate(['']);
+        },
+        (err) => {
+          alert('Fallo la operacion');
+          console.log(err);
+          //this.router.navigate(['']);
+        }
+      );
+    }
+  }
+
+  getNewTipoEmpleo(id:number): void{
+    this.TipoEmpServ.GetTipoEmpleo(id).subscribe(
+      (data) =>{
+        this.NTipo = data;
       },
-      (err) => {
+      (err)=>{
         alert('Fallo la operacion');
         console.log(err);
-        //this.router.navigate(['']);
       }
-    );
+    )
   }
 
   getTiposEmpleos(): void {

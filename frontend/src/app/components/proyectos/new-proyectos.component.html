@@ -5,7 +5,7 @@
     <h2
       class="page-section-heading text-center text-uppercase text-secondary mb-0"
     >
-      Nueva Experiencia
+      Nueva Proyecto
     </h2>
     <!-- Icon Divider-->
     <div class="divider-custom">
@@ -34,19 +34,19 @@
             />
             <label for="name">Persona</label>
           </div>
-          <!-- Nombre de la empresa-->
+          <!-- Nombre del proyecto-->
           <div class="form-floating mb-3">
             <input
               class="form-control"
-              id="NnombreE"
-              name="NnombreE"
+              id="Nproyecto"
+              name="Nproyecto"
               type="text"
-              placeholder="Ingrese el nombre de la empresa"
+              placeholder="Ingrese el nombre del proyecto"
               data-sb-validations="required"
-              [(ngModel)]="NnombreE"
+              [(ngModel)]="Nproyecto"
             />
-            <label for="name">Nombre de la empresa</label>
-            <div class="invalid-feedback" data-sb-feedback="NnombreE:required">
+            <label for="name">Nombre del proyecto</label>
+            <div class="invalid-feedback" data-sb-feedback="Nproyecto:required">
               Este campo es obligatorio
             </div>
           </div>
@@ -102,31 +102,25 @@
             />
             <label for="NfechaFin">Fecha Final</label>
 
-            <div class="invalid-feedback" data-sb-feedback="NfechaFin:NfechaFin">
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="NfechaFin:NfechaFin"
+            >
               La fecha no es valida
             </div>
           </div>
           <!-- Tipo de empleo-->
 
           <div class="form-floating mb-3">
-            <select
-              class="form-select"
-              size="4"
-              id="idTipo"
-              name="idTipo"
-              type="number"
-              data-sb-validations="idTipo"
-              [(ngModel)]="idTipo"
-            >
-              <option [value]="tipo.idtipo_empleo" *ngFor="let tipo of ListaTiposEmpleos">
-                {{ tipo.idtipo_empleo}}- {{ tipo.tipo }}
-              </option>
-            </select>
-            <label for="idTipo">Tipo de empleo</label>
-
-            <div class="invalid-feedback" data-sb-feedback="idTipo:idTipo">
-              El tipo de empleo no es valido
-            </div>
+            <input
+              class="form-control"
+              id="NUrlP"
+              name="NUrlP"
+              type="text"
+              placeholder="Ingrese el LINK del proyecto"
+              [(ngModel)]="NUrlP"
+            />
+            <label for="NUrlP">Link del proyecto</label>
           </div>
 
           <!-- Submit success message-->

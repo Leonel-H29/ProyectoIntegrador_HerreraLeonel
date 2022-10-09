@@ -3,17 +3,17 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IProyectosService;
 import com.portafolio.mgb.model.Proyectos;
 import com.portafolio.mgb.repository.ProyectosRepository;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Transactional
-public class ProyectosService implements IProyectosService{
-    
+public class ProyectosService implements IProyectosService {
+
     @Autowired
     ProyectosRepository ProyRepo;
 
@@ -45,7 +45,8 @@ public class ProyectosService implements IProyectosService{
     public void GuardarProyecto(Proyectos proy) {
         try {
             if (proy != null) {
-                ProyRepo.save(proy);
+                //ProyRepo.save(proy);
+                ProyRepo.SaveProyectoSQL(proy.getNombre(), proy.getDescripcion(), proy.getFecha_inicio(), proy.getFecha_fin(), proy.getUrl_proyecto(), proy.getPersona().getIdpersona());
             } else {
                 System.out.println("No se ha podido guardar el proyecto");
             }
@@ -74,5 +75,5 @@ public class ProyectosService implements IProyectosService{
     public boolean existsById(int id) {
         return ProyRepo.existsById(id);
     }
-    
+
 }
