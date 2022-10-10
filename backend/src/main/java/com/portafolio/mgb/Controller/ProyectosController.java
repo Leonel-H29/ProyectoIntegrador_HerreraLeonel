@@ -39,7 +39,7 @@ public class ProyectosController {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        if (ChronoUnit.DAYS.between(Proy.getFecha_inicio(), Proy.getFecha_fin()) < 0) {
+        if (Proy.getFecha_fin() != null && ChronoUnit.DAYS.between(Proy.getFecha_inicio(), Proy.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }
         Proyectos proyecto = new Proyectos(Proy.getNombre(), Proy.getDescripcion(), Proy.getFecha_inicio(), Proy.getFecha_fin(), Proy.getUrl_proyecto(), Proy.getPersona());
@@ -58,7 +58,7 @@ public class ProyectosController {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         //Controlo que la fecha de inicio no sea mayor a la de final
-        if (ChronoUnit.DAYS.between(Proy.getFecha_inicio(), Proy.getFecha_fin()) < 0) {
+        if (Proy.getFecha_fin() != null && ChronoUnit.DAYS.between(Proy.getFecha_inicio(), Proy.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }
         Proyectos proyecto = ProyServ.buscarProyecto(id);

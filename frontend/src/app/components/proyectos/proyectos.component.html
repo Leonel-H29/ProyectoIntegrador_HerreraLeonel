@@ -42,6 +42,28 @@
             alt="..."
           />
         </div>
+        <div class="d-grid gap-2 col-1 mx-auto" *ngIf="isLogged">
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Editar"
+            routerLink="/editproy/{{ Persona.idpersona }}/{{
+              proyectos.idproyecto
+            }}"
+          >
+            <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Eliminar"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="getProyectosAEliminar(proyectos)"
+          >
+            <i class="fa-solid fa-trash"></i><b> Eliminar</b>
+          </button>
+        </div>
       </div>
     </div>
   </div>
