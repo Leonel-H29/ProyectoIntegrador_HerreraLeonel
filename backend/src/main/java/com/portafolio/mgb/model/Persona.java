@@ -1,13 +1,17 @@
 package com.portafolio.mgb.model;
 
+
 import com.portafolio.mgb.security.Entidad.Usuario;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -56,10 +60,19 @@ public class Persona {
     @Size(min = 0, max = 100, message = "La longitud del link de perfil no es valida")
     private String foto_perfil_url;
     
-    
+    //@JsonProperty("idusuario")
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="idusuario", unique=true)
     private Usuario usuario;
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Set<Experiencia> experiencia = new HashSet<>();
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Set<Educacion> educacion = new HashSet<>();
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Set<HardSkills> hardSkill = new HashSet<>();
 
     public Persona() {
     }
@@ -74,6 +87,27 @@ public class Persona {
         this.fecha_nacimiento = fecha_nacimiento;        
         this.telefono = telefono;
         this.foto_perfil_url = foto_perfil_url;
+    }
+
+    public void setExperiencia(Set<Experiencia> experiencia){
+        this.experiencia = experiencia;
+        for(Experiencia exp : experiencia){
+            exp.setPersona(this);
+        }
+    }
+    
+    public void setEducacion(Set<Educacion> educacion){
+        this.educacion = educacion;
+        for(Educacion edu : educacion){
+            edu.setPersona(this);
+        }
+    }
+    
+    public void setHardSkill(Set<HardSkills> hs){
+        this.hardSkill = hs;
+        for(HardSkills Skill : hardSkill){
+            Skill.setPersona(this);
+        }
     }
 
 }
