@@ -15,5 +15,13 @@ public interface HardSkillsRepository extends JpaRepository<HardSkills, Integer>
             nativeQuery = true
     )
     public void SaveSkillSQL(String Skill, int porc, long idpers);
+    
+    
+    @Modifying
+    @Query(
+            value = "UPDATE skills SET skill=?1, porcentaje=?2,idpersona=?3 WHERE idskill=?4;",
+            nativeQuery = true
+    )
+    public void EditSkillSQL(String Skill, int porc, long idpers, int idhs);
 
 }

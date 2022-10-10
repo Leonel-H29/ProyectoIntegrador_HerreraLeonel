@@ -11,17 +11,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Transactional
-public class HardSkillsService implements IHardSkillsService{
-    
+public class HardSkillsService implements IHardSkillsService {
+
     @Autowired
     HardSkillsRepository HskillRepo;
-    
+
     //@Autowired
     //PersonaRepository PerRepo;
-
     @Override
     public List<HardSkills> listHardSkills() {
         try {
@@ -50,6 +48,9 @@ public class HardSkillsService implements IHardSkillsService{
     public void GuardarHardSkills(HardSkills skill) {
         try {
             if (skill != null) {
+                if (existsById(skill.getIdskill())) {
+                    HskillRepo.EditSkillSQL(skill.getSkill(), skill.getPorcentaje(), skill.getPersona().getIdpersona(), skill.getIdskill());
+                }
                 HskillRepo.SaveSkillSQL(skill.getSkill(), skill.getPorcentaje(), skill.getPersona().getIdpersona());
                 //HskillRepo.save(skill);
             } else {
@@ -80,5 +81,5 @@ public class HardSkillsService implements IHardSkillsService{
     public boolean existsById(int id) {
         return HskillRepo.existsById(id);
     }
-    
+
 }

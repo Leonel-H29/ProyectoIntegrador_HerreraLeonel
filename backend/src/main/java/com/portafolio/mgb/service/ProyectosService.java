@@ -3,7 +3,6 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IProyectosService;
 import com.portafolio.mgb.model.Proyectos;
 import com.portafolio.mgb.repository.ProyectosRepository;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -46,6 +45,10 @@ public class ProyectosService implements IProyectosService {
         try {
             if (proy != null) {
                 //ProyRepo.save(proy);
+                if (existsById(proy.getIdproyecto())) {
+                    System.out.println("El proyecto YA existe");
+                    ProyRepo.EditProyectoSQL(proy.getNombre(), proy.getDescripcion(), proy.getFecha_inicio(), proy.getFecha_fin(), proy.getUrl_proyecto(), proy.getPersona().getIdpersona(), proy.getIdproyecto());
+                }
                 ProyRepo.SaveProyectoSQL(proy.getNombre(), proy.getDescripcion(), proy.getFecha_inicio(), proy.getFecha_fin(), proy.getUrl_proyecto(), proy.getPersona().getIdpersona());
             } else {
                 System.out.println("No se ha podido guardar el proyecto");

@@ -23,6 +23,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { NewHardSkillsComponent } from './components/hard-skills/new-hard-skills.component';
 import { NewEducacionComponent } from './components/educacion/new-educacion.component';
 import { NewProyectosComponent } from './components/proyectos/new-proyectos.component';
+import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
+import { EditHardSkillsComponent } from './components/hard-skills/edit-hard-skills.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +46,15 @@ import { NewProyectosComponent } from './components/proyectos/new-proyectos.comp
     NewHardSkillsComponent,
     NewEducacionComponent,
     NewProyectosComponent,
+    EditProyectosComponent,
+    EditHardSkillsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgCircleProgressModule.forRoot({})
+    NgCircleProgressModule.forRoot({}),
   ],
   providers: [],
   bootstrap: [AppComponent],

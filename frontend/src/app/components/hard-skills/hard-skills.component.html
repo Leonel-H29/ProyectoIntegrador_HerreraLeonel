@@ -23,28 +23,31 @@
     </button>
 
     <div class="row">
-      <div class="text-center col-sm-4 cold-md-4 col-lg-4" *ngFor="let HardSkill of skill">
+      <div
+        class="text-center col-sm-4 cold-md-4 col-lg-4"
+        *ngFor="let HardSkill of skill"
+      >
         <circle-progress
-        [percent]="HardSkill.porcentaje"
-        [radius]="100"
-        [title]="HardSkill.skill"
-        [titleFontSize]="'2em'"
-        [showUnits]="false"
-        [showSubtitle]="false"
-        [outerStrokeWidth]="10"
-        [innerStrokeWidth]="2"
-        [outerStrokeColor]="'#1abc9c'"
-        [innerStrokeColor]="'#2c3e50'"
-        [animation]="true"
-        [animationDuration]="600"
+          [percent]="HardSkill.porcentaje"
+          [radius]="100"
+          [title]="HardSkill.skill"
+          [titleFontSize]="'2em'"
+          [showUnits]="false"
+          [showSubtitle]="false"
+          [outerStrokeWidth]="10"
+          [innerStrokeWidth]="2"
+          [outerStrokeColor]="'#1abc9c'"
+          [innerStrokeColor]="'#2c3e50'"
+          [animation]="true"
+          [animationDuration]="600"
         ></circle-progress>
-        <br>
+        <br />
         <div class="d-grid gap-2 col-1 mx-auto" *ngIf="isLogged">
           <button
             class="btn btn-primary"
             type="button"
             title="Editar"
-            routerLink="/editexp/{{ HardSkill.idskill }}"
+            routerLink="/ediths/{{ Persona.idpersona }}/{{ HardSkill.idskill }}"
           >
             <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
           </button>
@@ -59,7 +62,6 @@
             <i class="fa-solid fa-trash"></i><b> Eliminar</b>
           </button>
         </div>
-
       </div>
     </div>
   </div>
