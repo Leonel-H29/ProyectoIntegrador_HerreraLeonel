@@ -19,5 +19,13 @@ public interface EducacionRepository extends JpaRepository<Educacion, Integer> {
             nativeQuery = true
     )
     public void SaveEducacionSQL(String NameI, LocalDate FInicio, LocalDate FFin, String desc, Long idPers);
+    
+    
+    @Modifying
+    @Query(
+            value = "UPDATE educacion SET nombre_institucion=?1,fecha_inicio=?2,fecha_fin=?3,descripcion=?4,idpersona=?5 WHERE ideducacion=?6;",
+            nativeQuery = true
+    )
+    public void EditEducacionSQL(String NameI, LocalDate FInicio, LocalDate FFin, String desc, Long idPers, int idEdu);
 
 }

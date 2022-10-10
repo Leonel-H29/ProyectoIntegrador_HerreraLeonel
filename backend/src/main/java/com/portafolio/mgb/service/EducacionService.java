@@ -10,11 +10,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
 @Transactional
-public class EducacionService implements IEducacionService{
-    
+public class EducacionService implements IEducacionService {
+
     @Autowired
     EducacionRepository EduRepo;
 
@@ -47,6 +46,9 @@ public class EducacionService implements IEducacionService{
         try {
             if (edu != null) {
                 //EduRepo.save(edu);
+                if (existsById(edu.getIdeducacion())) {
+                    EduRepo.EditEducacionSQL(edu.getNombre_institucion(), edu.getFecha_inicio(), edu.getFecha_fin(), edu.getDescripcion(), edu.getPersona().getIdpersona(), edu.getIdeducacion());
+                }
                 EduRepo.SaveEducacionSQL(edu.getNombre_institucion(), edu.getFecha_inicio(), edu.getFecha_fin(), edu.getDescripcion(), edu.getPersona().getIdpersona());
             } else {
                 System.out.println("No se ha podido guardar la educacion");
@@ -76,5 +78,5 @@ public class EducacionService implements IEducacionService{
     public boolean existsById(int id) {
         return EduRepo.existsById(id);
     }
-    
+
 }

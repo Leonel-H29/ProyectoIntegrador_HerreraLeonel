@@ -1,3 +1,4 @@
+import { EditEducacionComponent } from './components/educacion/edit-educacion.component';
 import { EditHardSkillsComponent } from './components/hard-skills/edit-hard-skills.component';
 import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
 import { NewProyectosComponent } from './components/proyectos/new-proyectos.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   { path: 'createproy/:id', component: NewProyectosComponent },
   { path: 'editproy/:idper/:idproy', component: EditProyectosComponent },
   { path: 'ediths/:idper/:idhs', component: EditHardSkillsComponent },
+  { path: 'editedu/:idper/:idedu', component: EditEducacionComponent },
 ];
 
 @NgModule({

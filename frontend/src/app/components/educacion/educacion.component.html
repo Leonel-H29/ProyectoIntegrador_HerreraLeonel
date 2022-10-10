@@ -31,7 +31,7 @@
             class="card-subtitle mb-2 text-muted"
             *ngIf="Educacion.fecha_fin == null; else TemplateFechaFin"
           >
-            Desde: {{ Educacion.fecha_inicio| date:'dd/MM/y' }}
+            Desde: {{ Educacion.fecha_inicio | date: 'dd/MM/y' }}
           </h6>
           <!--
           <h6
@@ -47,8 +47,8 @@
 
           <ng-template #TemplateFechaFin>
             <h6 class="card-subtitle mb-2 text-muted">
-              Desde: {{ Educacion.fecha_inicio | date:'dd/MM/y' }} - Hasta:
-              {{ Educacion.fecha_fin | date:'dd/MM/y' }}
+              Desde: {{ Educacion.fecha_inicio | date: 'dd/MM/y' }} - Hasta:
+              {{ Educacion.fecha_fin | date: 'dd/MM/y' }}
             </h6>
           </ng-template>
 
@@ -57,7 +57,9 @@
               class="btn btn-primary"
               type="button"
               title="Editar"
-              routerLink="/editexp/{{ Educacion.ideducacion }}"
+              routerLink="/editedu/{{ Persona.idpersona }}/{{
+                Educacion.ideducacion
+              }}"
             >
               <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
             </button>
