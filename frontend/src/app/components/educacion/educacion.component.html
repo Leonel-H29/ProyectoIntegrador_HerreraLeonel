@@ -21,7 +21,8 @@
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>
-
+    <br />
+    <br />
     <div *ngFor="let Educacion of educ">
       <div class="card">
         <div class="card-body">
@@ -68,7 +69,7 @@
               type="button"
               title="Eliminar"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#ModalDeleteEducacion"
               (click)="getEducacionAEliminar(Educacion)"
             >
               <i class="fa-solid fa-trash"></i><b> Eliminar</b>
@@ -77,6 +78,53 @@
         </div>
       </div>
       <br />
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="ModalDeleteEducacion"
+    tabindex="-1"
+    aria-labelledby="ModalDeleteEducacionLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalDeleteEducacionLabel">
+            Eliminar educacion
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" *ngIf="educacionAeliminar != undefined">
+          ¿Esta seguro de eliminar la experiencia
+          {{ educacionAeliminar.nombre_institucion }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            title="Cerrar"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="DeleteEducacion(educacionAeliminar.ideducacion)"
+            title="Eliminar"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </section>

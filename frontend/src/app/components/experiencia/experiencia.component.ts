@@ -68,7 +68,9 @@ export class ExperienciaComponent implements OnInit {
     if (id != undefined) {
       this.expService.DeleteExperiencia(id).subscribe(
         (data) => {
+          alert('Se elimino la experiencia');
           this.CargarExperiencias();
+          this.router.navigate(['']);
         },
         (err) => {
           alert('No se ha podido eliminar la experiencia');

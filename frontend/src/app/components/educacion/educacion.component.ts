@@ -7,11 +7,10 @@ import { EducacionService } from 'src/app/service/educacion.service';
 import { Educacion } from 'src/app/model/educacion';
 import { persona } from 'src/app/model/persona.model';
 
-
 @Component({
   selector: 'app-educacion',
   templateUrl: './educacion.component.html',
-  styleUrls: ['./educacion.component.css']
+  styleUrls: ['./educacion.component.css'],
 })
 export class EducacionComponent implements OnInit {
   @Input() idPersonaLogged: number = 0;
@@ -25,7 +24,7 @@ export class EducacionComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
     private router: Router
-  ) { }
+  ) {}
 
   isLogged = false;
 
@@ -67,7 +66,9 @@ export class EducacionComponent implements OnInit {
     if (id != undefined) {
       this.eduService.DeleteEducacion(id).subscribe(
         (data) => {
+          alert('Se elimino la educacion');
           this.CargarEducaciones();
+          this.router.navigate(['']);
         },
         (err) => {
           alert('No se ha podido eliminar la educacion');
@@ -95,5 +96,4 @@ export class EducacionComponent implements OnInit {
       }
     );
   }
-
 }
