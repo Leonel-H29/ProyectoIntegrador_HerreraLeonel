@@ -77,6 +77,15 @@ public class TipoEmpleoController {
         ExpTipo.EliminarTipo(id);
         return new ResponseEntity(new Mensaje("Tipo Empleo eliminado"), HttpStatus.OK);
     }
+    
+    @GetMapping("/{id}")
+    public ResponseEntity<?> find(@PathVariable int id) {
+        if (ExpTipo.buscarEmpleo(id) == null) {
+            return new ResponseEntity(new Mensaje("No se ha podido encontrar el tipo de empleo"), HttpStatus.BAD_REQUEST);
+        }
+
+        return new ResponseEntity(ExpTipo.buscarEmpleo(id), HttpStatus.OK);
+    }
 }
     
 
