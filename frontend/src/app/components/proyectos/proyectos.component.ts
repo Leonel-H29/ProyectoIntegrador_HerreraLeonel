@@ -10,10 +10,9 @@ import { persona } from 'src/app/model/persona.model';
 @Component({
   selector: 'app-proyectos',
   templateUrl: './proyectos.component.html',
-  styleUrls: ['./proyectos.component.css']
+  styleUrls: ['./proyectos.component.css'],
 })
 export class ProyectosComponent implements OnInit {
-
   @Input() idPersonaLogged: number = 0;
   @Output() GetidPersona = new EventEmitter<number>();
   proy: Proyectos[] = [];
@@ -26,7 +25,7 @@ export class ProyectosComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
     private router: Router
-  ) { }
+  ) {}
 
   isLogged = false;
 
@@ -68,7 +67,9 @@ export class ProyectosComponent implements OnInit {
     if (id != undefined) {
       this.proyService.DeleteProyecto(id).subscribe(
         (data) => {
+          alert('Se elimino el proyecto');
           this.CargarProyectos();
+          this.router.navigate(['']);
         },
         (err) => {
           alert('No se ha podido eliminar la Proyectos');
@@ -96,5 +97,4 @@ export class ProyectosComponent implements OnInit {
       }
     );
   }
-
 }
