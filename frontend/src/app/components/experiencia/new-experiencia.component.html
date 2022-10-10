@@ -102,7 +102,10 @@
             />
             <label for="NfechaFin">Fecha Final</label>
 
-            <div class="invalid-feedback" data-sb-feedback="NfechaFin:NfechaFin">
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="NfechaFin:NfechaFin"
+            >
               La fecha no es valida
             </div>
           </div>
@@ -114,12 +117,12 @@
               size="4"
               id="idTipo"
               name="idTipo"
-              type="number"
+              type="text"
               data-sb-validations="idTipo"
-              [(ngModel)]="idTipo"
+              [(ngModel)]="NTipo"
             >
-              <option [value]="tipo.idtipo_empleo" *ngFor="let tipo of ListaTiposEmpleos">
-                {{ tipo.idtipo_empleo}}- {{ tipo.tipo }}
+              <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
+                {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
               </option>
             </select>
             <label for="idTipo">Tipo de empleo</label>

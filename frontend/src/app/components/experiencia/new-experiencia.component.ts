@@ -19,7 +19,7 @@ export class NewExperienciaComponent implements OnInit {
   NDescripcion: string = '';
   NfechaInicio: Date = new Date();
   NfechaFin: Date = new Date();
-  idTipo: number = 0;
+  //idTipo: number = 0;
   //idPersona: number = 0;
   NTipo: TipoEmpleo = new TipoEmpleo('');
   NPersona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
@@ -42,8 +42,8 @@ export class NewExperienciaComponent implements OnInit {
   }
 
   OnCreate() {
-    this.getNewTipoEmpleo(this.idTipo);
-    if(this.NTipo){
+    //this.getNewTipoEmpleo(this.idTipo);
+    if (this.NTipo) {
       const expe = new Experiencialab(
         this.NnombreE,
         this.NfechaInicio,
@@ -65,7 +65,7 @@ export class NewExperienciaComponent implements OnInit {
       );
     }
   }
-
+  /*
   getNewTipoEmpleo(id:number): void{
     this.TipoEmpServ.GetTipoEmpleo(id).subscribe(
       (data) =>{
@@ -77,6 +77,7 @@ export class NewExperienciaComponent implements OnInit {
       }
     )
   }
+  */
 
   getTiposEmpleos(): void {
     this.TipoEmpServ.ListaTipoEmpleo().subscribe((data) => {
