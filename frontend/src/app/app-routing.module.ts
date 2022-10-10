@@ -16,11 +16,15 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'perfil/:id', component: PerfilComponent },
+
+  //Crear
   { path: 'createexp/:id', component: NewExperienciaComponent },
-  { path: 'editexp/:id', component: EditExperienciaComponent },
   { path: 'createhs/:id', component: NewHardSkillsComponent },
   { path: 'createedu/:id', component: NewEducacionComponent },
   { path: 'createproy/:id', component: NewProyectosComponent },
+
+  //Editar
+  { path: 'editexp/:idper/:idexp', component: EditExperienciaComponent },
   { path: 'editproy/:idper/:idproy', component: EditProyectosComponent },
   { path: 'ediths/:idper/:idhs', component: EditHardSkillsComponent },
   { path: 'editedu/:idper/:idedu', component: EditEducacionComponent },

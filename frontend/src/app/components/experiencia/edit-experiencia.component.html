@@ -22,6 +22,20 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-7">
         <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <!-- Id Persona-->
+
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="idPersona"
+              name="idPersona"
+              type="number"
+              data-sb-validations="required"
+              [(ngModel)]="expLab.persona"
+              disabled="true"
+            />
+            <label for="name">Persona</label>
+          </div>
           <!-- Id experiencia-->
           <div class="form-floating mb-3">
             <input
@@ -107,22 +121,28 @@
               La fecha no es valida
             </div>
           </div>
-          <!-- Phone number input-->
-          <!--
+          <!-- Tipo de empleo-->
+
           <div class="form-floating mb-3">
-            <input
-              class="form-control"
-              id="phone"
-              type="tel"
-              placeholder="(123) 456-7890"
-              data-sb-validations="required"
-            />
-            <label for="phone">Phone number</label>
-            <div class="invalid-feedback" data-sb-feedback="phone:required">
-              A phone number is required.
+            <select
+              class="form-select"
+              size="4"
+              id="idTipo"
+              name="idTipo"
+              type="text"
+              data-sb-validations="idTipo"
+              [(ngModel)]="expLab.tipoEmpleo"
+            >
+              <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
+                {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
+              </option>
+            </select>
+            <label for="idTipo">Tipo de empleo</label>
+
+            <div class="invalid-feedback" data-sb-feedback="idTipo:idTipo">
+              El tipo de empleo no es valido
             </div>
           </div>
-          -->
 
           <!-- Submit success message-->
           <!---->

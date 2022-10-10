@@ -3,6 +3,7 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IExperienciaService;
 import com.portafolio.mgb.model.Experiencia;
 import com.portafolio.mgb.repository.ExperienciaRepository;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Optional;
@@ -53,12 +54,16 @@ public class ExperienciaService implements IExperienciaService{
     public void GuardarExperiencia(Experiencia expe) {
         try {
             if (expe != null) {
-                ExpRepo.save(expe);
+                //ExpRepo.save(expe);
+                if(existsById(expe.getIdexperiencia())){
+                    ExpRepo.EditExperienciaSQL(expe.getNombre_empresa(), expe.getFecha_inicio(), expe.getFecha_fin(), expe.getDescripcion(), expe.getPersona().getIdpersona(), expe.getTipoEmpleo().getIdtipo_empleo(), expe.getIdexperiencia());
+                }
+                ExpRepo.SaveExperienciaSQL(expe.getNombre_empresa(), expe.getFecha_inicio(), expe.getFecha_fin(), expe.getDescripcion(), expe.getPersona().getIdpersona(), expe.getTipoEmpleo().getIdtipo_empleo());
             } else {
                 System.out.println("No se ha podido guardar la experiencia");
             }
         } catch (Exception ex) {
-            System.out.println("Error en GuardarExperiencia: " + ex.getMessage());
+            System.out.println("Error en Guardar Experiencia: " + ex.getMessage());
         }
 
     }
@@ -71,7 +76,7 @@ public class ExperienciaService implements IExperienciaService{
                 ExpRepo.deleteById(id);
                 System.out.println("Experiencia eliminada");
             } else {
-                System.out.println("No existe persona con el id: " + id);
+                System.out.println("No existe experiencia con el id: " + id);
             }
 
         } catch (Exception ex) {

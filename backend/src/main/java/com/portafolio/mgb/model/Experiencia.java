@@ -1,9 +1,11 @@
 
 package com.portafolio.mgb.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,18 +35,23 @@ public class Experiencia {
     @NotNull
     private LocalDate fecha_inicio;
     
-    @NotNull
     private LocalDate fecha_fin;
     
     @Size(min = 0, max = 200, message = "La longitud de la descripcion no es valida")
     private String descripcion;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    //@JsonIgnore
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idtipo_empleo")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private TipoEmpleo tipoEmpleo;
     
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    //@JsonIgnore
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idpersona")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Persona persona;
 
     public Experiencia() {
