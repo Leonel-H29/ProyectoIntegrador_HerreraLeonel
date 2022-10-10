@@ -56,10 +56,57 @@
             type="button"
             title="Eliminar"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target="#ModalDeleteSkill"
             (click)="getHardSkillsAEliminar(HardSkill)"
           >
             <i class="fa-solid fa-trash"></i><b> Eliminar</b>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="ModalDeleteSkill"
+    tabindex="-1"
+    aria-labelledby="ModalDeleteSkillLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalDeleteSkillLabel">
+            Eliminar experiencia
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" *ngIf="HardSkillsAeliminar != undefined">
+          ¿Esta seguro de eliminar la experiencia
+          {{ HardSkillsAeliminar.skill }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            title="Cerrar"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="DeleteHardSkills(HardSkillsAeliminar.idskill)"
+            title="Eliminar"
+          >
+            Eliminar
           </button>
         </div>
       </div>

@@ -10,10 +10,9 @@ import { persona } from 'src/app/model/persona.model';
 @Component({
   selector: 'app-hard-skills',
   templateUrl: './hard-skills.component.html',
-  styleUrls: ['./hard-skills.component.css']
+  styleUrls: ['./hard-skills.component.css'],
 })
 export class HardSkillsComponent implements OnInit {
-
   @Input() idPersonaLogged: number = 0;
   @Output() GetidPersona = new EventEmitter<number>();
   skill: HardSkills[] = [];
@@ -26,7 +25,7 @@ export class HardSkillsComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
     private router: Router
-  ) { }
+  ) {}
 
   isLogged = false;
 
@@ -68,7 +67,9 @@ export class HardSkillsComponent implements OnInit {
     if (id != undefined) {
       this.skillService.DeleteHardSkills(id).subscribe(
         (data) => {
+          alert('Se elimino la Hard & Soft Skill');
           this.CargarHardSkills();
+          this.router.navigate(['']);
         },
         (err) => {
           alert('No se ha podido eliminar la HardSkills');
@@ -96,5 +97,4 @@ export class HardSkillsComponent implements OnInit {
       }
     );
   }
-
 }
