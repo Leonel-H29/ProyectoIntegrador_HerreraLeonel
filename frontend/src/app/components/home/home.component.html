@@ -1,9 +1,54 @@
 <app-header></app-header>
-<header class="masthead text-center">
+<header class="masthead">
   <div class="container d-flex align-items-center flex-column">
     <h1>BIENVENIDO {{ usuario }}</h1>
   </div>
-  <ul>
+  <!--Boton de menu-->
+  <button
+    class="btn btn-primary"
+    type="button"
+    title="menu"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasScrolling"
+    aria-controls="offcanvasScrolling"
+  >
+    Menu
+  </button>
+
+  <div
+    class="offcanvas offcanvas-start"
+    data-bs-scroll="true"
+    data-bs-backdrop="false"
+    tabindex="-1"
+    id="offcanvasScrolling"
+    aria-labelledby="offcanvasScrollingLabel"
+  >
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+        {{ usuario }}
+      </h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li class="list-group-item">Perfil</li>
+        <li class="list-group-item">Configuracion</li>
+        <!--
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+          -->
+      </ul>
+    </div>
+  </div>
+  <!-- ------------- -->
+  <!--
+  <ul class="masthead text-center">
     <li *ngFor="let per of listPersona">
       <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
         <img
@@ -26,6 +71,55 @@
       >
     </li>
   </ul>
+  -->
+  <div
+    class="card mb-3"
+    style="max-width: 540px"
+    *ngFor="let per of listPersona"
+  >
+    <div class="row g-0">
+      <div class="col-md-4">
+        <!--
+        <img src="..." class="img-fluid rounded-start" alt="...">
+        -->
+        <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
+            style="width: 6rem; height: 6rem"
+            alt="Foto de perfil"
+            title="Foto de perfil"
+            class="img-fluid rounded-start"
+          />
+        </div>
+        <ng-template #TemplatePerfil>
+          <img
+            src="{{ per.foto_perfil_url }}"
+            style="width: 6rem; height: 6rem"
+            alt="Foto de perfil"
+            title="Foto de perfil"
+            class="img-fluid rounded-start"
+          />
+        </ng-template>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <a [routerLink]="['perfil/', per.idpersona]"
+              >{{ per.nombre | uppercase }} {{ per.apellido | uppercase }}</a
+            >
+          </h5>
+          <p class="card-text">
+            {{ per.provincia | uppercase }} - {{ per.pais | uppercase }}
+          </p>
+          <!--
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          -->
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 <app-footer></app-footer>
 

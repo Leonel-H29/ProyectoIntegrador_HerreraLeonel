@@ -1,3 +1,5 @@
+import { TokenService } from './../../service/token.service';
+import { persona } from './../../model/persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from './../../service/persona.service';
 import { EducacionService } from './../../service/educacion.service';
@@ -15,7 +17,8 @@ export class EditEducacionComponent implements OnInit {
     private educServ: EducacionService,
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -65,4 +68,24 @@ export class EditEducacionComponent implements OnInit {
       }
     );
   }
+  /*
+  hasPermissions() : boolean {
+    const idPersonaLogged = this.activatedRouter.snapshot.params['idper'];
+
+    this.persService.getPersona(idPersonaLogged).subscribe(
+      (data) => {
+        data.i forEach(element =>{
+
+        })
+        //this.personaLogged= data;
+
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
+      }
+    );
+
+    return
+  }
+  */
 }
