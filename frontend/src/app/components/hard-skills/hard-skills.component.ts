@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HardSkills } from 'src/app/model/hard-skills';
 import { HardSkillService } from 'src/app/service/hard-skills.service';
 import { persona } from 'src/app/model/persona.model';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-hard-skills',
@@ -17,7 +18,18 @@ export class HardSkillsComponent implements OnInit {
   @Output() GetidPersona = new EventEmitter<number>();
   skill: HardSkills[] = [];
   HardSkillsAeliminar: HardSkills;
-  Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
 
   constructor(
     private skillService: HardSkillService,

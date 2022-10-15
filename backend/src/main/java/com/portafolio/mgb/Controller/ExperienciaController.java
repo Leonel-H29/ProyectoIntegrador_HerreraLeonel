@@ -2,15 +2,11 @@ package com.portafolio.mgb.Controller;
 
 import com.portafolio.mgb.Interface.IExperienciaService;
 import com.portafolio.mgb.Interface.IPersonaService;
-import com.portafolio.mgb.Interface.ITipoEmpleoService;
 import com.portafolio.mgb.model.Experiencia;
-import com.portafolio.mgb.model.Persona;
-import com.portafolio.mgb.model.TipoEmpleo;
 import com.portafolio.mgb.security.Controller.Mensaje;
 import java.time.temporal.ChronoUnit;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

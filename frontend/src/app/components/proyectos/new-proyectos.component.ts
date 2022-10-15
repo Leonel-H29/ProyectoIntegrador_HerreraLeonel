@@ -4,27 +4,38 @@ import { ProyectosService } from 'src/app/service/proyectos.service';
 import { Component, OnInit } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-new-proyectos',
   templateUrl: './new-proyectos.component.html',
-  styleUrls: ['./new-proyectos.component.css']
+  styleUrls: ['./new-proyectos.component.css'],
 })
 export class NewProyectosComponent implements OnInit {
-  Nproyecto : string = '';
+  Nproyecto: string = '';
   NDescripcion: string = '';
   NfechaInicio: Date = new Date();
   NfechaFin: Date = new Date();
-  NUrlP : string = '';
-  NPersona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
-
+  NUrlP: string = '';
+  NPersona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
 
   constructor(
-    private ProyServ : ProyectosService,
+    private ProyServ: ProyectosService,
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
     private router: Router
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getPersona();
@@ -65,5 +76,4 @@ export class NewProyectosComponent implements OnInit {
       }
     );
   }
-
 }

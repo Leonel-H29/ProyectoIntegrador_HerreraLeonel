@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
 import { persona } from 'src/app/model/persona.model';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-perfil',
@@ -12,7 +13,18 @@ import { persona } from 'src/app/model/persona.model';
   styleUrls: ['./perfil.component.css'],
 })
 export class PerfilComponent implements OnInit {
-  Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   isLogged = false;
 
   constructor(

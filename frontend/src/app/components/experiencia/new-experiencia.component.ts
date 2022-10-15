@@ -8,6 +8,7 @@ import { PersonaService } from 'src/app/service/persona.service';
 import { TipoEmpleoService } from 'src/app/service/tipo-empleo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-new-experiencia',
@@ -22,7 +23,18 @@ export class NewExperienciaComponent implements OnInit {
   //idTipo: number = 0;
   //idPersona: number = 0;
   NTipo: TipoEmpleo = new TipoEmpleo('');
-  NPersona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  NPersona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
 
   ListaTiposEmpleos: TipoEmpleo[];
   //Persona: persona;

@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { Educacion } from 'src/app/model/educacion';
 import { persona } from 'src/app/model/persona.model';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-educacion',
@@ -17,7 +18,18 @@ export class EducacionComponent implements OnInit {
   @Output() GetidPersona = new EventEmitter<number>();
   educ: Educacion[] = [];
   educacionAeliminar: Educacion;
-  Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   constructor(
     private eduService: EducacionService,
     private tokenService: TokenService,

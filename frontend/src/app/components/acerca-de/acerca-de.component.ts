@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute } from '@angular/router';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-acerca-de',
@@ -9,7 +10,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./acerca-de.component.css'],
 })
 export class AcercaDeComponent implements OnInit {
-  persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   //persona!: persona;
 
   constructor(

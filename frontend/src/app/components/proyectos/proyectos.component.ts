@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Proyectos } from 'src/app/model/proyectos';
 import { ProyectosService } from 'src/app/service/proyectos.service';
 import { persona } from 'src/app/model/persona.model';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-proyectos',
@@ -17,7 +18,18 @@ export class ProyectosComponent implements OnInit {
   @Output() GetidPersona = new EventEmitter<number>();
   proy: Proyectos[] = [];
   ProyectosAeliminar: Proyectos;
-  Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
 
   constructor(
     private proyService: ProyectosService,

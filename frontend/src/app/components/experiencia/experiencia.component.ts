@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
 import { persona } from 'src/app/model/persona.model';
+import { NewUser } from 'src/app/model/new-user';
 
 @Component({
   selector: 'app-experiencia',
@@ -17,7 +18,18 @@ export class ExperienciaComponent implements OnInit {
   @Output() GetidPersona = new EventEmitter<number>();
   expe: Experiencialab[] = [];
   experienciaAeliminar: Experiencialab;
-  Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   //idPersona: number = 0;
 
   constructor(

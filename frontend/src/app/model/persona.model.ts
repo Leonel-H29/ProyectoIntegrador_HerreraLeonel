@@ -1,3 +1,4 @@
+import { NewUser } from './new-user';
 export class persona {
   idpersona?: number;
   nombre: string;
@@ -9,6 +10,7 @@ export class persona {
   fecha_nacimiento: Date;
   telefono: string;
   foto_perfil_url: string;
+  usuario: NewUser;
 
   constructor(
     nombre: string,
@@ -19,7 +21,8 @@ export class persona {
     codigo_postal: number,
     fecha_nacimiento: Date,
     telefono: string,
-    foto_perfil_url: string
+    foto_perfil_url: string,
+    usuario: NewUser
   ) {
     this.nombre = nombre;
     this.apellido = apellido;
@@ -30,5 +33,6 @@ export class persona {
     this.fecha_nacimiento = fecha_nacimiento;
     this.telefono = telefono;
     this.foto_perfil_url = foto_perfil_url;
+    this.usuario = usuario;
   }
 }

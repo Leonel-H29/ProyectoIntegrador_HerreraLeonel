@@ -27,4 +27,8 @@ export class PersonaService {
     //let listPersona = this.getListPersonas();
     return this.http.get<persona>(this.URL + id);
   }
+
+  public SavePersona(per: persona): Observable<any> {
+    return this.http.post<any>(this.URL + 'new', per);
+  }
 }
