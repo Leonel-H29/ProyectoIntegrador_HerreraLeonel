@@ -1,6 +1,7 @@
 package com.portafolio.mgb.Controller;
 
 import com.portafolio.mgb.Interface.IEducacionService;
+import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.model.Educacion;
 import com.portafolio.mgb.security.Controller.Mensaje;
 import java.time.temporal.ChronoUnit;
@@ -26,10 +27,22 @@ public class EducacionController {
     
     @Autowired
     IEducacionService EduServ;
+    
+    @Autowired
+    IPersonaService PerServ;
 
     @GetMapping("/list")
     public ResponseEntity<List<Educacion>> list() {
         List<Educacion> list = EduServ.listEducacion();
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+    
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<Educacion>> list(@PathVariable long id) {
+        if(PerServ.buscarPersona(id)==null){
+            return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
+        }    
+        List<Educacion> list = EduServ.listEducacionByIdPersona(id);
         return new ResponseEntity(list, HttpStatus.OK);
     }
 

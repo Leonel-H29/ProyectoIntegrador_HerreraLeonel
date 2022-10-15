@@ -5,7 +5,10 @@
   [idPersonaLogged]="Persona.idpersona"
   (GetidPersona)="Persona.idpersona = $event"
 ></app-experiencia>
-<app-educacion></app-educacion>
+<app-educacion
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-educacion>
 <!--
 <div class="accordion" id="accordionExample">
   <div class="accordion-item">
@@ -46,6 +49,12 @@
   </div>
 </div>
 -->
-<app-hard-skills></app-hard-skills>
-<app-proyectos></app-proyectos>
+<app-hard-skills
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-hard-skills>
+<app-proyectos
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-proyectos>
 <app-footer></app-footer>

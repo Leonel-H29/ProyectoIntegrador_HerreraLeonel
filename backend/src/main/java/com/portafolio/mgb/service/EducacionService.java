@@ -3,7 +3,7 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IEducacionService;
 import com.portafolio.mgb.model.Educacion;
 import com.portafolio.mgb.repository.EducacionRepository;
-import java.time.LocalDate;
+import com.portafolio.mgb.repository.PersonaRepository;
 import java.util.ArrayList;
 import java.util.List;
 import javax.transaction.Transactional;
@@ -17,10 +17,14 @@ public class EducacionService implements IEducacionService {
     @Autowired
     EducacionRepository EduRepo;
 
+    @Autowired
+    PersonaRepository PerRepo;
+
     @Override
     public List<Educacion> listEducacion() {
         try {
-            List<Educacion> educacion = EduRepo.findAll();
+            //List<Educacion> educacion = EduRepo.findAll();
+            List<Educacion> educacion = EduRepo.ListEducacionByIdPersona(0);
             if (!educacion.isEmpty()) {
                 System.out.println("Listado de educaciones: " + educacion);
                 return educacion;
@@ -77,6 +81,29 @@ public class EducacionService implements IEducacionService {
     @Override
     public boolean existsById(int id) {
         return EduRepo.existsById(id);
+    }
+
+    @Override
+    public List<Educacion> listEducacionByIdPersona(long id) {
+        try {
+            if (PerRepo.existsById(id)) {
+                List<Educacion> educacion = EduRepo.ListEducacionByIdPersona(id);
+                if (!educacion.isEmpty()) {
+                    System.out.println("Listado de educaciones: " + educacion);
+                    return educacion;
+                } else {
+                    educacion = new ArrayList<Educacion>();
+                    System.out.println("Vacio");
+                    return educacion;
+                }
+            } else {
+                System.out.println("No se ha encontado el ID");
+                return new ArrayList<Educacion>();
+            }
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar la peticion: " + ex.toString());
+            return new ArrayList<Educacion>();
+        }
     }
 
 }

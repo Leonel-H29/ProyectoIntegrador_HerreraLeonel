@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Educacion } from '../model/educacion';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EducacionService {
   eduURL = 'http://localhost:8080/educacion/';
@@ -13,6 +13,10 @@ export class EducacionService {
 
   public ListaEdu(): Observable<Educacion[]> {
     return this.httpClient.get<Educacion[]>(this.eduURL + 'list');
+  }
+
+  public ListaEduByPersona(id: number): Observable<Educacion[]> {
+    return this.httpClient.get<Educacion[]>(this.eduURL + 'list/' + id);
   }
 
   public GetEducacion(id: number): Observable<Educacion> {

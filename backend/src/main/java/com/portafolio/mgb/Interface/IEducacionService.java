@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface IEducacionService {
     public List<Educacion> listEducacion();
+    
+    public List<Educacion> listEducacionByIdPersona(long id);
 
     public Educacion buscarEducacion(int id);
 

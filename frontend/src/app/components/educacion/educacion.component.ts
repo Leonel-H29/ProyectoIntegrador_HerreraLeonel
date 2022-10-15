@@ -41,7 +41,7 @@ export class EducacionComponent implements OnInit {
   }
 
   CargarEducaciones(): void {
-    this.eduService.ListaEdu().subscribe(
+    this.eduService.ListaEduByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         /*
         data.forEach((element) => {
