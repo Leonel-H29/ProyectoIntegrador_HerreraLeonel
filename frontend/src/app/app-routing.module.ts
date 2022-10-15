@@ -1,3 +1,4 @@
+import { NewUserComponent } from './components/login/new-user/new-user.component';
 import { EditEducacionComponent } from './components/educacion/edit-educacion.component';
 import { EditHardSkillsComponent } from './components/hard-skills/edit-hard-skills.component';
 import { EditProyectosComponent } from './components/proyectos/edit-proyectos.component';
@@ -15,6 +16,7 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'createaccount', component: NewUserComponent },
   { path: 'perfil/:id', component: PerfilComponent },
 
   //Crear
