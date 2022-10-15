@@ -2,6 +2,7 @@ package com.portafolio.mgb.repository;
 
 import com.portafolio.mgb.model.Experiencia;
 import java.time.LocalDate;
+import java.util.List;
 //import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,6 +14,12 @@ public interface ExperienciaRepository extends JpaRepository<Experiencia, Intege
 
     //public Optional<Experiencia> findByNombreEmpresa(final String nombre_empresa);
     //public boolean existsByNombreEmpresa(String nombre_empresa);
+    @Query(
+            value = "SELECT * FROM experiencia_laboral e WHERE e.idpersona=?1",
+            nativeQuery = true
+    )
+    public List<Experiencia> ListExperienciaByIdPersona(long idPers);
+    
     @Modifying
     @Query(
             value = "INSERT INTO experiencia_laboral(nombre_empresa,fecha_inicio,fecha_fin,descripcion,idpersona,idtipo_empleo) VALUES (?1,?2,?3,?4,?5,?6);",

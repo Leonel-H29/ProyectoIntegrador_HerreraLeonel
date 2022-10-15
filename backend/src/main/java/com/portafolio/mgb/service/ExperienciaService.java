@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class ExperienciaService implements IExperienciaService{
+public class ExperienciaService implements IExperienciaService {
 
     @Autowired
     ExperienciaRepository ExpRepo;
@@ -42,20 +42,21 @@ public class ExperienciaService implements IExperienciaService{
         System.out.println(ExpRepo.findById(id).orElse(null));
         return ExpRepo.findById(id).orElse(null);
     }
+
     /*
     @Override
     public Optional<Experiencia> getByNombreExperiencia(String nombre_empresa) {
         return null;
         //return ExpRepo.findByNombreEmpresa(nombre_empresa);
     }
-    */
+     */
 
     @Override
     public void GuardarExperiencia(Experiencia expe) {
         try {
             if (expe != null) {
                 //ExpRepo.save(expe);
-                if(existsById(expe.getIdexperiencia())){
+                if (existsById(expe.getIdexperiencia())) {
                     ExpRepo.EditExperienciaSQL(expe.getNombre_empresa(), expe.getFecha_inicio(), expe.getFecha_fin(), expe.getDescripcion(), expe.getPersona().getIdpersona(), expe.getTipoEmpleo().getIdtipo_empleo(), expe.getIdexperiencia());
                 }
                 ExpRepo.SaveExperienciaSQL(expe.getNombre_empresa(), expe.getFecha_inicio(), expe.getFecha_fin(), expe.getDescripcion(), expe.getPersona().getIdpersona(), expe.getTipoEmpleo().getIdtipo_empleo());
@@ -83,17 +84,36 @@ public class ExperienciaService implements IExperienciaService{
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
     }
-    
+
     @Override
-    public boolean existsById(int id){
+    public boolean existsById(int id) {
         return ExpRepo.existsById(id);
-       
+
     }
+
     /*
     @Override
     public boolean existsByNombreExpe(String nombre_empresa){
         //return ExpRepo.existsByNombreEmpresa(nombre_empresa);
         return true;
     }
-    */
+     */
+
+    @Override
+    public List<Experiencia> listExperienciaByIdPersona(long id) {
+        try {
+            List<Experiencia> experiencias = ExpRepo.ListExperienciaByIdPersona(id);
+            if (!experiencias.isEmpty()) {
+                System.out.println("Listado de experiencias: " + experiencias);
+                return experiencias;
+            } else {
+                experiencias = new ArrayList<Experiencia>();
+                System.out.println("Vacio");
+                return experiencias;
+            }
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar la peticion: " + ex.toString());
+            return new ArrayList<Experiencia>();
+        }
+    }
 }

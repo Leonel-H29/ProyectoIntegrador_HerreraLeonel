@@ -43,7 +43,7 @@ export class ExperienciaComponent implements OnInit {
   }
 
   CargarExperiencias(): void {
-    this.expService.ListaExp().subscribe(
+    this.expService.ListaExpByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         /*
         data.forEach((element) => {

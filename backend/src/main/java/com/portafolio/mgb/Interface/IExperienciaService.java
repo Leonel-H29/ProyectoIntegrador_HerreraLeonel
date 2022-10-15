@@ -7,6 +7,8 @@ import java.util.List;
 public interface IExperienciaService {
 
     public List<Experiencia> listExperiencia();
+    
+    public List<Experiencia> listExperienciaByIdPersona(long id);
 
     public Experiencia buscarExperiencia(int id);
 

@@ -34,19 +34,25 @@ public class ExperienciaController {
     @Autowired
     IExperienciaService ExpServ;
 
-    //@Autowired
-    //IPersonaService PerSev;
-    //@Autowired
-    //ITipoEmpleoService TipoServ;
+    @Autowired
+    IPersonaService PerServ;
+
     @GetMapping("/list")
     public ResponseEntity<List<Experiencia>> list() {
         List<Experiencia> list = ExpServ.listExperiencia();
         return new ResponseEntity(list, HttpStatus.OK);
     }
 
-    //@PostMapping("/create?idpersona={id_per}&idtipo_empleo={id_tipo}")
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<Experiencia>> list(@PathVariable long id) {
+        if (PerServ.buscarPersona(id) == null) {
+            return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
+        }
+        List<Experiencia> list = ExpServ.listExperienciaByIdPersona(id);
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+
     @PostMapping("/create")
-    //public ResponseEntity<?> create(@RequestParam("id_per") long id_per, @RequestParam("id_tipo") int id_tipo, @RequestBody Experiencia exp)
     public ResponseEntity<?> create(@RequestBody Experiencia exp) {
         if (StringUtils.isBlank(exp.getNombre_empresa())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
@@ -58,10 +64,8 @@ public class ExperienciaController {
         if (exp.getFecha_fin() != null && ChronoUnit.DAYS.between(exp.getFecha_inicio(), exp.getFecha_fin()) < 0) {
             return new ResponseEntity(new Mensaje("La fecha de comienzo no puede ser mayor a la de final"), HttpStatus.BAD_REQUEST);
         }
-        //Persona persona = PerSev.buscarPersona(id_per);
-        //TipoEmpleo tipoE = TipoServ.buscarEmpleo(id_tipo);
+
         Experiencia experiencia = new Experiencia(exp.getNombre_empresa(), exp.getFecha_inicio(), exp.getFecha_fin(), exp.getDescripcion(), exp.getTipoEmpleo(), exp.getPersona());
-        //Experiencia experiencia = new Experiencia(exp.getNombre_empresa(), exp.getFecha_inicio(), exp.getFecha_fin(), exp.getDescripcion(), tipoE, persona);
 
         ExpServ.GuardarExperiencia(experiencia);
         return new ResponseEntity(new Mensaje("Experiencia agregada"), HttpStatus.OK);

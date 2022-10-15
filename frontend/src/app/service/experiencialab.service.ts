@@ -15,6 +15,10 @@ export class ExperiencialabService {
     return this.httpClient.get<Experiencialab[]>(this.expURL + 'list');
   }
 
+  public ListaExpByPersona(id: number): Observable<Experiencialab[]> {
+    return this.httpClient.get<Experiencialab[]>(this.expURL + 'list/' + id);
+  }
+
   public GetExperiencia(id: number): Observable<Experiencialab> {
     return this.httpClient.get<Experiencialab>(this.expURL + id);
   }
