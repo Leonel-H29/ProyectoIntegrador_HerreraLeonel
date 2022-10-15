@@ -1,1 +1,196 @@
-<p>new-user works!</p>
+<div class="container">
+  <div class="card card-container">
+    <p id="profile-name" class="profile-name-card"></p>
+    <form class="form-signin" #f="ngForm" (ngSubmit)="onCreate()" novalidate>
+      <span id="reauth-email" class="reauth-email"></span>
+
+      <!--NOMBRE-->
+      <input
+        [(ngModel)]="nombre"
+        type="text"
+        id="nombre"
+        name="nombre"
+        class="form-control"
+        placeholder="Nombre"
+        required
+        autofocus
+      />
+      <!--APELLIDO-->
+      <input
+        [(ngModel)]="apellido"
+        type="text"
+        id="apellido"
+        name="apellido"
+        class="form-control"
+        placeholder="Apellido"
+        required
+        autofocus
+      />
+      <!--DESCRIPCION-->
+      <textarea
+        [(ngModel)]="descripcion"
+        type="text"
+        id="descripcion"
+        name="descripcion"
+        class="form-control"
+        placeholder="Descripcion"
+        required
+        autofocus
+      ></textarea>
+
+      <!--PROVINCIA-->
+      <input
+        [(ngModel)]="provincia"
+        type="text"
+        id="provincia"
+        name="provincia"
+        class="form-control"
+        placeholder="Provincia"
+        required
+        autofocus
+      />
+
+      <!--PAIS-->
+      <input
+        [(ngModel)]="pais"
+        type="text"
+        id="pais"
+        name="pais"
+        class="form-control"
+        placeholder="Pais"
+        required
+        autofocus
+      />
+
+      <!--CODIGO POSTAL-->
+      <input
+        [(ngModel)]="codigo_postal"
+        type="number"
+        id="codigo_postal"
+        name="codigo_postal"
+        class="form-control"
+        placeholder="Codigo Postal"
+        required
+        autofocus
+      />
+
+      <!--FECHA DE NACIMIENTO-->
+      <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+      <input
+        [(ngModel)]="fecha_nacimiento"
+        type="date"
+        id="fecha_nacimiento"
+        name="fecha_nacimiento"
+        class="form-control"
+        placeholder="Fecha de Nacimiento"
+        required
+        autofocus
+      />
+
+      <!--TELEFONO-->
+      <input
+        [(ngModel)]="telefono"
+        type="text"
+        id="telefono"
+        name="telefono"
+        class="form-control"
+        placeholder="Telefono"
+        required
+        autofocus
+      />
+
+      <!--EMAIL-->
+      <input
+        [(ngModel)]="correo"
+        type="email"
+        name="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Email address"
+        required
+        autofocus
+      />
+
+      <!--CONFIRM EMAIL-->
+      <input
+        [(ngModel)]="confirm_correo"
+        type="email"
+        name="email"
+        id="inputEmail"
+        class="form-control"
+        placeholder="Confirm Email"
+        required
+        autofocus
+      />
+
+      <!--USERNAME-->
+      <input
+        [(ngModel)]="username"
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required
+        autofocus
+      />
+
+      <!--PASSWORD -->
+      <input
+        [(ngModel)]="password"
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        required
+      />
+
+      <!--CONFIRM PASSWORD -->
+      <input
+        [(ngModel)]="confirm_password"
+        type="password"
+        id="password"
+        name="password"
+        class="form-control"
+        placeholder="Confirm  Password"
+        required
+      />
+
+      <!--FOTO DE PERFIL-->
+      <input
+        [(ngModel)]="foto_perfil_url"
+        type="file"
+        id="foto_perfil_url"
+        name="foto_perfil_url"
+        class="form-control"
+        placeholder="Foto de perfil"
+        required
+        autofocus
+        (change)="uploadImage($event)"
+        accept=".jpg, .jpef, .png"
+      />
+
+      <div class="imagen">
+        <img
+          class="profile-img-card"
+          [src]="imgService.url"
+          alt="Foto de perfil"
+          title="Foto de perfil"
+          srcset=""
+        />
+      </div>
+      <!--
+      <div id="remember" class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      -->
+      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
+        Crear cuenta
+      </button>
+    </form>
+  </div>
+  <!-- /card-container -->
+</div>

@@ -6,12 +6,12 @@ import com.portafolio.mgb.repository.PersonaRepository;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-//import javax.transaction.Transactional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-//@Transactional
+@Transactional
 public class PersonaService implements IPersonaService {
 
     @Autowired

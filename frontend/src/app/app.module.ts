@@ -29,6 +29,9 @@ import { EditEducacionComponent } from './components/educacion/edit-educacion.co
 import { SettingsComponent } from './components/settings/settings.component';
 import { EditUserComponent } from './components/settings/edit-user/edit-user.component';
 import { NewUserComponent } from './components/login/new-user/new-user.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -63,6 +66,8 @@ import { NewUserComponent } from './components/login/new-user/new-user.component
     HttpClientModule,
     FormsModule,
     NgCircleProgressModule.forRoot({}),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -57,7 +57,7 @@ public class Persona {
     @Size(min = 0, max = 12, message = "La longitud del telefono no es valida")
     private String telefono;
 
-    @Size(min = 0, max = 100, message = "La longitud del link de perfil no es valida")
+    @Size(min = 0, max = 260, message = "La longitud del link de perfil no es valida")
     private String foto_perfil_url;
     
     //@JsonProperty("idusuario")

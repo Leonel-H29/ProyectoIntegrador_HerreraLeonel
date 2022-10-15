@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class Usuario {
     
     @NotNull
     @Column(unique = true)
+    @Email
     @Size(min = 1, max = 45, message = "La longitud del correo no es valida")
     private String correo;
     
