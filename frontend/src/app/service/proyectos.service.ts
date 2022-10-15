@@ -14,6 +14,10 @@ export class ProyectosService {
     return this.httpClient.get<Proyectos[]>(this.proyURL + 'list');
   }
 
+  public ListaProyectosByPersona(id: number): Observable<Proyectos[]> {
+    return this.httpClient.get<Proyectos[]>(this.proyURL + 'list/' + id);
+  }
+
   public GetProyecto(id: number): Observable<Proyectos> {
     return this.httpClient.get<Proyectos>(this.proyURL + id);
   }

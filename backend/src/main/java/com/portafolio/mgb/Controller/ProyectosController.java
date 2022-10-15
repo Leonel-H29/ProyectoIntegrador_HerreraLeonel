@@ -1,5 +1,6 @@
 package com.portafolio.mgb.Controller;
 
+import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.Interface.IProyectosService;
 import com.portafolio.mgb.model.Proyectos;
 import com.portafolio.mgb.security.Controller.Mensaje;
@@ -27,9 +28,21 @@ public class ProyectosController {
     @Autowired
     IProyectosService ProyServ;
 
+    @Autowired
+    IPersonaService PerServ;
+
     @GetMapping("/list")
     public ResponseEntity<List<Proyectos>> list() {
         List<Proyectos> list = ProyServ.listProyectos();
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<Proyectos>> list(@PathVariable long id) {
+        if (PerServ.buscarPersona(id) == null) {
+            return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
+        }
+        List<Proyectos> list = ProyServ.listProyectosByIdPersona(id);
         return new ResponseEntity(list, HttpStatus.OK);
     }
 

@@ -42,7 +42,7 @@ export class ProyectosComponent implements OnInit {
   }
 
   CargarProyectos(): void {
-    this.proyService.ListaProyectos().subscribe(
+    this.proyService.ListaProyectosByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         /*
         data.forEach((element) => {

@@ -79,4 +79,22 @@ public class ProyectosService implements IProyectosService {
         return ProyRepo.existsById(id);
     }
 
+    @Override
+    public List<Proyectos> listProyectosByIdPersona(long id) {
+        try {
+            List<Proyectos> proycacion = ProyRepo.ListProyectosByIdPersona(id);
+            if (!proycacion.isEmpty()) {
+                System.out.println("Listado de proyectos: " + proycacion);
+                return proycacion;
+            } else {
+                proycacion = new ArrayList<Proyectos>();
+                System.out.println("Vacio");
+                return proycacion;
+            }
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar la peticion: " + ex.toString());
+            return new ArrayList<Proyectos>();
+        }
+    }
+
 }

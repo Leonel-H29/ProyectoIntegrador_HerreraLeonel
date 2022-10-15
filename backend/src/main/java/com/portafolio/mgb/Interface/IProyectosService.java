@@ -7,6 +7,8 @@ import java.util.List;
 public interface IProyectosService {
 
     public List<Proyectos> listProyectos();
+    
+    public List<Proyectos> listProyectosByIdPersona(long id);
 
     public Proyectos buscarProyecto(int id);
 
