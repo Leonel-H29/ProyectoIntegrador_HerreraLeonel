@@ -82,4 +82,22 @@ public class HardSkillsService implements IHardSkillsService {
         return HskillRepo.existsById(id);
     }
 
+    @Override
+    public List<HardSkills> listHardSkillsByIdPersona(long id) {
+         try {
+            List<HardSkills> skillcacion = HskillRepo.ListHardSkillsByIdPersona(id);
+            if (!skillcacion.isEmpty()) {
+                System.out.println("Listado de skils: " + skillcacion);
+                return skillcacion;
+            } else {
+                skillcacion = new ArrayList<HardSkills>();
+                System.out.println("Vacio");
+                return skillcacion;
+            }
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar la peticion: " + ex.toString());
+            return new ArrayList<HardSkills>();
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.portafolio.mgb.Controller;
 
 import com.portafolio.mgb.Interface.IHardSkillsService;
+import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.model.HardSkills;
 import com.portafolio.mgb.security.Controller.Mensaje;
 import java.time.temporal.ChronoUnit;
@@ -26,10 +27,22 @@ public class HardSkillsController {
     
     @Autowired
     IHardSkillsService HSkillServ;
+    
+    @Autowired
+    IPersonaService PerServ;
 
     @GetMapping("/list")
     public ResponseEntity<List<HardSkills>> list() {
         List<HardSkills> list = HSkillServ.listHardSkills();
+        return new ResponseEntity(list, HttpStatus.OK);
+    }
+    
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<HardSkills>> list(@PathVariable long id) {
+        if (PerServ.buscarPersona(id) == null) {
+            return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
+        }
+        List<HardSkills> list = HSkillServ.listHardSkillsByIdPersona(id);
         return new ResponseEntity(list, HttpStatus.OK);
     }
 

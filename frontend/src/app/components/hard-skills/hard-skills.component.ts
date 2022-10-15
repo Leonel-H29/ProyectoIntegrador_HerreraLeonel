@@ -42,7 +42,7 @@ export class HardSkillsComponent implements OnInit {
   }
 
   CargarHardSkills(): void {
-    this.skillService.ListaHardSkills().subscribe(
+    this.skillService.ListaHardSkillsByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         /*
         data.forEach((element) => {

@@ -4,15 +4,18 @@ import { Observable } from 'rxjs';
 import { HardSkills } from '../model/hard-skills';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HardSkillService {
-
   hsURL = 'http://localhost:8080/hardskill/';
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   public ListaHardSkills(): Observable<HardSkills[]> {
     return this.httpClient.get<HardSkills[]>(this.hsURL + 'list');
+  }
+
+  public ListaHardSkillsByPersona(id: number): Observable<HardSkills[]> {
+    return this.httpClient.get<HardSkills[]>(this.hsURL + 'list/' + id);
   }
 
   public GetHardSkills(id: number): Observable<HardSkills> {

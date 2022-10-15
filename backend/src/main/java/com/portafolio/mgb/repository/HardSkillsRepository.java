@@ -1,6 +1,7 @@
 package com.portafolio.mgb.repository;
 
 import com.portafolio.mgb.model.HardSkills;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +9,12 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HardSkillsRepository extends JpaRepository<HardSkills, Integer> {
+    
+    @Query(
+            value = "SELECT * FROM skills s WHERE s.idpersona=?1",
+            nativeQuery = true
+    )
+    public List<HardSkills> ListHardSkillsByIdPersona(long idPers);
     
     @Modifying
     @Query(
