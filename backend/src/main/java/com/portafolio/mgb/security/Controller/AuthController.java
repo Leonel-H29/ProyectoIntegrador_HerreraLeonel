@@ -119,9 +119,17 @@ public class AuthController {
 
     }
     
+    /*
+    @GetMapping("/{username}")
+    public List<Persona> findPersonaSQL(@PathVariable String username) {
+        return usuarioService.getByUserNameSQL(username);
+    }
+    */
+    
     @GetMapping("/{username}")
     public Optional<Usuario> findPersona(@PathVariable String username) {
         return usuarioService.getByUserName(username);
     }
+    
 
 }

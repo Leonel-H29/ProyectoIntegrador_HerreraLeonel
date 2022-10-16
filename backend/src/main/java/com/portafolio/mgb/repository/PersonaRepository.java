@@ -10,6 +10,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonaRepository extends JpaRepository<Persona, Integer> {
+    
+    @Query(
+            //value = "SELECT * FROM persona INNER JOIN usuario USING(idusuario) WHERE username=leomessi10",
+            value = "SELECT * FROM persona WHERE idusuario=(SELECT idusuario FROM usuario WHERE username = ?1) LIMIT 1",
+            nativeQuery = true
+    )
+    Persona findByUsernameSQL(String username);
+
 
     @Modifying
     @Query(

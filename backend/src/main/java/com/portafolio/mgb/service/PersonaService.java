@@ -118,5 +118,9 @@ public class PersonaService implements IPersonaService {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
     }
+    @Override
+    public Persona getByUserNameSQL(String username) {
+        return RepoPers.findByUsernameSQL(username);
+    }
 
 }

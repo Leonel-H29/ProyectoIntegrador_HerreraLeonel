@@ -16,35 +16,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/personas")
 @CrossOrigin(origins = "http://localhost:4200/")
 public class PersonaController {
 
     @Autowired
     private IPersonaService perServ;
     
-    @PostMapping("/personas/new")
+    @PostMapping("/new")
     public void agregarPersona(@RequestBody Persona pers) {
         perServ.crearPersona(pers);
     }
     
     //@PreAuthorize("hasRole('USER')")
-    @GetMapping("/personas/list")
+    @GetMapping("/list")
     @ResponseBody
     public List<Persona> verPersonas() {
         return perServ.verPersonas();
     }
 
-    @DeleteMapping("/personas/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void borrarPersona(@PathVariable int id) {
         perServ.eliminarPersona(id);
     }
 
-    @PutMapping("/personas/edit/{id}")
+    @PutMapping("/edit/{id}")
     public void editarPersona(@PathVariable int id,
             @RequestParam("nombre") String nNombre,
             @RequestParam("apellido") String nApellido,
@@ -60,9 +62,14 @@ public class PersonaController {
 
     }
 
-    @GetMapping("/personas/{id}")
+    @GetMapping("/{id}")
     public Persona findPersona(@PathVariable int id) {
         return perServ.buscarPersona(id);
+    }
+    
+    @GetMapping("/user/{username}")
+    public Persona findPersonaSQL(@PathVariable String username) {
+        return perServ.getByUserNameSQL(username);
     }
 
 }
