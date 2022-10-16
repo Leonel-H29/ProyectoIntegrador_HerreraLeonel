@@ -1,9 +1,11 @@
+import { TokenService } from './../../service/token.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from './../../service/persona.service';
 import { HardSkills } from './../../model/hard-skills';
 import { Component, OnInit } from '@angular/core';
 import { HardSkillService } from 'src/app/service/hard-skills.service';
-
+import { NewUser } from 'src/app/model/new-user';
+import { persona } from './../../model/persona.model';
 @Component({
   selector: 'app-edit-hard-skills',
   templateUrl: './edit-hard-skills.component.html',
@@ -11,19 +13,44 @@ import { HardSkillService } from 'src/app/service/hard-skills.service';
 })
 export class EditHardSkillsComponent implements OnInit {
   hardS: HardSkills = null;
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   constructor(
     private hardSServ: HardSkillService,
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
+    private tokenService: TokenService,
     private router: Router
   ) {}
 
+  isLogged = false;
+  hasPermission = false;
+
   ngOnInit(): void {
+    this.getPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
+    this.getHardSkill();
+  }
+
+  getHardSkill(): void {
     const id = this.activatedRouter.snapshot.params['idhs'];
     this.hardSServ.GetHardSkills(id).subscribe(
       (data) => {
         this.hardS = data;
-        this.getPersona();
+        this.hardS.persona = this.Persona;
+        //this.getPersona();
         console.log('HS: ', this.hardS);
       },
       (err) => {
@@ -55,7 +82,7 @@ export class EditHardSkillsComponent implements OnInit {
 
     this.persService.getPersona(idPersonaLogged).subscribe(
       (data) => {
-        this.hardS.persona = data;
+        this.Persona = data;
         //console.log(this.project);
       },
       (err) => {
@@ -63,5 +90,22 @@ export class EditHardSkillsComponent implements OnInit {
         //this.router.navigate(['']);
       }
     );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.persService
+      .getPersonaByUsername(this.tokenService.getUsername())
+      .subscribe(
+        (data) => {
+          if (data.idpersona == this.Persona.idpersona) {
+            this.hasPermission = true;
+          }
+          //return 'false';
+        },
+        (err) => {
+          alert('No se pudo encontrar a la persona');
+        }
+      );
   }
 }

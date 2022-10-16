@@ -17,7 +17,7 @@
       class="btn btn-outline-dark"
       title="Agregar HardSkill"
       routerLink="/createhs/{{ Persona.idpersona }}"
-      *ngIf="isLogged && Persona != undefined"
+      *ngIf="isLogged && Persona != undefined && hasPermission"
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -43,7 +43,10 @@
           [animationDuration]="600"
         ></circle-progress>
         <br />
-        <div class="d-grid gap-2 col-1 mx-auto" *ngIf="isLogged">
+        <div
+          class="d-grid gap-2 col-1 mx-auto"
+          *ngIf="isLogged && hasPermission"
+        >
           <button
             class="btn btn-primary"
             type="button"

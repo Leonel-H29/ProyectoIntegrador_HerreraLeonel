@@ -40,6 +40,7 @@ export class HardSkillsComponent implements OnInit {
   ) {}
 
   isLogged = false;
+  hasPermission = false;
 
   ngOnInit(): void {
     this.getPersona();
@@ -106,6 +107,23 @@ export class HardSkillsComponent implements OnInit {
       (err) => {
         alert('No se pudo encontrar a la persona');
         this.router.navigate(['']);
+      }
+    );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).subscribe(
+      (data) => {
+        if (data.idpersona == this.Persona.idpersona) {
+          this.hasPermission = true;
+        }
+        //return 'false';
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
       }
     );
   }

@@ -1,3 +1,4 @@
+import { TokenService } from './../../service/token.service';
 import { HardSkills } from 'src/app/model/hard-skills';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -26,16 +27,22 @@ export class NewHardSkillsComponent implements OnInit {
     '',
     new NewUser()
   );
+  isLogged = false;
+  hasPermission = false;
 
   constructor(
     private HsService: HardSkillService,
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
+    private tokenService: TokenService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
   }
 
   OnCreate() {
@@ -61,6 +68,24 @@ export class NewHardSkillsComponent implements OnInit {
       (data) => {
         this.NPersona = data;
         //console.log(this.Persona);
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
+      }
+    );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).subscribe(
+      (data) => {
+        console.log(data.idpersona, this.NPersona.idpersona);
+        if (data.idpersona == this.NPersona.idpersona) {
+          this.hasPermission = true;
+        }
+        //return 'false';
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
