@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PersonaRepository extends JpaRepository<Persona, Long> {
+public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     @Modifying
     @Query(
@@ -17,6 +17,6 @@ public interface PersonaRepository extends JpaRepository<Persona, Long> {
             + "VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)",
             nativeQuery = true
     )
-    public void SavePersonaSQL(String NameP, String ApeP, String ProvP, String PaisP, int codPostal, LocalDate FNac, String Tel, String desc, String urlFP, long idUs);
+    public void SavePersonaSQL(String NameP, String ApeP, String ProvP, String PaisP, int codPostal, LocalDate FNac, String Tel, String desc, String urlFP, int idUs);
 
 }

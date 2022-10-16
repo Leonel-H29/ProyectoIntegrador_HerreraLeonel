@@ -100,7 +100,7 @@ public class ExperienciaService implements IExperienciaService {
      */
 
     @Override
-    public List<Experiencia> listExperienciaByIdPersona(long id) {
+    public List<Experiencia> listExperienciaByIdPersona(int id) {
         try {
             List<Experiencia> experiencias = ExpRepo.ListExperienciaByIdPersona(id);
             if (!experiencias.isEmpty()) {

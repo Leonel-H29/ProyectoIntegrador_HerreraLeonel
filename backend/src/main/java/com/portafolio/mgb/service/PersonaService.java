@@ -59,7 +59,7 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public void editarPersona(Long id,
+    public void editarPersona(int id,
             String nNombre,
             String nApellido,
             String nDescripcion,
@@ -94,7 +94,7 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public Persona buscarPersona(Long id) {
+    public Persona buscarPersona(int id) {
         /*
         Si encuentra a la persona la retorna en caso contrario devolvera null
          */
@@ -103,7 +103,7 @@ public class PersonaService implements IPersonaService {
     }
 
     @Override
-    public void eliminarPersona(Long id) {
+    public void eliminarPersona(int id) {
         //RepoPers.deleteById(id);
 
         try {

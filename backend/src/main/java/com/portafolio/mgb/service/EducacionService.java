@@ -84,7 +84,7 @@ public class EducacionService implements IEducacionService {
     }
 
     @Override
-    public List<Educacion> listEducacionByIdPersona(long id) {
+    public List<Educacion> listEducacionByIdPersona(int id) {
         try {
             if (PerRepo.existsById(id)) {
                 List<Educacion> educacion = EduRepo.ListEducacionByIdPersona(id);

@@ -83,7 +83,7 @@ public class HardSkillsService implements IHardSkillsService {
     }
 
     @Override
-    public List<HardSkills> listHardSkillsByIdPersona(long id) {
+    public List<HardSkills> listHardSkillsByIdPersona(int id) {
          try {
             List<HardSkills> skillcacion = HskillRepo.ListHardSkillsByIdPersona(id);
             if (!skillcacion.isEmpty()) {

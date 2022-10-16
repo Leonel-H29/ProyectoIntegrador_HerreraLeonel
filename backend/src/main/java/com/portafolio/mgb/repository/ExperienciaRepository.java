@@ -18,19 +18,19 @@ public interface ExperienciaRepository extends JpaRepository<Experiencia, Intege
             value = "SELECT * FROM experiencia_laboral e WHERE e.idpersona=?1",
             nativeQuery = true
     )
-    public List<Experiencia> ListExperienciaByIdPersona(long idPers);
+    public List<Experiencia> ListExperienciaByIdPersona(int idPers);
     
     @Modifying
     @Query(
             value = "INSERT INTO experiencia_laboral(nombre_empresa,fecha_inicio,fecha_fin,descripcion,idpersona,idtipo_empleo) VALUES (?1,?2,?3,?4,?5,?6);",
             nativeQuery = true
     )
-    public void SaveExperienciaSQL(String NameE, LocalDate FInicio, LocalDate FFin, String desc, Long idPers, int idTE);
+    public void SaveExperienciaSQL(String NameE, LocalDate FInicio, LocalDate FFin, String desc, int idPers, int idTE);
 
     @Modifying
     @Query(
             value = "UPDATE experiencia_laboral SET nombre_empresa=?1,fecha_inicio=?2,fecha_fin=?3,descripcion=?4,idpersona=?5,idtipo_empleo=?6 WHERE idexperiencia_laboral=?7;",
             nativeQuery = true
     )
-    public void EditExperienciaSQL(String NameE, LocalDate FInicio, LocalDate FFin, String desc, Long idPers, int idTE, int idExp);
+    public void EditExperienciaSQL(String NameE, LocalDate FInicio, LocalDate FFin, String desc, int idPers, int idTE, int idExp);
 }

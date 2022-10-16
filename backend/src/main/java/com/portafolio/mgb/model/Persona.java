@@ -27,7 +27,7 @@ public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idpersona;
+    private int idpersona;
 
     @NotNull
     @Size(min = 1, max = 60, message = "La longitud del nombre no es valida")

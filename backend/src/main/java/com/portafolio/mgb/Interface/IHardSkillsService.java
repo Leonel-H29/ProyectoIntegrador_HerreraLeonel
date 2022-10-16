@@ -8,7 +8,7 @@ public interface IHardSkillsService {
 
     public List<HardSkills> listHardSkills();
     
-    public List<HardSkills> listHardSkillsByIdPersona(long id);
+    public List<HardSkills> listHardSkillsByIdPersona(int id);
 
     public HardSkills buscarHardSkills(int id);
 

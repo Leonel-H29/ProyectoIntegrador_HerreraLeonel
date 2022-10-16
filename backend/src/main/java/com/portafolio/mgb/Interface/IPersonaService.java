@@ -10,10 +10,10 @@ public interface IPersonaService {
     
     public void crearPersona(Persona pers);
 
-    public void editarPersona(Long id, String nNombre, String nApellido, String nDescripcion, String nProvincia, String nPais, int nCodigoP, LocalDate nFechaN, String nTelefono, String nFoto);
+    public void editarPersona(int id, String nNombre, String nApellido, String nDescripcion, String nProvincia, String nPais, int nCodigoP, LocalDate nFechaN, String nTelefono, String nFoto);
 
-    public Persona buscarPersona(Long id);
+    public Persona buscarPersona(int id);
 
-    public void eliminarPersona(Long id);
+    public void eliminarPersona(int id);
 
 }

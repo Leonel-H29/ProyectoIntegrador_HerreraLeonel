@@ -80,7 +80,7 @@ public class ProyectosService implements IProyectosService {
     }
 
     @Override
-    public List<Proyectos> listProyectosByIdPersona(long id) {
+    public List<Proyectos> listProyectosByIdPersona(int id) {
         try {
             List<Proyectos> proycacion = ProyRepo.ListProyectosByIdPersona(id);
             if (!proycacion.isEmpty()) {

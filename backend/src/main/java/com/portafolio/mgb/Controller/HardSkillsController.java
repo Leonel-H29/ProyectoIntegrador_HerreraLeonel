@@ -38,7 +38,7 @@ public class HardSkillsController {
     }
     
     @GetMapping("/list/{id}")
-    public ResponseEntity<List<HardSkills>> list(@PathVariable long id) {
+    public ResponseEntity<List<HardSkills>> list(@PathVariable int id) {
         if (PerServ.buscarPersona(id) == null) {
             return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
         }

@@ -40,12 +40,12 @@ public class PersonaController {
     }
 
     @DeleteMapping("/personas/delete/{id}")
-    public void borrarPersona(@PathVariable long id) {
+    public void borrarPersona(@PathVariable int id) {
         perServ.eliminarPersona(id);
     }
 
     @PutMapping("/personas/edit/{id}")
-    public void editarPersona(@PathVariable long id,
+    public void editarPersona(@PathVariable int id,
             @RequestParam("nombre") String nNombre,
             @RequestParam("apellido") String nApellido,
             @RequestParam("descripcion") String nDescripcion,
@@ -61,7 +61,7 @@ public class PersonaController {
     }
 
     @GetMapping("/personas/{id}")
-    public Persona findPersona(@PathVariable long id) {
+    public Persona findPersona(@PathVariable int id) {
         return perServ.buscarPersona(id);
     }
 

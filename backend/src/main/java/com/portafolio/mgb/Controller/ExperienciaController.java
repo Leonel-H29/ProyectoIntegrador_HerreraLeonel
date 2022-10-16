@@ -40,7 +40,7 @@ public class ExperienciaController {
     }
 
     @GetMapping("/list/{id}")
-    public ResponseEntity<List<Experiencia>> list(@PathVariable long id) {
+    public ResponseEntity<List<Experiencia>> list(@PathVariable int id) {
         if (PerServ.buscarPersona(id) == null) {
             return new ResponseEntity("No se ha podido encontrar la persona", HttpStatus.BAD_REQUEST);
         }

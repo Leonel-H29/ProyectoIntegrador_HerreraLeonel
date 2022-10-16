@@ -8,7 +8,7 @@ public interface IExperienciaService {
 
     public List<Experiencia> listExperiencia();
     
-    public List<Experiencia> listExperienciaByIdPersona(long id);
+    public List<Experiencia> listExperienciaByIdPersona(int id);
 
     public Experiencia buscarExperiencia(int id);
 

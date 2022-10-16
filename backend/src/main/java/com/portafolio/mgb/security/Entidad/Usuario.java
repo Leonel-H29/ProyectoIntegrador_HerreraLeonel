@@ -27,7 +27,7 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long idusuario;
+    private int idusuario;
     
     @NotNull
     @Column(unique = true)

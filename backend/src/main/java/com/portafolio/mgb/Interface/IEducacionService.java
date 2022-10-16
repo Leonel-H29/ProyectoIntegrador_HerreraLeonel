@@ -7,7 +7,7 @@ import java.util.List;
 public interface IEducacionService {
     public List<Educacion> listEducacion();
     
-    public List<Educacion> listEducacionByIdPersona(long id);
+    public List<Educacion> listEducacionByIdPersona(int id);
 
     public Educacion buscarEducacion(int id);
 
