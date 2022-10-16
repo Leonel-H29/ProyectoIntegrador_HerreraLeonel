@@ -49,25 +49,11 @@ export class EducacionComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    //this.hasPermissions();
-    /*
-    if (!this.hasPermission) {
-      this.router.navigate(['']);
-    }
-    */
   }
 
   CargarEducaciones(): void {
     this.eduService.ListaEduByPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        /*
-        data.forEach((element) => {
-          console.log(element);
-          if (element.persona.idpersona == this.Persona.idpersona) {
-            this.expe.push(element);
-          }
-        });
-        */
         this.educ = data;
         console.log('Educacion: ', this.educ);
       },

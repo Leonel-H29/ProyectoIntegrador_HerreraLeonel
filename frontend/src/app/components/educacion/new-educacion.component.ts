@@ -46,13 +46,6 @@ export class NewEducacionComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    this.hasPermissions();
-    /*
-    if (!this.hasPermission) {
-      alert('No tiene permiso para esta operacion');
-      this.router.navigate(['']);
-    }
-    */
   }
 
   OnCreate() {
@@ -88,6 +81,7 @@ export class NewEducacionComponent implements OnInit {
         alert('No se pudo encontrar a la persona');
       }
     );
+    this.hasPermissions();
   }
 
   hasPermissions(): void {
