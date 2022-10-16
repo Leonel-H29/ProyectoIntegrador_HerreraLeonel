@@ -31,4 +31,8 @@ export class PersonaService {
   public SavePersona(per: persona): Observable<any> {
     return this.http.post<any>(this.URL + 'new', per);
   }
+
+  public getPersonaByUsername(name: string): Observable<persona> {
+    return this.http.get<persona>(this.URL + 'user/' + name);
+  }
 }

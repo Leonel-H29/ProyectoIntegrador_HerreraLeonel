@@ -17,7 +17,7 @@
       class="btn btn-outline-dark"
       title="Agregar educacion"
       routerLink="/createedu/{{ Persona.idpersona }}"
-      *ngIf="isLogged && Persona != undefined"
+      *ngIf="isLogged && Persona != undefined && hasPermission"
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -53,7 +53,10 @@
             </h6>
           </ng-template>
 
-          <div class="d-grid gap-2 col-1 mx-auto" *ngIf="isLogged">
+          <div
+            class="d-grid gap-2 col-1 mx-auto"
+            *ngIf="isLogged && hasPermission"
+          >
             <button
               class="btn btn-primary"
               type="button"

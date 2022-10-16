@@ -5,7 +5,7 @@ import { PersonaService } from './../../service/persona.service';
 import { EducacionService } from './../../service/educacion.service';
 import { Educacion } from './../../model/educacion';
 import { Component, OnInit } from '@angular/core';
-
+import { NewUser } from 'src/app/model/new-user';
 @Component({
   selector: 'app-edit-educacion',
   templateUrl: './edit-educacion.component.html',
@@ -13,6 +13,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditEducacionComponent implements OnInit {
   educacion: Educacion = null;
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   constructor(
     private educServ: EducacionService,
     private persService: PersonaService,
@@ -21,12 +33,22 @@ export class EditEducacionComponent implements OnInit {
     private tokenService: TokenService
   ) {}
 
+  isLogged = false;
+  hasPermission = false;
+
   ngOnInit(): void {
+    this.getPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
+    this.hasPermissions();
     const id = this.activatedRouter.snapshot.params['idedu'];
+
     this.educServ.GetEducacion(id).subscribe(
       (data) => {
         this.educacion = data;
-        this.getPersona();
+        this.educacion.persona = this.Persona;
+
         console.log('educacion: ', this.educacion);
       },
       (err) => {
@@ -36,6 +58,7 @@ export class EditEducacionComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
+
     //this.getPersona();
   }
 
@@ -59,7 +82,7 @@ export class EditEducacionComponent implements OnInit {
 
     this.persService.getPersona(idPersonaLogged).subscribe(
       (data) => {
-        this.educacion.persona = data;
+        this.Persona = data;
         //console.log(this.educacion);
       },
       (err) => {
@@ -68,24 +91,19 @@ export class EditEducacionComponent implements OnInit {
       }
     );
   }
-  /*
-  hasPermissions() : boolean {
-    const idPersonaLogged = this.activatedRouter.snapshot.params['idper'];
-
-    this.persService.getPersona(idPersonaLogged).subscribe(
-      (data) => {
-        data.i forEach(element =>{
-
-        })
-        //this.personaLogged= data;
-
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-
-    return
+  hasPermissions(): void {
+    this.persService
+      .getPersonaByUsername(this.tokenService.getUsername())
+      .subscribe(
+        (data) => {
+          if (data.idpersona == this.Persona.idpersona) {
+            this.hasPermission = true;
+          }
+          //return 'false';
+        },
+        (err) => {
+          alert('No se pudo encontrar a la persona');
+        }
+      );
   }
-  */
 }

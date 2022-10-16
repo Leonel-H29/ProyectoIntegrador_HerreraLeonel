@@ -1,6 +1,6 @@
 <app-header></app-header>
 <header class="masthead text-center">
-  <div class="container">
+  <div class="container" *ngIf="hasPermission && isLogged">
     <!-- Contact Section Heading-->
     <h2
       class="page-section-heading text-center text-uppercase text-secondary mb-0"
@@ -46,7 +46,10 @@
               [(ngModel)]="NNombreInst"
             />
             <label for="name">Nombre de la institucion</label>
-            <div class="invalid-feedback" data-sb-feedback="NNombreInst:required">
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="NNombreInst:required"
+            >
               Este campo es obligatorio
             </div>
           </div>
@@ -102,11 +105,13 @@
             />
             <label for="NFechaFin">Fecha Final</label>
 
-            <div class="invalid-feedback" data-sb-feedback="NFechaFin:NFechaFin">
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="NFechaFin:NFechaFin"
+            >
               La fecha no es valida
             </div>
           </div>
-
 
           <!-- Submit success message-->
           <!---->
