@@ -41,7 +41,32 @@ export class EditEducacionComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    this.hasPermissions();
+    //this.hasPermissions();
+    /*
+    console.log(
+      'isLogged: ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
+    */
+
+    this.getEducacion();
+    /*
+    if (!this.isLogged || !this.hasPermission) {
+      alert('No tiene permiso para hacer esta operacion');
+    }*/
+    console.log(
+      'isLogged: ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
+
+    //this.getPersona();
+  }
+
+  getEducacion(): void {
     const id = this.activatedRouter.snapshot.params['idedu'];
 
     this.educServ.GetEducacion(id).subscribe(
@@ -58,8 +83,6 @@ export class EditEducacionComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
-
-    //this.getPersona();
   }
 
   onUpdate(): void {
@@ -90,6 +113,7 @@ export class EditEducacionComponent implements OnInit {
         //this.router.navigate(['']);
       }
     );
+    this.hasPermissions();
   }
   hasPermissions(): void {
     this.persService
