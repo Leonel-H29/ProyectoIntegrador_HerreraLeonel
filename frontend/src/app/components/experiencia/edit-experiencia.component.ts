@@ -1,3 +1,4 @@
+import { TokenService } from './../../service/token.service';
 import { TipoEmpleo } from 'src/app/model/tipo-empleo';
 import { PersonaService } from 'src/app/service/persona.service';
 import { Component, OnInit } from '@angular/core';
@@ -5,7 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Experiencialab } from 'src/app/model/experiencialab';
 import { ExperiencialabService } from 'src/app/service/experiencialab.service';
 import { TipoEmpleoService } from 'src/app/service/tipo-empleo.service';
-
+import { NewUser } from 'src/app/model/new-user';
+import { persona } from './../../model/persona.model';
 @Component({
   selector: 'app-edit-experiencia',
   templateUrl: './edit-experiencia.component.html',
@@ -13,22 +15,46 @@ import { TipoEmpleoService } from 'src/app/service/tipo-empleo.service';
 })
 export class EditExperienciaComponent implements OnInit {
   expLab: Experiencialab = null;
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   ListaTiposEmpleos: TipoEmpleo[];
   constructor(
     private expService: ExperiencialabService,
     private TipoEmpServ: TipoEmpleoService,
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
+    private tokenService: TokenService,
     private router: Router
   ) {}
 
+  isLogged = false;
+  hasPermission = false;
+
   ngOnInit(): void {
+    this.getPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
+    this.getExperiencia();
+  }
+
+  getExperiencia(): void {
     const id = this.activatedRouter.snapshot.params['idexp'];
     this.getTiposEmpleos();
     this.expService.GetExperiencia(id).subscribe(
       (data) => {
         this.expLab = data;
-        this.getPersona();
+        this.expLab.persona = this.Persona;
         console.log('expLab: ', this.expLab);
       },
       (err) => {
@@ -59,7 +85,8 @@ export class EditExperienciaComponent implements OnInit {
 
     this.persService.getPersona(idPersonaLogged).subscribe(
       (data) => {
-        this.expLab.persona = data;
+        //this.expLab.persona = data;
+        this.Persona = data;
         //console.log(this.project);
       },
       (err) => {
@@ -67,6 +94,7 @@ export class EditExperienciaComponent implements OnInit {
         //this.router.navigate(['']);
       }
     );
+    this.hasPermissions();
   }
 
   getTiposEmpleos(): void {
@@ -74,5 +102,21 @@ export class EditExperienciaComponent implements OnInit {
       this.ListaTiposEmpleos = data;
       console.log('Tipo de empleos: ', this.ListaTiposEmpleos);
     });
+  }
+
+  hasPermissions(): void {
+    this.persService
+      .getPersonaByUsername(this.tokenService.getUsername())
+      .subscribe(
+        (data) => {
+          if (data.idpersona == this.Persona.idpersona) {
+            this.hasPermission = true;
+          }
+          //return 'false';
+        },
+        (err) => {
+          alert('No se pudo encontrar a la persona');
+        }
+      );
   }
 }

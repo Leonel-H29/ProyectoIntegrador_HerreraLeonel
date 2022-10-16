@@ -49,7 +49,7 @@ export class EducacionComponent implements OnInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    this.hasPermissions();
+    //this.hasPermissions();
     /*
     if (!this.hasPermission) {
       this.router.navigate(['']);
@@ -112,6 +112,7 @@ export class EducacionComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
+    this.hasPermissions();
   }
 
   hasPermissions(): void {
