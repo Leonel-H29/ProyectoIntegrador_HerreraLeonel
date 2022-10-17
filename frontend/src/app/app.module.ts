@@ -32,6 +32,7 @@ import { NewUserComponent } from './components/login/new-user/new-user.component
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { AsideComponent } from './components/aside/aside.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     SettingsComponent,
     EditUserComponent,
     NewUserComponent,
+    AsideComponent,
   ],
   imports: [
     BrowserModule,
