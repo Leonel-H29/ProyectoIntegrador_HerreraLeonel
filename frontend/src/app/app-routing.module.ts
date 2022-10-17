@@ -12,20 +12,22 @@ import { NewExperienciaComponent } from './components/experiencia/new-experienci
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { EditUserComponent } from './components/settings/edit-user/edit-user.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'createaccount', component: NewUserComponent },
   { path: 'perfil/:id', component: PerfilComponent },
 
   //Crear
+  { path: 'createaccount', component: NewUserComponent },
   { path: 'createexp/:id', component: NewExperienciaComponent },
   { path: 'createhs/:id', component: NewHardSkillsComponent },
   { path: 'createedu/:id', component: NewEducacionComponent },
   { path: 'createproy/:id', component: NewProyectosComponent },
 
   //Editar
+  { path: 'editaccount/:id', component: EditUserComponent },
   { path: 'editexp/:idper/:idexp', component: EditExperienciaComponent },
   { path: 'editproy/:idper/:idproy', component: EditProyectosComponent },
   { path: 'ediths/:idper/:idhs', component: EditHardSkillsComponent },

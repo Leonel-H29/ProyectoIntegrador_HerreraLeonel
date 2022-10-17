@@ -102,9 +102,20 @@ export class NewUserComponent implements OnInit {
     }
   }
 
+  public generaCadenaAleatoria(): string {
+    const n = 20;
+    let result = '';
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for (let i = 0; i < n; i++) {
+      result += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return result;
+  }
+
   uploadImage($event: any) {
     //const id = this.activatedRouter.snapshot.params[];
-    const name = 'perfil_';
+    const name = 'perfil_' + this.generaCadenaAleatoria();
     this.imgService.uploadImage($event, name);
   }
 }
