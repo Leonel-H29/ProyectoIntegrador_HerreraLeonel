@@ -17,7 +17,7 @@
       class="btn btn-outline-dark"
       title="Agregar proyecto"
       routerLink="/createproy/{{ Persona.idpersona }}"
-      *ngIf="isLogged && Persona != undefined"
+      *ngIf="isLogged && Persona != undefined && hasPermission"
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>
@@ -72,7 +72,7 @@
                   <b> Ver Mas</b>
                 </button>
                 <button
-                  *ngIf="isLogged"
+                  *ngIf="isLogged && hasPermission"
                   class="btn btn-primary"
                   type="button"
                   title="Editar"
@@ -83,7 +83,7 @@
                   <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
                 </button>
                 <button
-                  *ngIf="isLogged"
+                  *ngIf="isLogged && hasPermission"
                   class="btn btn-primary"
                   type="button"
                   title="Eliminar"

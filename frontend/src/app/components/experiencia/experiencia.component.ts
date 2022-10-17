@@ -44,13 +44,11 @@ export class ExperienciaComponent implements OnInit {
   hasPermission = false;
 
   ngOnInit(): void {
-    this.getPersona();
-    //console.log('Id Persona: ', this.idPersonaLogged);
-    //console.log('Persona: ', this.Persona);
-    this.CargarExperiencias();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
+    this.getPersona();
+    this.CargarExperiencias();
   }
 
   CargarExperiencias(): void {

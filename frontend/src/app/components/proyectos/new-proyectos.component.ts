@@ -1,3 +1,4 @@
+import { TokenService } from './../../service/token.service';
 import { Proyectos } from './../../model/proyectos';
 import { PersonaService } from './../../service/persona.service';
 import { ProyectosService } from 'src/app/service/proyectos.service';
@@ -30,14 +31,21 @@ export class NewProyectosComponent implements OnInit {
     new NewUser()
   );
 
+  isLogged = false;
+  hasPermission = false;
+
   constructor(
     private ProyServ: ProyectosService,
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
     this.getPersona();
   }
 
@@ -70,6 +78,24 @@ export class NewProyectosComponent implements OnInit {
       (data) => {
         this.NPersona = data;
         //console.log(this.Persona);
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
+      }
+    );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).subscribe(
+      (data) => {
+        console.log(data.idpersona, this.NPersona.idpersona);
+        if (data.idpersona == this.NPersona.idpersona) {
+          this.hasPermission = true;
+        }
+        //return 'false';
       },
       (err) => {
         alert('No se pudo encontrar a la persona');

@@ -40,30 +40,21 @@ export class ProyectosComponent implements OnInit {
   ) {}
 
   isLogged = false;
+  hasPermission = false;
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
     this.getPersona();
     ///console.log('Id Persona: ', this.idPersonaLogged);
     //console.log('Persona: ', this.Persona);
     this.CargarProyectos();
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
   }
 
   CargarProyectos(): void {
     this.proyService.ListaProyectosByPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        /*
-        data.forEach((element) => {
-          console.log(element);
-          if (element.Proyectos.idProyectos == this.Proyectos.idProyectos) {
-            this.expe.push(element);
-          }
-        });
-        */
         this.proy = data;
         console.log('Proyectos: ', this.proy);
       },
@@ -106,6 +97,23 @@ export class ProyectosComponent implements OnInit {
       (err) => {
         alert('No se pudo encontrar a la persona');
         this.router.navigate(['']);
+      }
+    );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).subscribe(
+      (data) => {
+        if (data.idpersona == this.Persona.idpersona) {
+          this.hasPermission = true;
+        }
+        //return 'false';
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
       }
     );
   }

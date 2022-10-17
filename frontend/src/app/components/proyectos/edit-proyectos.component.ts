@@ -1,9 +1,11 @@
+import { TokenService } from 'src/app/service/token.service';
 import { PersonaService } from './../../service/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectosService } from './../../service/proyectos.service';
 import { Proyectos } from './../../model/proyectos';
 import { Component, OnInit } from '@angular/core';
-
+import { NewUser } from 'src/app/model/new-user';
+import { persona } from './../../model/persona.model';
 @Component({
   selector: 'app-edit-proyectos',
   templateUrl: './edit-proyectos.component.html',
@@ -11,19 +13,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProyectosComponent implements OnInit {
   project: Proyectos = null;
+  Persona: persona = new persona(
+    '',
+    '',
+    '',
+    '',
+    '',
+    0,
+    new Date(),
+    '',
+    '',
+    new NewUser()
+  );
   constructor(
     private proyService: ProyectosService,
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
+  isLogged = false;
+  hasPermission = false;
+
   ngOnInit(): void {
+    this.getPersona();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
+    this.getProyecto();
+  }
+
+  getProyecto(): void {
     const id = this.activatedRouter.snapshot.params['idproy'];
     this.proyService.GetProyecto(id).subscribe(
       (data) => {
         this.project = data;
-        this.getPersona();
+        this.project.persona = this.Persona;
         console.log('project: ', this.project);
       },
       (err) => {
@@ -33,7 +59,6 @@ export class EditProyectosComponent implements OnInit {
         this.router.navigate(['']);
       }
     );
-    //this.getPersona();
   }
 
   onUpdate(): void {
@@ -56,7 +81,7 @@ export class EditProyectosComponent implements OnInit {
 
     this.persService.getPersona(idPersonaLogged).subscribe(
       (data) => {
-        this.project.persona = data;
+        this.Persona = data;
         //console.log(this.project);
       },
       (err) => {
@@ -64,5 +89,22 @@ export class EditProyectosComponent implements OnInit {
         //this.router.navigate(['']);
       }
     );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.persService
+      .getPersonaByUsername(this.tokenService.getUsername())
+      .subscribe(
+        (data) => {
+          if (data.idpersona == this.Persona.idpersona) {
+            this.hasPermission = true;
+          }
+          //return 'false';
+        },
+        (err) => {
+          alert('No se pudo encontrar a la persona');
+        }
+      );
   }
 }

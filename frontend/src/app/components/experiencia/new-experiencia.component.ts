@@ -1,3 +1,4 @@
+import { TokenService } from './../../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Experiencialab } from 'src/app/model/experiencialab';
@@ -38,19 +39,24 @@ export class NewExperienciaComponent implements OnInit {
 
   ListaTiposEmpleos: TipoEmpleo[];
   //Persona: persona;
+  isLogged = false;
+  hasPermission = false;
 
   constructor(
     private Expeserv: ExperiencialabService,
     private TipoEmpServ: TipoEmpleoService,
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+    }
     this.getPersona();
     this.getTiposEmpleos();
-    //this.OnCreate();
   }
 
   OnCreate() {
@@ -105,6 +111,24 @@ export class NewExperienciaComponent implements OnInit {
       (data) => {
         this.NPersona = data;
         //console.log(this.Persona);
+      },
+      (err) => {
+        alert('No se pudo encontrar a la persona');
+      }
+    );
+    this.hasPermissions();
+  }
+
+  hasPermissions(): void {
+    this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).subscribe(
+      (data) => {
+        console.log(data.idpersona, this.NPersona.idpersona);
+        if (data.idpersona == this.NPersona.idpersona) {
+          this.hasPermission = true;
+        }
+        //return 'false';
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
