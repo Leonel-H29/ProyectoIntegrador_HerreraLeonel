@@ -17,6 +17,10 @@ public class UsuarioService {
     public Optional<Usuario> getByUserName(String username) {
         return UserRepo.findByUsername(username);
     }
+    
+    public Usuario getByUserNameSQL(String username) {
+        return UserRepo.findByUsernameSQL(username);
+    }
 
     public boolean existsByUserName(String username) {
         return UserRepo.existsByUsername(username);
@@ -27,7 +31,16 @@ public class UsuarioService {
     }
 
     public void save(Usuario usuario) {
-        UserRepo.save(usuario);
+        if(UserRepo.existsById(usuario.getIdusuario())){
+            UserRepo.EditUsuario(usuario.getIdusuario(), usuario.getCorreo(), usuario.getUsername(), usuario.getPassword());
+        }
+        else{
+            UserRepo.save(usuario);
+        }
+    }
+    
+    public Usuario findByIdPersona(int idP){
+        return UserRepo.findByIdPersona(idP);
     }
 
 }

@@ -16,11 +16,19 @@ export class AuthService {
     return this.httpClient.post<any>(this.authURL + 'nuevo', newUser);
   }
 
+  public editUser(username: string, newUser: NewUser): Observable<any> {
+    return this.httpClient.put<any>(this.authURL + 'edit/' + username, newUser);
+  }
+
   public Login(loginUser: LoginUser): Observable<JwtDto> {
     return this.httpClient.post<JwtDto>(this.authURL + 'login', loginUser);
   }
 
   public getByUsername(username: string): Observable<any> {
     return this.httpClient.get<any>(this.authURL + username);
+  }
+
+  public getByPersona(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.authURL + 'persona/' + id);
   }
 }

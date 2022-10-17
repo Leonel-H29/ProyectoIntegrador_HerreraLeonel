@@ -1,7 +1,5 @@
 package com.portafolio.mgb.security.Controller;
 
-
-
 import com.portafolio.mgb.security.Dto.JwtDto;
 import com.portafolio.mgb.security.Dto.LoginUsuario;
 import com.portafolio.mgb.security.Dto.NuevoUsuario;
@@ -32,6 +30,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,7 +52,6 @@ public class AuthController {
     JwtProvider jwtProvider;
     @Autowired
     ConexionBD conexionBD;
-    
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
@@ -62,7 +60,7 @@ public class AuthController {
             if(!conexionBD.IsConnected()){
                 return new ResponseEntity(new Mensaje("No se pudo conectar a la base de datos"), HttpStatus.BAD_REQUEST);
             }
-            */
+             */
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
             }
@@ -75,7 +73,7 @@ public class AuthController {
                 return new ResponseEntity(new Mensaje("El mail ya existe"), HttpStatus.BAD_REQUEST);
             }
 
-            Usuario usuario = new Usuario(NUsuario.getCorreo(),NUsuario.getUsername(),passEncoder.encode(NUsuario.getPassword()));
+            Usuario usuario = new Usuario(NUsuario.getCorreo(), NUsuario.getUsername(), passEncoder.encode(NUsuario.getPassword()));
 
             Set<Rol> roles = new HashSet<>();
             roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
@@ -85,7 +83,52 @@ public class AuthController {
             }
             usuario.setRoles(roles);
             usuarioService.save(usuario);
-            
+
+            return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar: " + ex.getMessage());
+            return new ResponseEntity(new Mensaje(ex.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PutMapping("/edit/{username}")
+    public ResponseEntity<?> editar(@PathVariable("username") String username, @Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
+        try {
+            /*
+            if(!conexionBD.IsConnected()){
+                return new ResponseEntity(new Mensaje("No se pudo conectar a la base de datos"), HttpStatus.BAD_REQUEST);
+            }
+             */
+            if (bindingResult.hasErrors()) {
+                return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
+            }
+            if (username == null) {
+                return new ResponseEntity(new Mensaje("El parametro no puede ser nulo"), HttpStatus.BAD_REQUEST);
+            }
+
+            //Usuario usuario = new Usuario(NUsuario.getCorreo(),NUsuario.getUsername(),passEncoder.encode(NUsuario.getPassword()));
+            Usuario usuario = usuarioService.getByUserNameSQL(username);
+            if (username != NUsuario.getUsername() && usuarioService.existsByUserName(NUsuario.getUsername())) {
+                return new ResponseEntity(new Mensaje("El nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
+            }
+
+            if (usuario.getCorreo() != NUsuario.getCorreo() && usuarioService.existsByCorreo(NUsuario.getCorreo())) {
+                return new ResponseEntity(new Mensaje("El mail ya existe"), HttpStatus.BAD_REQUEST);
+            }
+            usuario.setUsername(NUsuario.getUsername());
+            usuario.setCorreo(NUsuario.getCorreo());
+            usuario.setUsername(NUsuario.getUsername());
+            usuario.setPassword(passEncoder.encode(NUsuario.getPassword()));
+
+            Set<Rol> roles = new HashSet<>();
+            roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
+
+            if (NUsuario.getRoles().contains("admin")) {
+                roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+            }
+            usuario.setRoles(roles);
+            usuarioService.save(usuario);
+            //usuarioService.
 
             return new ResponseEntity(new Mensaje("Usuario guardado"), HttpStatus.CREATED);
         } catch (Exception ex) {
@@ -96,40 +139,42 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
-        try{
+        try {
             /*
             if(!conexionBD.IsConnected()){
                 return new ResponseEntity(new Mensaje("No se pudo conectar a la base de datos"), HttpStatus.BAD_REQUEST);
             }*/
             if (bindingResult.hasErrors()) {
-            return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-        }
+                return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+            }
 
-        Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getUsername(), loginUsuario.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String jwt = jwtProvider.generateToken(authentication);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
-        return new ResponseEntity(jwtDto, HttpStatus.OK);
-        }
-        catch(AuthenticationException ex){
+            Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getUsername(), loginUsuario.getPassword()));
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String jwt = jwtProvider.generateToken(authentication);
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
+            return new ResponseEntity(jwtDto, HttpStatus.OK);
+        } catch (AuthenticationException ex) {
             System.out.println("No se ha podido realizar: " + ex.getMessage());
             return new ResponseEntity(new Mensaje(ex.getMessage()), HttpStatus.BAD_REQUEST);
         }
 
     }
-    
+
     /*
     @GetMapping("/{username}")
     public List<Persona> findPersonaSQL(@PathVariable String username) {
         return usuarioService.getByUserNameSQL(username);
     }
-    */
-    
+     */
     @GetMapping("/{username}")
     public Optional<Usuario> findPersona(@PathVariable String username) {
         return usuarioService.getByUserName(username);
     }
-    
+
+    @GetMapping("/persona/{id}")
+    public Usuario findPersonaByPersona(@PathVariable int id) {
+        return usuarioService.findByIdPersona(id);
+    }
 
 }

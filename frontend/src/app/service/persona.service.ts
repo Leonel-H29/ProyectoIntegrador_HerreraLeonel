@@ -32,6 +32,10 @@ export class PersonaService {
     return this.http.post<any>(this.URL + 'new', per);
   }
 
+  public EditPersona(id: number, per: persona): Observable<any> {
+    return this.http.put<any>(this.URL + 'edit/' + id, per);
+  }
+
   public getPersonaByUsername(name: string): Observable<persona> {
     return this.http.get<persona>(this.URL + 'user/' + name);
   }

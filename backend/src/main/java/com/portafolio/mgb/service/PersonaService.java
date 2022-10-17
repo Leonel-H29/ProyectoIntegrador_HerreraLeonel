@@ -3,6 +3,7 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.model.Persona;
 import com.portafolio.mgb.repository.PersonaRepository;
+import com.portafolio.mgb.security.Entidad.Usuario;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,8 @@ public class PersonaService implements IPersonaService {
             int nCodigoP,
             LocalDate nFechaN,
             String nTelefono,
-            String nFoto
+            String nFoto,
+            Usuario user
     ) {
 
         try {
@@ -83,6 +85,7 @@ public class PersonaService implements IPersonaService {
             persona.setTelefono(nTelefono);
 
             persona.setFoto_perfil_url(nFoto);
+            persona.setUsuario(user);
 
             System.out.println(persona);
             RepoPers.save(persona);
