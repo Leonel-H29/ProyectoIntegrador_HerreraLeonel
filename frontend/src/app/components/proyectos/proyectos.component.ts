@@ -17,6 +17,7 @@ export class ProyectosComponent implements OnInit {
   @Input() idPersonaLogged: number = 0;
   @Output() GetidPersona = new EventEmitter<number>();
   proy: Proyectos[] = [];
+  ProyectosAmostrar: Proyectos;
   ProyectosAeliminar: Proyectos;
   Persona: persona = new persona(
     '',
@@ -83,6 +84,10 @@ export class ProyectosComponent implements OnInit {
 
   getProyectosAEliminar(Proyectos: Proyectos): void {
     this.ProyectosAeliminar = Proyectos;
+  }
+
+  getProyectosAMostrar(Proyectos: Proyectos): void {
+    this.ProyectosAmostrar = Proyectos;
   }
 
   getPersona(): void {
