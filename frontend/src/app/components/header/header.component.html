@@ -52,21 +52,15 @@
               >AJUSTES</a
             >
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
-              <li>
+              <li *ngFor="let opcion of OpcionesSett">
                 <a
                   class="dropdown-item"
-                  title="Editar Cuenta"
-                  routerLink="/editaccount/{{ Persona.idpersona }}"
-                  >Editar Cuenta</a
+                  title="{{ opcion.text }}"
+                  routerLink="{{ opcion.value }}{{ Persona.idpersona }}"
+                  >{{ opcion.text }}</a
                 >
               </li>
-              <!--
-              <li>
-                <a class="dropdown-item" title="Exportar PDF" href="#"
-                  >Exportar PDF</a
-                >
-              </li>
-              -->
+
               <li><hr class="dropdown-divider" /></li>
               <li>
                 <a class="dropdown-item" title="Eliminar Cuenta" href="#"

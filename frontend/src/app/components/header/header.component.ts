@@ -22,6 +22,17 @@ export class HeaderComponent implements OnInit {
     '',
     new NewUser()
   );
+
+  OpcionesSett = [
+    {
+      text: 'Editar Cuenta',
+      value: '/editaccount/',
+    },
+    {
+      text: 'Editar Datos',
+      value: '/editper/',
+    },
+  ];
   constructor(
     private PersServ: PersonaService,
     private router: Router,

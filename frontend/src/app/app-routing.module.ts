@@ -1,3 +1,4 @@
+import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { NewUserComponent } from './components/login/new-user/new-user.component';
 import { EditEducacionComponent } from './components/educacion/edit-educacion.component';
 import { EditHardSkillsComponent } from './components/hard-skills/edit-hard-skills.component';
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'createproy/:id', component: NewProyectosComponent },
 
   //Editar
+  { path: 'editper/:id', component: EditPersonaComponent },
   { path: 'editaccount/:id', component: EditUserComponent },
   { path: 'editexp/:idper/:idexp', component: EditExperienciaComponent },
   { path: 'editproy/:idper/:idproy', component: EditProyectosComponent },

@@ -33,6 +33,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AsideComponent } from './components/aside/aside.component';
+import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { AsideComponent } from './components/aside/aside.component';
     EditUserComponent,
     NewUserComponent,
     AsideComponent,
+    EditPersonaComponent,
   ],
   imports: [
     BrowserModule,
