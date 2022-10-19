@@ -29,6 +29,10 @@ public class UsuarioService {
     public boolean existsByCorreo(String correo) {
         return UserRepo.existsByCorreo(correo);
     }
+    
+    public void delete(int id){
+        UserRepo.DeleteUsuario(id);
+    }
 
     public void save(Usuario usuario) {
         if(UserRepo.existsById(usuario.getIdusuario())){

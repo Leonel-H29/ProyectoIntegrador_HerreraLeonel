@@ -27,6 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -103,7 +104,6 @@ public class AuthController {
                 return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
             }
 
-
             //Usuario usuario = new Usuario(NUsuario.getCorreo(),NUsuario.getUsername(),passEncoder.encode(NUsuario.getPassword()));
             Usuario usuario = usuarioService.findByIdUsuario(id);
             usuario.setUsername(NUsuario.getUsername());
@@ -165,6 +165,16 @@ public class AuthController {
     @GetMapping("/persona/{id}")
     public Usuario findPersonaByPersona(@PathVariable int id) {
         return usuarioService.findByIdPersona(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        if (usuarioService.findByIdPersona(id) == null) {
+        } else {
+            return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
+        }
+        usuarioService.delete(id);
+        return new ResponseEntity(new Mensaje("Educacion eliminada"), HttpStatus.OK);
     }
 
 }

@@ -41,5 +41,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             nativeQuery = true
     )
     void EditUsuario(int idUs, String correo, String username, String pass);
+    
+    
+    @Modifying
+    @Query(
+            value="DELETE usuario u WHERE u.idusuario=?1",
+            nativeQuery = true
+    )
+    void DeleteUsuario(int idUs);
 
 }

@@ -88,15 +88,22 @@ export class EditUserComponent implements OnInit {
     this.authService.editUser(this.idusuario, NUser).subscribe(
       (data) => {
         console.log('Usuario Actualizado: ', data);
-        alert('Usuario Actualizado');
-        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+        alert('Usuario Actualizado - Inicio Sesion nuevamente');
+        //this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       },
       (err) => {
         alert('Fallo la operacion en Usuario');
         console.log(err);
       }
     );
+    //this.onLogOut();
   }
+  /*
+  onLogOut(): void {
+    this.tokenService.Logout();
+    window.location.reload();
+  }
+  */
 
   getUsuario(): void {
     this.authService.getByPersona(this.idPersonaLogged).subscribe(
