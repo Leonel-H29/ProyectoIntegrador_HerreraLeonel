@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { NewUser } from './../../../model/new-user';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { persona } from 'src/app/model/persona.model';
@@ -12,7 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.css'],
 })
-export class EditUserComponent implements OnInit {
+export class EditUserComponent implements OnInit, AfterViewInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
   /*
   Persona: persona = new persona(
@@ -49,9 +49,23 @@ export class EditUserComponent implements OnInit {
     private tokenService: TokenService
   ) {}
 
+  ngAfterViewInit(): void {
+    //this.getUsuario();
+  }
+
   ngOnInit(): void {
     this.getUsuario();
     //this.getPersona();
+    /*
+    if (
+      this.idusuario === 0 ||
+      this.username === null ||
+      this.correo === null ||
+      this.password === null
+    ) {
+      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
+    }
+    */
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
