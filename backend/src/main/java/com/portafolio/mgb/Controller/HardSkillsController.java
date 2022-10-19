@@ -4,7 +4,6 @@ import com.portafolio.mgb.Interface.IHardSkillsService;
 import com.portafolio.mgb.Interface.IPersonaService;
 import com.portafolio.mgb.model.HardSkills;
 import com.portafolio.mgb.security.Controller.Mensaje;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("hardskill")
-@CrossOrigin(origins = "http://localhost:4200/")
+@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app/","http://localhost:4200/"})
 public class HardSkillsController {
     
     @Autowired

@@ -9,7 +9,7 @@ import { TokenService } from './token.service';
   providedIn: 'root',
 })
 export class PersonaService {
-  URL = 'http://localhost:8080/personas/';
+  URL = 'https://backend-portafolioap.herokuapp.com/personas/'; //'http://localhost:8080/personas/';
   URLApi = 'list';
 
   constructor(

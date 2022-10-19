@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TipoEmpleoService {
-  expURL = 'http://localhost:8080/tipoemp/';
+  expURL = 'https://backend-portafolioap.herokuapp.com/tipoemp/'; //'http://localhost:8080/tipoemp/';
 
   constructor(private httpClient: HttpClient) {}
 

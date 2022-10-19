@@ -7,7 +7,7 @@ import { HardSkills } from '../model/hard-skills';
   providedIn: 'root',
 })
 export class HardSkillService {
-  hsURL = 'http://localhost:8080/hardskill/';
+  hsURL = 'https://backend-portafolioap.herokuapp.com/hardskill/'; //'http://localhost:8080/hardskill/';
   constructor(private httpClient: HttpClient) {}
 
   public ListaHardSkills(): Observable<HardSkills[]> {
