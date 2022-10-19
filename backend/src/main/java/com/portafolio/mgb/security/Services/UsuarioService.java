@@ -39,6 +39,10 @@ public class UsuarioService {
         }
     }
     
+    public Usuario findByIdUsuario(int idP){
+        return UserRepo.findByIDUsernameSQL(idP);
+    }
+    
     public Usuario findByIdPersona(int idP){
         return UserRepo.findByIdPersona(idP);
     }

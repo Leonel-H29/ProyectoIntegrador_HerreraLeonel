@@ -91,8 +91,8 @@ public class AuthController {
         }
     }
 
-    @PutMapping("/edit/{username}")
-    public ResponseEntity<?> editar(@PathVariable("username") String username, @Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<?> editar(@PathVariable("id") int id, @Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
         try {
             /*
             if(!conexionBD.IsConnected()){
@@ -102,22 +102,12 @@ public class AuthController {
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
             }
-            if (username == null) {
-                return new ResponseEntity(new Mensaje("El parametro no puede ser nulo"), HttpStatus.BAD_REQUEST);
-            }
+
 
             //Usuario usuario = new Usuario(NUsuario.getCorreo(),NUsuario.getUsername(),passEncoder.encode(NUsuario.getPassword()));
-            Usuario usuario = usuarioService.getByUserNameSQL(username);
-            if (username != NUsuario.getUsername() && usuarioService.existsByUserName(NUsuario.getUsername())) {
-                return new ResponseEntity(new Mensaje("El nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
-            }
-
-            if (usuario.getCorreo() != NUsuario.getCorreo() && usuarioService.existsByCorreo(NUsuario.getCorreo())) {
-                return new ResponseEntity(new Mensaje("El mail ya existe"), HttpStatus.BAD_REQUEST);
-            }
+            Usuario usuario = usuarioService.findByIdUsuario(id);
             usuario.setUsername(NUsuario.getUsername());
             usuario.setCorreo(NUsuario.getCorreo());
-            usuario.setUsername(NUsuario.getUsername());
             usuario.setPassword(passEncoder.encode(NUsuario.getPassword()));
 
             Set<Rol> roles = new HashSet<>();

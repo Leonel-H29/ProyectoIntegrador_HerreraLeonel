@@ -1,4 +1,4 @@
-import { ImageService } from './../../../service/image.service';
+import { Observable } from 'rxjs';
 import { NewUser } from './../../../model/new-user';
 import { Component, OnInit } from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -14,6 +14,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class EditUserComponent implements OnInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
+  /*
   Persona: persona = new persona(
     '',
     '',
@@ -26,6 +27,11 @@ export class EditUserComponent implements OnInit {
     '',
     new NewUser()
   );
+  */
+  idusuario: number = 0;
+  username: string = '';
+  correo: string = '';
+  password: string = '';
   confirm_correo: string = '';
   confirm_password: string = '';
 
@@ -39,23 +45,23 @@ export class EditUserComponent implements OnInit {
     private persService: PersonaService,
     private router: Router,
     private activatedRouter: ActivatedRoute,
-    public imgService: ImageService,
+
     private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
     this.getUsuario();
-    this.getPersona();
+    //this.getPersona();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
   }
 
   onUpdate() {
-    if (this.NuevoUsuario.correo != this.confirm_correo) {
+    if (this.correo != this.confirm_correo) {
       alert('Los correos deben coincidir');
       this.router.navigate(['/editaccount']);
-    } else if (this.NuevoUsuario.password != this.confirm_password) {
+    } else if (this.password != this.confirm_password) {
       alert('Las contraseñas deben coincidir');
       this.router.navigate(['/editaccount']);
     } else {
@@ -65,89 +71,60 @@ export class EditUserComponent implements OnInit {
   }
 
   SaveUser() {
-    if (this.NuevoUsuario.username != null) {
-      this.authService
-        .editUser(this.NuevoUsuario.username, this.NuevoUsuario)
-        .subscribe(
-          (data) => {
-            console.log('Usuario Actualizado: ', data);
-            /*Se cargan los datos de la persona*/
-            this.authService
-              .getByUsername(this.NuevoUsuario.username)
-              .subscribe((element) => {
-                this.SavePersona(element);
-              });
-          },
-          (err) => {
-            alert('Fallo la operacion en Usuario');
-            console.log(err);
-          }
-        );
-    } else {
-    }
-  }
+    const NUser = new NewUser();
+    NUser.username = this.username;
+    NUser.correo = this.correo;
+    NUser.password = this.password;
 
-  SavePersona(user: NewUser) {
-    if (user != null) {
-      this.Persona.usuario = user;
-
-      this.persService
-        .EditPersona(this.idPersonaLogged, this.Persona)
-        .subscribe(
-          (data) => {
-            console.log('Persona actualizada: ', data);
-            alert('Usuario Actualizado');
-            this.router.navigate(['/']);
-          },
-          (err) => {
-            alert('Fallo la operacion en Persona');
-            console.log(err);
-          }
-        );
+    if (
+      NUser.username == null ||
+      NUser.correo == null ||
+      NUser.password == null
+    ) {
+      alert('No puede haber campos vacios');
+      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
     }
-  }
-  public generaCadenaAleatoria(): string {
-    const n = 20;
-    let result = '';
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < n; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  }
 
-  uploadImage($event: any) {
-    //const id = this.activatedRouter.snapshot.params[];
-    const name = 'perfil_' + this.generaCadenaAleatoria();
-    this.imgService.uploadImage($event, name);
+    this.authService.editUser(this.idusuario, NUser).subscribe(
+      (data) => {
+        console.log('Usuario Actualizado: ', data);
+        alert('Usuario Actualizado');
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+      },
+      (err) => {
+        alert('Fallo la operacion en Usuario');
+        console.log(err);
+      }
+    );
   }
 
   getUsuario(): void {
     this.authService.getByPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        this.NuevoUsuario.username = data;
-        console.log('Get user: ', this.NuevoUsuario);
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-        //this.router.navigate(['']);
-      }
-    );
-  }
+        this.idusuario = data.idusuario;
+        this.username = data.username;
+        this.correo = JSON.stringify(data.correo);
+        this.password = JSON.stringify(data.password);
 
-  getPersona(): void {
-    this.persService.getPersona(this.idPersonaLogged).subscribe(
-      (data) => {
-        //this.expLab.persona = data;
-        this.Persona = data;
-        //console.log(this.project);
+        //this.username = JSON.stringify(data.username);
+        //this.correo = JSON.stringify(data.correo);
+        //this.password = JSON.stringify(data.password);
+        //console.log('Get user: ', usuario, email, password);
+        //console.log('Get user: ', usuario);
+        console.log(
+          'Get user: ',
+          this.idusuario,
+          this.username,
+          this.correo,
+          this.password
+        );
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
         //this.router.navigate(['']);
       }
     );
+
     this.hasPermissions();
   }
 
@@ -156,7 +133,7 @@ export class EditUserComponent implements OnInit {
       .getPersonaByUsername(this.tokenService.getUsername())
       .subscribe(
         (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
+          if (data.idpersona == this.idPersonaLogged) {
             this.hasPermission = true;
           }
           //return 'false';

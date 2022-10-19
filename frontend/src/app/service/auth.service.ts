@@ -16,8 +16,8 @@ export class AuthService {
     return this.httpClient.post<any>(this.authURL + 'nuevo', newUser);
   }
 
-  public editUser(username: string, newUser: NewUser): Observable<any> {
-    return this.httpClient.put<any>(this.authURL + 'edit/' + username, newUser);
+  public editUser(id: number, newUser: NewUser): Observable<any> {
+    return this.httpClient.put<any>(this.authURL + 'edit/' + id, newUser);
   }
 
   public Login(loginUser: LoginUser): Observable<JwtDto> {

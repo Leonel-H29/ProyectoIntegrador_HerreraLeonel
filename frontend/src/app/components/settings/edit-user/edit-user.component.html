@@ -18,10 +18,22 @@
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-7">
         <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <!--NOMBRE-->
+          <input
+            [(ngModel)]="idusuario"
+            type="number"
+            id="idusuario"
+            name="idusuario"
+            class="form-control"
+            placeholder="ID usuario"
+            required
+            disabled="true"
+            autofocus
+          />
           <!--EMAIL-->
           <div class="form-floating mb-3">
             <input
-              [(ngModel)]="NuevoUsuario.correo"
+              [(ngModel)]="correo"
               type="email"
               name="email"
               id="inputEmail"
@@ -49,7 +61,7 @@
           <!--USERNAME-->
           <div class="form-floating mb-3">
             <input
-              [(ngModel)]="NuevoUsuario.username"
+              [(ngModel)]="username"
               type="text"
               id="username"
               name="username"
@@ -63,7 +75,7 @@
           <!--PASSWORD -->
           <div class="form-floating mb-3">
             <input
-              [(ngModel)]="NuevoUsuario.password"
+              [(ngModel)]="password"
               type="password"
               id="password"
               name="password"
