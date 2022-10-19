@@ -8,7 +8,6 @@ import com.portafolio.mgb.security.Entidad.Usuario;
 import com.portafolio.mgb.security.Enums.RolNombre;
 import com.portafolio.mgb.security.Services.RolService;
 import com.portafolio.mgb.security.Services.UsuarioService;
-import com.portafolio.mgb.security.conexion.ConexionBD;
 import com.portafolio.mgb.security.jwt.JwtProvider;
 
 import java.util.HashSet;
@@ -51,8 +50,6 @@ public class AuthController {
     RolService rolService;
     @Autowired
     JwtProvider jwtProvider;
-    @Autowired
-    ConexionBD conexionBD;
 
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
