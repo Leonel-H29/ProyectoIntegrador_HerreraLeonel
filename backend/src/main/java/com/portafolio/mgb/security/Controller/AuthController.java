@@ -133,7 +133,7 @@ public class AuthController {
             }*/
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-            }
+            } 
 
             Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getUsername(), loginUsuario.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);

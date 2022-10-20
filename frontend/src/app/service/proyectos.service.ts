@@ -7,7 +7,8 @@ import { Proyectos } from '../model/proyectos';
   providedIn: 'root',
 })
 export class ProyectosService {
-  proyURL = 'https://backend-portafolioap.herokuapp.com/proyecto/'; //'http://localhost:8080/proyecto/';
+  //proyURL = 'https://backend-portafolioap.herokuapp.com/proyecto/'; //
+  proyURL = 'http://localhost:8080/proyecto/';
   constructor(private httpClient: HttpClient) {}
 
   public ListaProyectos(): Observable<Proyectos[]> {

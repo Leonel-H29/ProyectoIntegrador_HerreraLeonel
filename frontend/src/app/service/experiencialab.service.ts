@@ -7,8 +7,8 @@ import { Experiencialab } from '../model/experiencialab';
   providedIn: 'root',
 })
 export class ExperiencialabService {
-  expURL = 'https://backend-portafolioap.herokuapp.com/explab/'; //'http://localhost:8080/explab/';
-
+  //expURL = 'https://backend-portafolioap.herokuapp.com/explab/';
+  expURL = 'http://localhost:8080/explab/';
   constructor(private httpClient: HttpClient) {}
 
   public ListaExp(): Observable<Experiencialab[]> {
