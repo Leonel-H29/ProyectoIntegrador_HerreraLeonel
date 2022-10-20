@@ -59,7 +59,8 @@ export class EditPersonaComponent implements OnInit {
 
   uploadImage($event: any) {
     //const id = this.activatedRouter.snapshot.params[];
-    const name = 'perfil_' + this.generaCadenaAleatoria();
+    //const name = 'perfil_' + this.generaCadenaAleatoria();
+    const name = 'perfil_' + this.idPersonaLogged;
     this.imgService.uploadImage($event, name);
   }
   /*
