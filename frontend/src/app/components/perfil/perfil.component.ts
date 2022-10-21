@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 
 import { TokenService } from 'src/app/service/token.service';
 import { ActivatedRoute } from '@angular/router';
@@ -12,7 +17,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css'],
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent implements OnInit, AfterViewInit {
   Persona: persona = new persona(
     '',
     '',
@@ -31,8 +36,13 @@ export class PerfilComponent implements OnInit {
     private tokenService: TokenService,
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

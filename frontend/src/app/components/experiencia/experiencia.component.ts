@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Experiencialab } from 'src/app/model/experiencialab';
 import { ExperiencialabService } from 'src/app/service/experiencialab.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -13,7 +21,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './experiencia.component.html',
   styleUrls: ['./experiencia.component.css'],
 })
-export class ExperienciaComponent implements OnInit {
+export class ExperienciaComponent implements OnInit, AfterViewInit {
   @Input() idPersonaLogged: number = 0;
   @Output() GetidPersona = new EventEmitter<number>();
   expe: Experiencialab[] = [];
@@ -37,11 +45,16 @@ export class ExperienciaComponent implements OnInit {
     private tokenService: TokenService,
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {

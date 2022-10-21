@@ -1,4 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { TokenService } from 'src/app/service/token.service';
 import { ActivatedRoute } from '@angular/router';
 import { PersonaService } from 'src/app/service/persona.service';
@@ -13,7 +21,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './hard-skills.component.html',
   styleUrls: ['./hard-skills.component.css'],
 })
-export class HardSkillsComponent implements OnInit {
+export class HardSkillsComponent implements OnInit, AfterViewInit {
   @Input() idPersonaLogged: number = 0;
   @Output() GetidPersona = new EventEmitter<number>();
   skill: HardSkills[] = [];
@@ -36,11 +44,16 @@ export class HardSkillsComponent implements OnInit {
     private tokenService: TokenService,
     private activatedRouter: ActivatedRoute,
     private PersServ: PersonaService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();
