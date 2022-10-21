@@ -1,7 +1,12 @@
 import { TokenService } from './../../service/token.service';
 import { TipoEmpleo } from 'src/app/model/tipo-empleo';
 import { PersonaService } from 'src/app/service/persona.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Experiencialab } from 'src/app/model/experiencialab';
 import { ExperiencialabService } from 'src/app/service/experiencialab.service';
@@ -13,7 +18,7 @@ import { persona } from './../../model/persona.model';
   templateUrl: './edit-experiencia.component.html',
   styleUrls: ['./edit-experiencia.component.css'],
 })
-export class EditExperienciaComponent implements OnInit {
+export class EditExperienciaComponent implements OnInit, AfterViewInit {
   expLab: Experiencialab = null;
   Persona: persona = new persona(
     '',
@@ -34,11 +39,16 @@ export class EditExperienciaComponent implements OnInit {
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

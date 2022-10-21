@@ -4,14 +4,19 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from './../../service/persona.service';
 import { EducacionService } from './../../service/educacion.service';
 import { Educacion } from './../../model/educacion';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { NewUser } from 'src/app/model/new-user';
 @Component({
   selector: 'app-edit-educacion',
   templateUrl: './edit-educacion.component.html',
   styleUrls: ['./edit-educacion.component.css'],
 })
-export class EditEducacionComponent implements OnInit {
+export class EditEducacionComponent implements OnInit, AfterViewInit {
   educacion: Educacion = null;
   Persona: persona = new persona(
     '',
@@ -30,11 +35,16 @@ export class EditEducacionComponent implements OnInit {
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

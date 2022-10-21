@@ -3,7 +3,12 @@ import { PersonaService } from './../../service/persona.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProyectosService } from './../../service/proyectos.service';
 import { Proyectos } from './../../model/proyectos';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { NewUser } from 'src/app/model/new-user';
 import { persona } from './../../model/persona.model';
 @Component({
@@ -11,7 +16,7 @@ import { persona } from './../../model/persona.model';
   templateUrl: './edit-proyectos.component.html',
   styleUrls: ['./edit-proyectos.component.css'],
 })
-export class EditProyectosComponent implements OnInit {
+export class EditProyectosComponent implements OnInit, AfterViewInit {
   project: Proyectos = null;
   Persona: persona = new persona(
     '',
@@ -30,11 +35,16 @@ export class EditProyectosComponent implements OnInit {
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

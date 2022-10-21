@@ -1,7 +1,12 @@
 import { TokenService } from 'src/app/service/token.service';
 import { Educacion } from 'src/app/model/educacion';
 import { persona } from 'src/app/model/persona.model';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +18,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './new-educacion.component.html',
   styleUrls: ['./new-educacion.component.css'],
 })
-export class NewEducacionComponent implements OnInit {
+export class NewEducacionComponent implements OnInit, AfterViewInit {
   NNombreInst: string = '';
   NFechaInicio: Date = new Date();
   NFechaFin: Date = new Date();
@@ -38,8 +43,13 @@ export class NewEducacionComponent implements OnInit {
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private changeDet: ChangeDetectorRef
   ) {}
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

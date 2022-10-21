@@ -2,7 +2,12 @@ import { TokenService } from './../../service/token.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from './../../service/persona.service';
 import { HardSkills } from './../../model/hard-skills';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { HardSkillService } from 'src/app/service/hard-skills.service';
 import { NewUser } from 'src/app/model/new-user';
 import { persona } from './../../model/persona.model';
@@ -11,7 +16,7 @@ import { persona } from './../../model/persona.model';
   templateUrl: './edit-hard-skills.component.html',
   styleUrls: ['./edit-hard-skills.component.css'],
 })
-export class EditHardSkillsComponent implements OnInit {
+export class EditHardSkillsComponent implements OnInit, AfterViewInit {
   hardS: HardSkills = null;
   Persona: persona = new persona(
     '',
@@ -30,11 +35,16 @@ export class EditHardSkillsComponent implements OnInit {
     private persService: PersonaService,
     private activatedRouter: ActivatedRoute,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
 
   isLogged = false;
   hasPermission = false;
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     this.getPersona();

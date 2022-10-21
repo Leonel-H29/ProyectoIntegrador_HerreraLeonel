@@ -3,7 +3,12 @@ import { HardSkills } from 'src/app/model/hard-skills';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonaService } from 'src/app/service/persona.service';
 import { HardSkillService } from 'src/app/service/hard-skills.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
 
@@ -12,7 +17,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './new-hard-skills.component.html',
   styleUrls: ['./new-hard-skills.component.css'],
 })
-export class NewHardSkillsComponent implements OnInit {
+export class NewHardSkillsComponent implements OnInit, AfterViewInit {
   Nskill: string = '';
   Nporcentaje: number = 0;
   NPersona: persona = new persona(
@@ -35,9 +40,13 @@ export class NewHardSkillsComponent implements OnInit {
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private changeDet: ChangeDetectorRef
   ) {}
 
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
   ngOnInit(): void {
     this.getPersona();
     if (this.tokenService.getToken()) {

@@ -1,5 +1,10 @@
 import { TokenService } from './../../service/token.service';
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { Experiencialab } from 'src/app/model/experiencialab';
 import { persona } from 'src/app/model/persona.model';
@@ -16,7 +21,7 @@ import { NewUser } from 'src/app/model/new-user';
   templateUrl: './new-experiencia.component.html',
   styleUrls: ['./new-experiencia.component.css'],
 })
-export class NewExperienciaComponent implements OnInit {
+export class NewExperienciaComponent implements OnInit, AfterViewInit {
   NnombreE: string = '';
   NDescripcion: string = '';
   NfechaInicio: Date = new Date();
@@ -48,8 +53,13 @@ export class NewExperienciaComponent implements OnInit {
     private PersServ: PersonaService,
     private activatedRouter: ActivatedRoute,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private changeDet: ChangeDetectorRef
   ) {}
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {
     if (this.tokenService.getToken()) {
