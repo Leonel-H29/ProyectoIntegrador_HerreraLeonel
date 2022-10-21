@@ -56,6 +56,12 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
+    console.log(
+      'Educacion: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   OnCreate() {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { persona } from '../model/persona.model';
 import { AuthService } from './auth.service';
 import { TokenService } from './token.service';
@@ -39,5 +39,13 @@ export class PersonaService {
 
   public getPersonaByUsername(name: string): Observable<persona> {
     return this.http.get<persona>(this.URL + 'user/' + name);
+  }
+
+  public hasPermissions(id: Number): Observable<boolean> {
+    return this.getPersonaByUsername(this.token.getUsername()).pipe(
+      //filter((data) => data.idpersona == id),
+      map((data) => data.idpersona == id)
+    );
+    //.subscribe((data) => console.log(data));
   }
 }

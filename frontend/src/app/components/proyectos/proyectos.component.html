@@ -17,7 +17,7 @@
       class="btn btn-outline-dark"
       title="Agregar proyecto"
       routerLink="/createproy/{{ Persona.idpersona }}"
-      *ngIf="isLogged && Persona != undefined && hasPermission"
+      *ngIf="isLogged && Persona != undefined && hasPermission == true"
     >
       <i class="fa-solid fa-circle-plus"></i>
     </button>

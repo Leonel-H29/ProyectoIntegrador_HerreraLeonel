@@ -40,6 +40,9 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
     new NewUser()
   );
 
+  isLogged = false;
+  hasPermission = false;
+
   constructor(
     private proyService: ProyectosService,
     private tokenService: TokenService,
@@ -48,9 +51,6 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
     private router: Router,
     private changeDet: ChangeDetectorRef
   ) {}
-
-  isLogged = false;
-  hasPermission = false;
 
   ngAfterViewInit(): void {
     this.changeDet.detectChanges();
@@ -61,9 +61,18 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
       this.isLogged = true;
     }
     this.getPersona();
-    ///console.log('Id Persona: ', this.idPersonaLogged);
-    //console.log('Persona: ', this.Persona);
     this.CargarProyectos();
+    console.log(this.PersServ.hasPermissions(this.Persona.idpersona));
+    if (this.PersServ.hasPermissions(0)) {
+      this.hasPermission = true;
+    }
+
+    console.log(
+      'Proyectos: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   CargarProyectos(): void {
@@ -117,9 +126,9 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
         this.router.navigate(['']);
       }
     );
-    this.hasPermissions();
+    //this.hasPermissions();
   }
-
+  /*
   hasPermissions(): void {
     this.PersServ.getPersonaByUsername(
       this.tokenService.getUsername()
@@ -135,4 +144,5 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  */
 }
