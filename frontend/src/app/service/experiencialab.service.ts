@@ -9,6 +9,13 @@ import { Experiencialab } from '../model/experiencialab';
 export class ExperiencialabService {
   //expURL = 'https://backend-portafolioap.herokuapp.com/explab/';
   expURL = 'http://localhost:8080/explab/';
+  /*
+  expURL = [
+    'https://backend-portafolioap.herokuapp.com/explab/',
+    'http://localhost:8080/explab/',
+  ];
+  */
+
   constructor(private httpClient: HttpClient) {}
 
   public ListaExp(): Observable<Experiencialab[]> {
@@ -20,7 +27,7 @@ export class ExperiencialabService {
   }
 
   public GetExperiencia(id: number): Observable<Experiencialab> {
-    return this.httpClient.get<Experiencialab>(this.expURL + id);
+    return this.httpClient.get<Experiencialab>(this.expURL + 'get/' + id);
   }
 
   public SaveExperiencia(expe: Experiencialab): Observable<any> {

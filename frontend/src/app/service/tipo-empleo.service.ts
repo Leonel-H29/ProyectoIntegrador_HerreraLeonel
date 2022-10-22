@@ -7,7 +7,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class TipoEmpleoService {
-  expURL = 'https://backend-portafolioap.herokuapp.com/tipoemp/'; //'http://localhost:8080/tipoemp/';
+  expURL = 'http://localhost:8080/tipoemp/';
+  //expURL = 'https://backend-portafolioap.herokuapp.com/tipoemp/';
+  /*
+  expURL = [
+    'http://localhost:8080/tipoemp/',
+    'https://backend-portafolioap.herokuapp.com/tipoemp/',
+  ];
+  */
 
   constructor(private httpClient: HttpClient) {}
 
@@ -16,7 +23,7 @@ export class TipoEmpleoService {
   }
 
   public GetTipoEmpleo(id: number): Observable<TipoEmpleo> {
-    return this.httpClient.get<TipoEmpleo>(this.expURL + id);
+    return this.httpClient.get<TipoEmpleo>(this.expURL + 'get/' + id);
   }
 
   public SaveTipoEmpleo(expe: TipoEmpleo): Observable<any> {

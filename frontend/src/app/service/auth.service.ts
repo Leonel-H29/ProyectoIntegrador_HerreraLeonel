@@ -13,6 +13,13 @@ import { NewUser } from '../model/new-user';
 export class AuthService {
   //authURL = 'https://backend-portafolioap.herokuapp.com/auth/';
   authURL = 'http://localhost:8080/auth/';
+  /*
+  authURL = [
+    'https://backend-portafolioap.herokuapp.com/auth/',
+    'http://localhost:8080/auth/',
+  ];
+  */
+
   constructor(private httpClient: HttpClient, private token: TokenService) {}
   //Funcion para crear un nuevo usuario
   public newUser(newUser: NewUser): Observable<any> {

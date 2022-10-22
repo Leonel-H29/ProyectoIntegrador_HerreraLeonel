@@ -9,6 +9,12 @@ import { Proyectos } from '../model/proyectos';
 export class ProyectosService {
   //proyURL = 'https://backend-portafolioap.herokuapp.com/proyecto/'; //
   proyURL = 'http://localhost:8080/proyecto/';
+  /*
+  proyURL = [
+    'https://backend-portafolioap.herokuapp.com/proyecto/',
+    'http://localhost:8080/proyecto/',
+  ];
+  */
   constructor(private httpClient: HttpClient) {}
 
   public ListaProyectos(): Observable<Proyectos[]> {
@@ -20,7 +26,7 @@ export class ProyectosService {
   }
 
   public GetProyecto(id: number): Observable<Proyectos> {
-    return this.httpClient.get<Proyectos>(this.proyURL + id);
+    return this.httpClient.get<Proyectos>(this.proyURL + 'get/' + id);
   }
 
   public SaveProyecto(expe: Proyectos): Observable<any> {

@@ -85,7 +85,7 @@ public class HardSkillsController {
         return new ResponseEntity(new Mensaje("Hard Skill eliminada"), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
         if (HSkillServ.buscarHardSkills(id) == null) {
             return new ResponseEntity("No se ha podido encontrar la skill", HttpStatus.BAD_REQUEST);

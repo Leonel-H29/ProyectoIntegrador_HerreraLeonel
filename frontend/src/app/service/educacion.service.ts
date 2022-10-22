@@ -9,6 +9,12 @@ import { Educacion } from '../model/educacion';
 export class EducacionService {
   //eduURL = 'https://backend-portafolioap.herokuapp.com/';
   eduURL = 'http://localhost:8080/educacion/';
+  /*
+  eduURL = [
+    'https://backend-portafolioap.herokuapp.com/',
+    'http://localhost:8080/educacion/',
+  ];
+  */
 
   constructor(private httpClient: HttpClient) {}
 
@@ -21,7 +27,7 @@ export class EducacionService {
   }
 
   public GetEducacion(id: number): Observable<Educacion> {
-    return this.httpClient.get<Educacion>(this.eduURL + id);
+    return this.httpClient.get<Educacion>(this.eduURL + 'get/' + id);
   }
 
   public SaveEducacion(edu: Educacion): Observable<any> {

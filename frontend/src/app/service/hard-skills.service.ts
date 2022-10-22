@@ -9,6 +9,12 @@ import { HardSkills } from '../model/hard-skills';
 export class HardSkillService {
   //hsURL = 'https://backend-portafolioap.herokuapp.com/hardskill/';
   hsURL = 'http://localhost:8080/hardskill/';
+  /*
+  hsURL = [
+    'https://backend-portafolioap.herokuapp.com/hardskill/',
+    'http://localhost:8080/hardskill/',
+  ];
+  */
   constructor(private httpClient: HttpClient) {}
 
   public ListaHardSkills(): Observable<HardSkills[]> {
@@ -20,7 +26,7 @@ export class HardSkillService {
   }
 
   public GetHardSkills(id: number): Observable<HardSkills> {
-    return this.httpClient.get<HardSkills>(this.hsURL + id);
+    return this.httpClient.get<HardSkills>(this.hsURL + 'get/' + id);
   }
 
   public SaveHardSkills(skill: HardSkills): Observable<any> {

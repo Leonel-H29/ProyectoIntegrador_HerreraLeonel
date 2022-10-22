@@ -107,7 +107,7 @@ public class ExperienciaController {
         return new ResponseEntity(new Mensaje("Experiencia eliminada"), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
         if (ExpServ.buscarExperiencia(id) == null) {
             return new ResponseEntity("No se ha podido encontrar la experiencia", HttpStatus.BAD_REQUEST);

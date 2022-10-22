@@ -66,7 +66,7 @@ public class PersonaController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public Persona findPersona(@PathVariable int id) {
         return perServ.buscarPersona(id);
     }

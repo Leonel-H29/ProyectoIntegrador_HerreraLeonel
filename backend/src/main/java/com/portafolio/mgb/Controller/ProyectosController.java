@@ -96,7 +96,7 @@ public class ProyectosController {
         return new ResponseEntity(new Mensaje("Proyecto eliminado"), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
         if (ProyServ.buscarProyecto(id) == null) {
             return new ResponseEntity("No se ha podido encontrar el proyecto", HttpStatus.BAD_REQUEST);

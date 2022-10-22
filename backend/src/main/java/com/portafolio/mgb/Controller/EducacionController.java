@@ -96,7 +96,7 @@ public class EducacionController {
         return new ResponseEntity(new Mensaje("Educacion eliminada"), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<?> find(@PathVariable int id) {
         if (EduServ.buscarEducacion(id) == null) {
             return new ResponseEntity("No se ha podido encontrar la educacion", HttpStatus.BAD_REQUEST);
