@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/personas")
-@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app", "http://localhost:4200"})
 public class PersonaController {
 
     @Autowired
@@ -44,21 +44,6 @@ public class PersonaController {
     }
 
     @PutMapping("/edit/{id}")
-    /*
-    public void editarPersona(@PathVariable int id,
-            @RequestParam("nombre") String nNombre,
-            @RequestParam("apellido") String nApellido,
-            @RequestParam("descripcion") String nDescripcion,
-            @RequestParam("provincia") String nProvincia,
-            @RequestParam("pais") String nPais,
-            @RequestParam("codigo_postal") int nCodigoP,
-            @RequestParam("fecha_nacimiento") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate nFechaN,
-            @RequestParam("telefono") String nTelefono,
-            @RequestParam("foto_perfil_url") String nFoto
-    ) {
-        perServ.editarPersona(id, nNombre, nApellido, nDescripcion, nProvincia, nPais, nCodigoP, nFechaN, nTelefono, nFoto);
-
-    }*/
     public void editarPersona(@PathVariable int id, @RequestBody Persona per
     ) {
 
@@ -74,6 +59,13 @@ public class PersonaController {
     @GetMapping("/user/{username}")
     public Persona findPersonaSQL(@PathVariable String username) {
         return perServ.getByUserNameSQL(username);
+    }
+
+    @GetMapping("/user/{id}/{username}")
+    public boolean hasPermission(@PathVariable int id, @PathVariable String username) {
+        return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona();
+
+        //return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona() || perServ.buscarPersona(id).getUsuario().getRoles().contains("ROLE_ADMIN");
     }
 
 }

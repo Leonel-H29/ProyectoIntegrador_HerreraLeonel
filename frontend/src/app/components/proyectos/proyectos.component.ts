@@ -15,6 +15,7 @@ import { Proyectos } from 'src/app/model/proyectos';
 import { ProyectosService } from 'src/app/service/proyectos.service';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-proyectos',
@@ -57,22 +58,23 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    }
     this.getPersona();
     this.CargarProyectos();
-    console.log(this.PersServ.hasPermissions(this.Persona.idpersona));
-    if (this.PersServ.hasPermissions(0)) {
-      this.hasPermission = true;
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.PersServ.hasPermissions(
+        this.idPersonaLogged,
+        this.tokenService.getUsername()
+      ).subscribe((data) => (this.hasPermission = data));
     }
-
     console.log(
       'Proyectos: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+
+    //console.log(this.PersServ.hasPermissions(this.Persona.idpersona));
   }
 
   CargarProyectos(): void {
@@ -143,6 +145,19 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
         alert('No se pudo encontrar a la persona');
       }
     );
+  }
+  */
+
+  /*
+
+  public hasPermissions(): Observable<boolean> {
+    return this.PersServ.getPersonaByUsername(
+      this.tokenService.getUsername()
+    ).pipe(
+      //filter((data) => data.idpersona == id),
+      map((data) => data.idpersona == this.idPersonaLogged)
+    );
+    //.subscribe((data) => console.log(data));
   }
   */
 }
