@@ -48,10 +48,10 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPersona();
+    this.getProyecto();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    this.getProyecto();
   }
 
   getProyecto(): void {
@@ -99,9 +99,19 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    this.hasPermissions();
+    //this.hasPermissions();
+    this.persService
+      .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
+      .subscribe((data) => (this.hasPermission = data));
+    //this.hasPermissions();
+    console.log(
+      'Proyectos: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
-
+  /*
   hasPermissions(): void {
     this.persService
       .getPersonaByUsername(this.tokenService.getUsername())
@@ -116,5 +126,5 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
           alert('No se pudo encontrar a la persona');
         }
       );
-  }
+  }*/
 }

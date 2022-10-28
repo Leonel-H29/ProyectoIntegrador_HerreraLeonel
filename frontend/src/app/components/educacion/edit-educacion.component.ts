@@ -48,32 +48,10 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPersona();
+    this.getEducacion();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    //this.hasPermissions();
-    /*
-    console.log(
-      'isLogged: ',
-      this.isLogged,
-      'hasPermission: ',
-      this.hasPermission
-    );
-    */
-
-    this.getEducacion();
-    /*
-    if (!this.isLogged || !this.hasPermission) {
-      alert('No tiene permiso para hacer esta operacion');
-    }*/
-    console.log(
-      'isLogged: ',
-      this.isLogged,
-      'hasPermission: ',
-      this.hasPermission
-    );
-
-    //this.getPersona();
   }
 
   getEducacion(): void {
@@ -123,8 +101,19 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    this.hasPermissions();
+    //this.hasPermissions();
+    this.persService
+      .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
+      .subscribe((data) => (this.hasPermission = data));
+    //this.hasPermissions();
+    console.log(
+      'Educacion: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
+  /*
   hasPermissions(): void {
     this.persService
       .getPersonaByUsername(this.tokenService.getUsername())
@@ -140,4 +129,5 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
         }
       );
   }
+  */
 }
