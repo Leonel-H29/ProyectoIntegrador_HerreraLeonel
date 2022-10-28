@@ -62,9 +62,17 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
     this.CargarHardSkills();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
-    } else {
-      this.isLogged = false;
+      this.PersServ.hasPermissions(
+        this.idPersonaLogged,
+        this.tokenService.getUsername()
+      ).subscribe((data) => (this.hasPermission = data));
     }
+    console.log(
+      'Hard Skill: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   CargarHardSkills(): void {

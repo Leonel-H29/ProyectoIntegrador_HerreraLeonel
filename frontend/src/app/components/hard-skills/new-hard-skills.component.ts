@@ -82,9 +82,19 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
         alert('No se pudo encontrar a la persona');
       }
     );
-    this.hasPermissions();
+    this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
+      (data) => (this.hasPermission = data)
+    );
+    //this.hasPermissions();
+    console.log(
+      'Hard Skill: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
+    //this.hasPermissions();
   }
-
+  /*
   hasPermissions(): void {
     this.PersServ.getPersonaByUsername(
       this.tokenService.getUsername()
@@ -101,4 +111,5 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  */
 }

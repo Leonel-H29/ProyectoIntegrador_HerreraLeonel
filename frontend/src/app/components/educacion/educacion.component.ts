@@ -61,7 +61,17 @@ export class EducacionComponent implements OnInit, AfterViewInit {
     this.CargarEducaciones();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
+      this.PersServ.hasPermissions(
+        this.idPersonaLogged,
+        this.tokenService.getUsername()
+      ).subscribe((data) => (this.hasPermission = data));
     }
+    console.log(
+      'Educacion: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   CargarEducaciones(): void {

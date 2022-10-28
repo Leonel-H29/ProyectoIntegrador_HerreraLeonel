@@ -57,11 +57,26 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    /*
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
+    */
     this.getPersona();
     this.CargarExperiencias();
+    if (this.tokenService.getToken()) {
+      this.isLogged = true;
+      this.PersServ.hasPermissions(
+        this.idPersonaLogged,
+        this.tokenService.getUsername()
+      ).subscribe((data) => (this.hasPermission = data));
+    }
+    console.log(
+      'Experencia: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   CargarExperiencias(): void {

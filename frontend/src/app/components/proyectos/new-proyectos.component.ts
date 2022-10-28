@@ -53,10 +53,10 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.getPersona();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
-    this.getPersona();
   }
 
   OnCreate() {
@@ -93,9 +93,18 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
         alert('No se pudo encontrar a la persona');
       }
     );
-    this.hasPermissions();
+    this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
+      (data) => (this.hasPermission = data)
+    );
+    //this.hasPermissions();
+    console.log(
+      'Proyectos: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
-
+  /*
   hasPermissions(): void {
     this.PersServ.getPersonaByUsername(
       this.tokenService.getUsername()
@@ -112,4 +121,5 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
       }
     );
   }
+  */
 }

@@ -30,7 +30,6 @@ export class PerfilComponent implements OnInit, AfterViewInit {
     '',
     new NewUser()
   );
-  //isLogged = false;
 
   constructor(
     private tokenService: TokenService,
@@ -46,13 +45,6 @@ export class PerfilComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPersona();
-    /*
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
-    */
   }
 
   getPersona(): void {
