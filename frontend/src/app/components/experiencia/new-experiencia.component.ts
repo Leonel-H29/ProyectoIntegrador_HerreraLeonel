@@ -70,7 +70,6 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   OnCreate() {
-    //this.getNewTipoEmpleo(this.idTipo);
     if (this.NTipo) {
       const expe = new Experiencialab(
         this.NnombreE,
@@ -83,29 +82,20 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
       this.Expeserv.SaveExperiencia(expe).subscribe(
         (data) => {
           alert('Experiencia añadida');
-          this.router.navigate(['']);
+          this.router.navigate([
+            'perfil/' + this.activatedRouter.snapshot.params['id'],
+          ]);
         },
         (err) => {
           alert('Fallo la operacion');
           console.log(err);
-          //this.router.navigate(['']);
+          this.router.navigate([
+            'createexp/' + this.activatedRouter.snapshot.params['id'],
+          ]);
         }
       );
     }
   }
-  /*
-  getNewTipoEmpleo(id:number): void{
-    this.TipoEmpServ.GetTipoEmpleo(id).subscribe(
-      (data) =>{
-        this.NTipo = data;
-      },
-      (err)=>{
-        alert('Fallo la operacion');
-        console.log(err);
-      }
-    )
-  }
-  */
 
   getTiposEmpleos(): void {
     this.TipoEmpServ.ListaTipoEmpleo().subscribe((data) => {

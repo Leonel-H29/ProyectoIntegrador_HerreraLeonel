@@ -33,6 +33,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
     new NewUser()
   );
   ListaTiposEmpleos: TipoEmpleo[];
+  selected: TipoEmpleo = null;
   constructor(
     private expService: ExperiencialabService,
     private TipoEmpServ: TipoEmpleoService,
@@ -48,6 +49,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.changeDet.detectChanges();
+    //if (this.expLab) this.selected = this.expLab.tipoEmpleo;
   }
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
       (data) => {
         this.expLab = data;
         this.expLab.persona = this.Persona;
+        //this.selected = this.expLab.tipoEmpleo;
         console.log('expLab: ', this.expLab);
       },
       (err) => {
@@ -78,14 +81,22 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['idexp'];
+    //this.expLab.tipoEmpleo = this.selected;
     this.expService.UpdateExperiencia(id, this.expLab).subscribe(
       (data) => {
         alert('Registro modificado');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['idper'],
+        ]);
       },
       (err) => {
         alert('Error al modificar el registro');
-        this.router.navigate(['']);
+        const ruta =
+          'editexp/' +
+          this.activatedRouter.snapshot.params['idper'] +
+          '/' +
+          this.activatedRouter.snapshot.params['idexp'];
+        this.router.navigate([ruta]);
       }
     );
   }

@@ -1,11 +1,17 @@
 import { Observable } from 'rxjs';
 import { NewUser } from './../../../model/new-user';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { persona } from 'src/app/model/persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-edit-user',
@@ -14,20 +20,7 @@ import { TokenService } from 'src/app/service/token.service';
 })
 export class EditUserComponent implements OnInit, AfterViewInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
-  /*
-  Persona: persona = new persona(
-    '',
-    '',
-    '',
-    '',
-    '',
-    0,
-    new Date(),
-    '',
-    '',
-    new NewUser()
-  );
-  */
+
   idusuario: number = 0;
   username: string = '';
   correo: string = '';
@@ -45,30 +38,30 @@ export class EditUserComponent implements OnInit, AfterViewInit {
     private persService: PersonaService,
     private router: Router,
     private activatedRouter: ActivatedRoute,
-
+    private changeDet: ChangeDetectorRef,
     private tokenService: TokenService
   ) {}
 
   ngAfterViewInit(): void {
     //this.getUsuario();
+    this.changeDet.detectChanges();
   }
 
   ngOnInit(): void {
     this.getUsuario();
-    //this.getPersona();
-    /*
-    if (
-      this.idusuario === 0 ||
-      this.username === null ||
-      this.correo === null ||
-      this.password === null
-    ) {
-      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
-    }
-    */
+
     if (this.tokenService.getToken()) {
       this.isLogged = true;
+      this.persService
+        .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
+        .subscribe((data) => (this.hasPermission = data));
     }
+    console.log(
+      'Usuario: isLogged - ',
+      this.isLogged,
+      'hasPermission: ',
+      this.hasPermission
+    );
   }
 
   onUpdate() {
@@ -77,7 +70,7 @@ export class EditUserComponent implements OnInit, AfterViewInit {
       this.router.navigate(['/editaccount']);
     } else if (this.password != this.confirm_password) {
       alert('Las contraseñas deben coincidir');
-      this.router.navigate(['/editaccount']);
+      this.router.navigate(['/editaccount' + this.idPersonaLogged]);
     } else {
       /*Se crea primero la cuenta de usuario*/
       this.SaveUser();
@@ -127,11 +120,6 @@ export class EditUserComponent implements OnInit, AfterViewInit {
         this.correo = JSON.stringify(data.correo);
         this.password = JSON.stringify(data.password);
 
-        //this.username = JSON.stringify(data.username);
-        //this.correo = JSON.stringify(data.correo);
-        //this.password = JSON.stringify(data.password);
-        //console.log('Get user: ', usuario, email, password);
-        //console.log('Get user: ', usuario);
         console.log(
           'Get user: ',
           this.idusuario,
@@ -142,13 +130,17 @@ export class EditUserComponent implements OnInit, AfterViewInit {
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
         //this.router.navigate(['']);
       }
     );
+    if (this.username === '' || this.correo === '' || this.password === '') {
+      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
+    }
 
-    this.hasPermissions();
+    //this.hasPermissions();
   }
-
+  /*
   hasPermissions(): void {
     this.persService
       .getPersonaByUsername(this.tokenService.getUsername())
@@ -163,5 +155,5 @@ export class EditUserComponent implements OnInit, AfterViewInit {
           alert('No se pudo encontrar a la persona');
         }
       );
-  }
+  }*/
 }

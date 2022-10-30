@@ -35,6 +35,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AsideComponent } from './components/aside/aside.component';
 import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { AboutOfComponent } from './components/home/about-of/about-of.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { AboutOfComponent } from './components/home/about-of/about-of.component'
     NgCircleProgressModule.forRoot({}),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

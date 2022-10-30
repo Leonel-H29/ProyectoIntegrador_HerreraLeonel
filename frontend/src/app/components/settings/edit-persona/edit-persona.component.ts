@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NewUser } from 'src/app/model/new-user';
 import { persona } from 'src/app/model/persona.model';
@@ -12,7 +17,7 @@ import { TokenService } from 'src/app/service/token.service';
   templateUrl: './edit-persona.component.html',
   styleUrls: ['./edit-persona.component.css'],
 })
-export class EditPersonaComponent implements OnInit {
+export class EditPersonaComponent implements OnInit, AfterViewInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
   Persona: persona = new persona(
     '',
@@ -36,14 +41,22 @@ export class EditPersonaComponent implements OnInit {
     private router: Router,
     private activatedRouter: ActivatedRoute,
     public imgService: ImageService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private changeDet: ChangeDetectorRef
   ) {}
 
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
+
   ngOnInit(): void {
+    this.getPersona();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
+      this.persService
+        .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
+        .subscribe((data) => (this.hasPermission = data));
     }
-    this.getPersona();
   }
 
   public generaCadenaAleatoria(): string {
@@ -63,20 +76,6 @@ export class EditPersonaComponent implements OnInit {
     const name = 'perfil_' + this.idPersonaLogged;
     this.imgService.uploadImage($event, name);
   }
-  /*
-  getUsuario(): void {
-    this.authService.getByPersona(this.idPersonaLogged).subscribe(
-      (data) => {
-        this.NuevoUsuario.username = data;
-        console.log('Get user: ', this.NuevoUsuario);
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-        //this.router.navigate(['']);
-      }
-    );
-  }
-  */
 
   getPersona(): void {
     this.persService.getPersona(this.idPersonaLogged).subscribe(
@@ -87,12 +86,13 @@ export class EditPersonaComponent implements OnInit {
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
         //this.router.navigate(['']);
       }
     );
-    this.hasPermissions();
+    //this.hasPermissions();
   }
-
+  /*
   hasPermissions(): void {
     this.persService
       .getPersonaByUsername(this.tokenService.getUsername())
@@ -107,7 +107,7 @@ export class EditPersonaComponent implements OnInit {
           alert('No se pudo encontrar a la persona');
         }
       );
-  }
+  }*/
 
   onUpdate() {
     if (this.Persona.usuario != null) {

@@ -1,11 +1,13 @@
 <app-header></app-header>
 <header class="masthead text-center">
   <div class="container" *ngIf="expLab && hasPermission && isLogged">
+    <!--
     <div>
       {{ expLab.idexperiencia }}
       {{ expLab.nombre_empresa }}
       {{ expLab.fecha_inicio }} - {{ expLab.fecha_fin }}
     </div>
+    -->
     <!-- Contact Section Heading-->
     <h2
       class="page-section-heading text-center text-uppercase text-secondary mb-0"
@@ -24,7 +26,7 @@
         <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
           <!-- Id Persona-->
 
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" [hidden]="true">
             <input
               class="form-control"
               id="idPersona"
@@ -37,7 +39,7 @@
             <label for="name">Persona</label>
           </div>
           <!-- Id experiencia-->
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" [hidden]="true">
             <input
               class="form-control"
               id="idexperiencia"
@@ -122,11 +124,12 @@
             </div>
           </div>
           <!-- Tipo de empleo-->
+          {{ selected }}
 
           <div class="form-floating mb-3">
             <select
-              class="form-select"
-              size="4"
+              class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example"
               id="idTipo"
               name="idTipo"
               type="text"
@@ -136,6 +139,12 @@
               <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
                 {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
               </option>
+              <!--
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              -->
             </select>
             <label for="idTipo">Tipo de empleo</label>
 
@@ -143,30 +152,16 @@
               El tipo de empleo no es valido
             </div>
           </div>
+          <!---
+          {{ expLab.nombre_empresa }}
+          {{ expLab.persona }}
+          {{ expLab.descripcion }}
+          {{ expLab.fecha_inicio }}
+          {{ expLab.fecha_fin }}
+          {{ expLab.tipoEmpleo }}
+          -->
+          <br />
 
-          <!-- Submit success message-->
-          <!---->
-          <!-- This is what your users will see when the form-->
-          <!-- has successfully submitted-->
-          <div class="d-none" id="submitSuccessMessage">
-            <div class="text-center mb-3">
-              <div class="fw-bolder">Form submission successful!</div>
-              To activate this form, sign up at
-              <br />
-              <a href="https://startbootstrap.com/solution/contact-forms"
-                >https://startbootstrap.com/solution/contact-forms</a
-              >
-            </div>
-          </div>
-          <!-- Submit error message-->
-          <!---->
-          <!-- This is what your users will see when there is-->
-          <!-- an error submitting the form-->
-          <div class="d-none" id="submitErrorMessage">
-            <div class="text-center text-danger mb-3">
-              Error sending message!
-            </div>
-          </div>
           <!-- Submit Button-->
           <button
             class="btn btn-primary btn-xl"
