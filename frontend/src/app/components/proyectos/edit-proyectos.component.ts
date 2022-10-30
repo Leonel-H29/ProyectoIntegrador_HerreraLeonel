@@ -77,11 +77,18 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
     this.proyService.UpdateProyecto(id, this.project).subscribe(
       (data) => {
         alert('Registro modificado');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['idper'],
+        ]);
       },
       (err) => {
         alert('Error al modificar el registro');
-        //this.router.navigate(['']);
+        const ruta =
+          'editproy/' +
+          this.activatedRouter.snapshot.params['idper'] +
+          '/' +
+          id;
+        this.router.navigate(['']);
       }
     );
   }

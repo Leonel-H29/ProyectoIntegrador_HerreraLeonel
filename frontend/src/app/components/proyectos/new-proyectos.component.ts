@@ -71,10 +71,13 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
     this.ProyServ.SaveProyecto(proj).subscribe(
       (data) => {
         alert('Proyecto añadido');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['id'],
+        ]);
       },
       (err) => {
         alert('Fallo la operacion');
+        const ruta = 'createproy/' + this.activatedRouter.snapshot.params['id'];
         console.log(err);
         //this.router.navigate(['']);
       }
