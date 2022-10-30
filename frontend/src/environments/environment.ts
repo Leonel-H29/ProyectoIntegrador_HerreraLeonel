@@ -13,7 +13,9 @@ export const environment = {
     messagingSenderId: '405511686423',
     measurementId: 'G-VYJ1LJ62MJ',
   },
-  production: false
+  production: false,
+  URL: 'http://localhost:8080/',
+  //URL: "https://backend-portafolioap.herokuapp.com/",
 };
 
 /*

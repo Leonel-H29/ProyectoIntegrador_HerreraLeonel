@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -7,14 +8,13 @@ import { Educacion } from '../model/educacion';
   providedIn: 'root',
 })
 export class EducacionService {
-  //eduURL = 'https://backend-portafolioap.herokuapp.com/';
-  eduURL = 'http://localhost:8080/educacion/';
   /*
   eduURL = [
     'https://backend-portafolioap.herokuapp.com/',
     'http://localhost:8080/educacion/',
   ];
   */
+  eduURL = environment.URL + 'educacion/';
 
   constructor(private httpClient: HttpClient) {}
 

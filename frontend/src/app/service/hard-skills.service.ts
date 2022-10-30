@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HardSkills } from '../model/hard-skills';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HardSkillService {
-  //hsURL = 'https://backend-portafolioap.herokuapp.com/hardskill/';
-  hsURL = 'http://localhost:8080/hardskill/';
+  hsURL = environment.URL + 'hardskill/';
   /*
   hsURL = [
     'https://backend-portafolioap.herokuapp.com/hardskill/',

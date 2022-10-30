@@ -2,19 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TipoEmpleo } from '../model/tipo-empleo';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TipoEmpleoService {
-  expURL = 'http://localhost:8080/tipoemp/';
-  //expURL = 'https://backend-portafolioap.herokuapp.com/tipoemp/';
   /*
   expURL = [
     'http://localhost:8080/tipoemp/',
     'https://backend-portafolioap.herokuapp.com/tipoemp/',
   ];
   */
+  expURL = environment.URL + 'tipoemp/';
 
   constructor(private httpClient: HttpClient) {}
 

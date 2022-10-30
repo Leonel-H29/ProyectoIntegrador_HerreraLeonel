@@ -1,14 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Experiencialab } from '../model/experiencialab';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ExperiencialabService {
-  //expURL = 'https://backend-portafolioap.herokuapp.com/explab/';
-  expURL = 'http://localhost:8080/explab/';
+  expURL = environment.URL + 'explab/';
   /*
   expURL = [
     'https://backend-portafolioap.herokuapp.com/explab/',

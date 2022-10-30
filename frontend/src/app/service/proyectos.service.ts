@@ -2,19 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Proyectos } from '../model/proyectos';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProyectosService {
-  //proyURL = 'https://backend-portafolioap.herokuapp.com/proyecto/'; //
-  proyURL = 'http://localhost:8080/proyecto/';
   /*
   proyURL = [
     'https://backend-portafolioap.herokuapp.com/proyecto/',
     'http://localhost:8080/proyecto/',
   ];
   */
+  proyURL = environment.URL + 'proyecto/';
   constructor(private httpClient: HttpClient) {}
 
   public ListaProyectos(): Observable<Proyectos[]> {
