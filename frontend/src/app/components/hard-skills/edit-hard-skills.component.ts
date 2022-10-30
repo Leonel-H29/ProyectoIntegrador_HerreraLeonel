@@ -78,11 +78,15 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
     this.hardSServ.UpdateHardSkills(id, this.hardS).subscribe(
       (data) => {
         alert('Registro modificado');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['idper'],
+        ]);
       },
       (err) => {
         alert('Error al modificar el registro');
-        //this.router.navigate(['']);
+        const ruta =
+          'ediths/' + this.activatedRouter.snapshot.params['idper'] + '/' + id;
+        this.router.navigate([ruta]);
       }
     );
   }

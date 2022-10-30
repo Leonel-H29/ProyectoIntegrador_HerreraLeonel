@@ -60,12 +60,16 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
       (data) => {
         alert('Hard Skill añadida');
         console.log(data);
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['id'],
+        ]);
       },
       (err) => {
         alert('Fallo la operacion');
         console.log(err);
-        //this.router.navigate(['']);
+        this.router.navigate([
+          'createhs/' + this.activatedRouter.snapshot.params['id'],
+        ]);
       }
     );
   }
