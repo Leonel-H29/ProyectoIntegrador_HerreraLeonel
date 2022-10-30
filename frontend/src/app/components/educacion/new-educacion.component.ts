@@ -75,11 +75,16 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
     this.EduServ.SaveEducacion(educ).subscribe(
       (data) => {
         alert('Educacion añadida');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['id'],
+        ]);
       },
       (err) => {
         alert('Fallo la operacion');
         console.log(err);
+        this.router.navigate([
+          'createedu/' + this.activatedRouter.snapshot.params['id'],
+        ]);
         //this.router.navigate(['']);
       }
     );

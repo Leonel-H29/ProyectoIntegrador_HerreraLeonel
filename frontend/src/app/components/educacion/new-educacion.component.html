@@ -17,11 +17,13 @@
     <div class="row justify-content-center" *ngIf="NPersona != undefined">
       <div class="col-lg-8 col-xl-7">
         <form id="contactForm" (ngSubmit)="OnCreate()" novalidate #f="ngForm">
+          <!--
           {{ NPersona.idpersona }}, {{ NPersona.nombre }},
           {{ NPersona.apellido }}
+          -->
           <!-- Id Persona-->
 
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" [hidden]="true">
             <input
               class="form-control"
               id="idPersona"

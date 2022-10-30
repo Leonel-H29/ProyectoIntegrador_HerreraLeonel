@@ -18,7 +18,7 @@
       <div class="col-lg-8 col-xl-7">
         <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
           <!-- Id educacion -->
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" [hidden]="true">
             <input
               class="form-control"
               id="ideducacion"
@@ -31,7 +31,7 @@
           </div>
           <!-- Id Persona-->
 
-          <div class="form-floating mb-3">
+          <div class="form-floating mb-3" [hidden]="true">
             <input
               class="form-control"
               id="idPersona"

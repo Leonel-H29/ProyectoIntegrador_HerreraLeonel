@@ -75,15 +75,18 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     const id = this.activatedRouter.snapshot.params['idedu'];
-    //this.getPersona();
     this.educServ.UpdateEducacion(id, this.educacion).subscribe(
       (data) => {
         alert('Registro modificado');
-        this.router.navigate(['']);
+        this.router.navigate([
+          'perfil/' + this.activatedRouter.snapshot.params['idper'],
+        ]);
       },
       (err) => {
+        const ruta =
+          'editedu/' + this.activatedRouter.snapshot.params['idper'] + '/' + id;
         alert('Error al modificar el registro');
-        //this.router.navigate(['']);
+        this.router.navigate([ruta]);
       }
     );
   }
