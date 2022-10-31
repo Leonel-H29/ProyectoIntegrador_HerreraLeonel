@@ -4,7 +4,11 @@
     <form class="form-signin" #f="ngForm" (ngSubmit)="onCreate()" novalidate>
       <span id="reauth-email" class="reauth-email"></span>
 
+      <h2>CREAR CUENTA</h2>
+      <h6>Los campos (*) son obligatorios</h6>
+
       <!--NOMBRE-->
+      <label for="nombre"><b>*Nombre</b></label>
       <input
         [(ngModel)]="nombre"
         type="text"
@@ -16,6 +20,7 @@
         autofocus
       />
       <!--APELLIDO-->
+      <label for="apellido"><b>*Apellido</b></label>
       <input
         [(ngModel)]="apellido"
         type="text"
@@ -27,6 +32,7 @@
         autofocus
       />
       <!--DESCRIPCION-->
+      <label for="descripcion"> <b>Descripcion</b> </label>
       <textarea
         [(ngModel)]="descripcion"
         type="text"
@@ -39,6 +45,7 @@
       ></textarea>
 
       <!--PROVINCIA-->
+      <label for="provincia"><b>*Provincia</b> </label>
       <input
         [(ngModel)]="provincia"
         type="text"
@@ -51,6 +58,7 @@
       />
 
       <!--PAIS-->
+      <label for="pais"> <b>*Pais</b></label>
       <input
         [(ngModel)]="pais"
         type="text"
@@ -63,6 +71,7 @@
       />
 
       <!--CODIGO POSTAL-->
+      <label for="codigo_postal"> <b>*Codigo Postal</b></label>
       <input
         [(ngModel)]="codigo_postal"
         type="number"
@@ -75,7 +84,7 @@
       />
 
       <!--FECHA DE NACIMIENTO-->
-      <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+      <label for="fecha_nacimiento"> <b>*Fecha de Nacimiento</b></label>
       <input
         [(ngModel)]="fecha_nacimiento"
         type="date"
@@ -88,6 +97,7 @@
       />
 
       <!--TELEFONO-->
+      <label for="telefono"> <b>Telefono</b> </label>
       <input
         [(ngModel)]="telefono"
         type="text"
@@ -100,6 +110,7 @@
       />
 
       <!--EMAIL-->
+      <label for="correo"> <b>*Correo</b> </label>
       <input
         [(ngModel)]="correo"
         type="email"
@@ -112,6 +123,7 @@
       />
 
       <!--CONFIRM EMAIL-->
+      <label for="confirm_correo"> <b>*Confirmar Correo</b></label>
       <input
         [(ngModel)]="confirm_correo"
         type="email"
@@ -124,6 +136,7 @@
       />
 
       <!--USERNAME-->
+      <label for="username"><b>*Username</b></label>
       <input
         [(ngModel)]="username"
         type="text"
@@ -136,6 +149,7 @@
       />
 
       <!--PASSWORD -->
+      <label for="password"><b>*Password</b></label>
       <input
         [(ngModel)]="password"
         type="password"
@@ -147,6 +161,7 @@
       />
 
       <!--CONFIRM PASSWORD -->
+      <label for="confirm_password"><b>*Confirmar Password</b></label>
       <input
         [(ngModel)]="confirm_password"
         type="password"
@@ -158,6 +173,7 @@
       />
 
       <!--FOTO DE PERFIL-->
+      <label for="foto_perfil_url"><b>*Foto de perfil</b></label>
       <input
         [(ngModel)]="foto_perfil_url"
         type="file"
@@ -180,17 +196,14 @@
           srcset=""
         />
       </div>
-      <!--
-      <div id="remember" class="checkbox">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
-      </div>
-      -->
-      <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">
-        Crear cuenta
+
+      <button
+        class="btn btn-lg btn-primary btn-block btn-signin"
+        type="submit"
+        title="Crear cuenta"
+      >
+        CREAR CUENTA
       </button>
     </form>
   </div>
-  <!-- /card-container -->
 </div>

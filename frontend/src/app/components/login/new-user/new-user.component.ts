@@ -1,6 +1,11 @@
 import { ImageService } from './../../../service/image.service';
 import { NewUser } from './../../../model/new-user';
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { PersonaService } from 'src/app/service/persona.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { persona } from 'src/app/model/persona.model';
@@ -11,7 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './new-user.component.html',
   styleUrls: ['./new-user.component.css'],
 })
-export class NewUserComponent implements OnInit {
+export class NewUserComponent implements OnInit, AfterViewInit {
   nombre: string = '';
   apellido: string = '';
   descripcion: string = '';
@@ -29,14 +34,20 @@ export class NewUserComponent implements OnInit {
   //NuevaC: NewAccount = null;
   NuevoUsuario: NewUser = null;
   //Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
+  ListPersona: persona[] = [];
 
   constructor(
     private authService: AuthService,
     private persService: PersonaService,
     private router: Router,
     private activatedRouter: ActivatedRoute,
-    public imgService: ImageService
+    public imgService: ImageService,
+    private changeDet: ChangeDetectorRef
   ) {}
+
+  ngAfterViewInit(): void {
+    this.changeDet.detectChanges();
+  }
 
   ngOnInit(): void {}
 
@@ -101,7 +112,7 @@ export class NewUserComponent implements OnInit {
       );
     }
   }
-
+  /*
   public generaCadenaAleatoria(): string {
     const n = 20;
     let result = '';
@@ -112,10 +123,26 @@ export class NewUserComponent implements OnInit {
     }
     return result;
   }
+  */
 
   uploadImage($event: any) {
-    //const id = this.activatedRouter.snapshot.params[];
-    const name = 'perfil_' + this.generaCadenaAleatoria();
-    this.imgService.uploadImage($event, name);
+    //const id = this.getLastId();
+    //console.log('LAST ID: ', id);
+    //const name = 'perfil_' + this.generaCadenaAleatoria();
+    //const name = 'perfil_' + id;
+    //this.imgService.uploadImage($event, name);
+
+    this.persService.getListPersonas().subscribe((data) => {
+      this.ListPersona = data;
+      const MaxID = Math.max(...this.ListPersona.map((x) => x.idpersona)) + 1;
+      if (MaxID > 0) {
+        console.log('longitud:', this.ListPersona.length);
+        const name = 'perfil_' + MaxID;
+        this.imgService.uploadImage($event, name);
+      } else {
+        const name = 'perfil_' + 1;
+        this.imgService.uploadImage($event, name);
+      }
+    });
   }
 }
