@@ -59,17 +59,6 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public generaCadenaAleatoria(): string {
-    const n = 20;
-    let result = '';
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < n; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  }
-
   uploadImage($event: any) {
     //const id = this.activatedRouter.snapshot.params[];
     //const name = 'perfil_' + this.generaCadenaAleatoria();
@@ -90,34 +79,18 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    //this.hasPermissions();
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }*/
 
   onUpdate() {
     if (this.Persona.usuario != null) {
+      this.Persona.foto_perfil_url = this.imgService.url;
       this.persService
         .EditPersona(this.idPersonaLogged, this.Persona)
         .subscribe(
           (data) => {
             console.log('Persona actualizada: ', data);
             alert('Datos Actualizados');
-            this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+            this.router.navigate(['perfil/' + this.idPersonaLogged]);
           },
           (err) => {
             alert('Fallo la operacion');

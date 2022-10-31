@@ -19,20 +19,23 @@ export class ImageService {
     const imgRef = ref(this.storage, 'imagen/' + name);
     uploadBytes(imgRef, file)
       .then((response) => {
-        this.getImages();
+        this.getImages(name);
+        //this.getImages(parseInt(name.substring(0,6)));
       })
       .catch((error) => {
         console.log(error);
       });
   }
 
-  getImages() {
+  getImages(name: string) {
     const imagesRef = ref(this.storage, 'imagen/');
     list(imagesRef)
       .then(async (response) => {
         for (let item of response.items) {
-          this.url = await getDownloadURL(item);
-          console.log('URL : ', this.url);
+          if (item.name == name) {
+            this.url = await getDownloadURL(item);
+            console.log('URL : ', this.url);
+          }
         }
       })
       .catch((error) => {
