@@ -37,7 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app","http://localhost:4200"})
+@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app", "http://localhost:4200"})
 public class AuthController {
 
     @Autowired
@@ -133,7 +133,7 @@ public class AuthController {
             }*/
             if (bindingResult.hasErrors()) {
                 return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
-            } 
+            }
 
             Authentication authentication = authManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getUsername(), loginUsuario.getPassword()));
             SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -166,12 +166,11 @@ public class AuthController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable int id) {
-        if (usuarioService.findByIdPersona(id) == null) {
-        } else {
+        if (usuarioService.findByIdUsuario(id) == null) {
             return new ResponseEntity(new Mensaje("El id no existe"), HttpStatus.BAD_REQUEST);
         }
         usuarioService.delete(id);
-        return new ResponseEntity(new Mensaje("Educacion eliminada"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Usuario eliminado"), HttpStatus.OK);
     }
 
 }
