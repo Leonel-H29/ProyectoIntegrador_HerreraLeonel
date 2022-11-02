@@ -42,4 +42,8 @@ export class AuthService {
   public getByPersona(id: number): Observable<any> {
     return this.httpClient.get<any>(this.authURL + 'persona/' + id);
   }
+  //Funcion para eliminar la cuenta del usuario
+  public deleteUser(id: number): Observable<any> {
+    return this.httpClient.delete<any>(this.authURL + 'delete/' + id);
+  }
 }

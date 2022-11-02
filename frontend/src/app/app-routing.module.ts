@@ -1,3 +1,4 @@
+import { DeleteUserComponent } from './components/settings/delete-user/delete-user.component';
 import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { NewUserComponent } from './components/login/new-user/new-user.component';
 import { EditEducacionComponent } from './components/educacion/edit-educacion.component';
@@ -34,6 +35,9 @@ const routes: Routes = [
   { path: 'editproy/:idper/:idproy', component: EditProyectosComponent },
   { path: 'ediths/:idper/:idhs', component: EditHardSkillsComponent },
   { path: 'editedu/:idper/:idedu', component: EditEducacionComponent },
+
+  //Eliminar
+  { path: 'deleteaccount/:id', component: DeleteUserComponent },
 ];
 
 @NgModule({

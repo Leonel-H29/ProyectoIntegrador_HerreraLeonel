@@ -36,6 +36,7 @@ import { AsideComponent } from './components/aside/aside.component';
 import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { AboutOfComponent } from './components/home/about-of/about-of.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DeleteUserComponent } from './components/settings/delete-user/delete-user.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AsideComponent,
     EditPersonaComponent,
     AboutOfComponent,
+    DeleteUserComponent,
   ],
   imports: [
     BrowserModule,
