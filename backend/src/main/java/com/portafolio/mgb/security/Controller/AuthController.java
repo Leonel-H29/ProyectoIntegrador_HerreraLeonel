@@ -125,10 +125,10 @@ public class AuthController {
         }
     }
 
-    @PutMapping("/editpass/{id}/{password}")
-    public ResponseEntity<?> editarpass(@PathVariable("id") int id, @PathVariable("password") String pass, BindingResult bindingResult) {
+    @PutMapping("/editpass/{id}")
+    public ResponseEntity<?> editarpass(@PathVariable("id") int id, @RequestBody NuevoUsuario NUsuario, BindingResult bindingResult) {
         try {
-            if (StringUtils.isBlank(pass)) {
+            if (StringUtils.isBlank(NUsuario.getPassword())) {
                 return new ResponseEntity(new Mensaje("La contraseña no puede estar vacia"), HttpStatus.BAD_REQUEST);
             }
 
@@ -141,7 +141,7 @@ public class AuthController {
             }
 
             Usuario usuario = usuarioService.findByIdUsuario(id);
-            usuario.setPassword(passEncoder.encode(pass));
+            usuario.setPassword(passEncoder.encode(NUsuario.getPassword()));
             usuarioService.save(usuario);
 
             return new ResponseEntity(new Mensaje("Contraseña actualizada"), HttpStatus.CREATED);

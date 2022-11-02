@@ -60,7 +60,12 @@
     <!-- Formulario para cambiar la contraseña-->
     <div class="row justify-content-center" *ngIf="encontrado">
       <div class="col-lg-8 col-xl-7">
-        <form id="contactForm" (ngSubmit)="searchUser()" novalidate #f="ngForm">
+        <form
+          id="contactForm"
+          (ngSubmit)="changePassword()"
+          novalidate
+          #f="ngForm"
+        >
           <!--PASSWORD -->
 
           <div class="form-floating mb-3">

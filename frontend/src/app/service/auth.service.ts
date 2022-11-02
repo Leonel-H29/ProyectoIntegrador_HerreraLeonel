@@ -51,4 +51,9 @@ export class AuthService {
   public deleteUser(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.authURL + 'delete/' + id);
   }
+
+  //Funcion para recuperar la contraseña
+  public retrievePassword(id: number, User: NewUser): Observable<any> {
+    return this.httpClient.put<any>(this.authURL + 'editpass/' + id, User);
+  }
 }
