@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -124,6 +125,32 @@ public class AuthController {
         }
     }
 
+    @PutMapping("/editpass/{id}/{password}")
+    public ResponseEntity<?> editarpass(@PathVariable("id") int id, @PathVariable("password") String pass, BindingResult bindingResult) {
+        try {
+            if (StringUtils.isBlank(pass)) {
+                return new ResponseEntity(new Mensaje("La contraseña no puede estar vacia"), HttpStatus.BAD_REQUEST);
+            }
+
+            if (bindingResult.hasErrors()) {
+                return new ResponseEntity(new Mensaje("Campos mal puestos"), HttpStatus.BAD_REQUEST);
+            }
+            
+            if (usuarioService.findByIdUsuario(id) == null) {
+                return new ResponseEntity(new Mensaje("No se ha encontrado un usuario con ese id"), HttpStatus.BAD_REQUEST);
+            }
+
+            Usuario usuario = usuarioService.findByIdUsuario(id);
+            usuario.setPassword(passEncoder.encode(pass));
+            usuarioService.save(usuario);
+
+            return new ResponseEntity(new Mensaje("Contraseña actualizada"), HttpStatus.CREATED);
+        } catch (Exception ex) {
+            System.out.println("No se ha podido realizar: " + ex.getMessage());
+            return new ResponseEntity(new Mensaje(ex.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         try {
@@ -148,20 +175,29 @@ public class AuthController {
 
     }
 
-    /*
-    @GetMapping("/{username}")
-    public List<Persona> findPersonaSQL(@PathVariable String username) {
-        return usuarioService.getByUserNameSQL(username);
+    @GetMapping("/username/{username}")
+    public ResponseEntity<?> findPersona(@PathVariable String username) {
+        if (StringUtils.isBlank(username)) {
+            return new ResponseEntity(new Mensaje("El nombre no debe ser vacio"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(usuarioService.getByUserName(username), HttpStatus.OK);
+
     }
-     */
-    @GetMapping("/{username}")
-    public Optional<Usuario> findPersona(@PathVariable String username) {
-        return usuarioService.getByUserName(username);
+
+    @GetMapping("/correo/{correo}")
+    public ResponseEntity<?> findbycorreo(@PathVariable String correo) {
+        if (StringUtils.isBlank(correo)) {
+            return new ResponseEntity(new Mensaje("El correo no debe ser vacio"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(usuarioService.getByCorreoSQL(correo), HttpStatus.OK);
     }
 
     @GetMapping("/persona/{id}")
-    public Usuario findPersonaByPersona(@PathVariable int id) {
-        return usuarioService.findByIdPersona(id);
+    public ResponseEntity<?> findPersonaByPersona(@PathVariable int id) {
+        if (usuarioService.findByIdPersona(id) == null) {
+            return new ResponseEntity(new Mensaje("No existe la persona con ese id"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(usuarioService.findByIdPersona(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

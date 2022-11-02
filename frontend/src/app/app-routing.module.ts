@@ -1,3 +1,4 @@
+import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve-pass.component';
 import { DeleteUserComponent } from './components/settings/delete-user/delete-user.component';
 import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { NewUserComponent } from './components/login/new-user/new-user.component';
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'createproy/:id', component: NewProyectosComponent },
 
   //Editar
+  { path: 'retrievepass', component: RetrievePassComponent },
   { path: 'editper/:id', component: EditPersonaComponent },
   { path: 'editaccount/:id', component: EditUserComponent },
   { path: 'editexp/:idper/:idexp', component: EditExperienciaComponent },

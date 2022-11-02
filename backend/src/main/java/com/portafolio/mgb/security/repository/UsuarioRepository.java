@@ -27,6 +27,12 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             nativeQuery = true
     )
     Usuario findByIDUsernameSQL(int idUs);
+    
+    @Query(
+            value = "SELECT * FROM usuario WHERE correo=?1 LIMIT 1",
+            nativeQuery = true
+    )
+    Usuario findByCorreoSQL(String correo);
 
     @Query(
             value = "SELECT * FROM usuario WHERE idusuario=(SELECT idusuario FROM persona WHERE idpersona = ?1) LIMIT 1",
@@ -40,8 +46,15 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
             nativeQuery = true
     )
     void EditUsuario(int idUs, String correo, String username, String pass);
+    
+    @Modifying
+    @Query(
+            value = "UPDATE usuario u SET u.password=?2 WHERE u.idusuario=?1",
+            nativeQuery = true
+    )
+    void ChangePasswordUsuario(int idUs, String pass);
 
-    //Para eliminar todos los datos del usuario
+    //------------------Para eliminar todos los datos del usuario------------------
     @Modifying
     @Query(
             value = "DELETE FROM experiencia_laboral WHERE idpersona=(SELECT idpersona FROM persona WHERE idusuario=?1)",

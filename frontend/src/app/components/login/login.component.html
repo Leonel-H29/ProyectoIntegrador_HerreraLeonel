@@ -51,9 +51,26 @@
         Login
       </button>
     </form>
-    <a routerLink="/createaccount" title="Crear Cuenta" class="forgot-password">
-      Crear Cuenta
-    </a>
+
+    <div class="option-login">
+      <h6>¿No recuerda su contraseña?</h6>
+      <a
+        routerLink="/retrievepass"
+        title="Recuperar contraseña"
+        class="forgot-password"
+      >
+        Recuperar contraseña
+      </a>
+
+      <h6>¿No tiene su cuenta aun?</h6>
+      <a
+        routerLink="/createaccount"
+        title="Crear Cuenta"
+        class="forgot-password"
+      >
+        Crear Cuenta
+      </a>
+    </div>
   </div>
   <!-- /card-container -->
 </div>

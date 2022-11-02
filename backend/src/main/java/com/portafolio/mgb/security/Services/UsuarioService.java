@@ -22,6 +22,10 @@ public class UsuarioService {
         return UserRepo.findByUsernameSQL(username);
     }
     
+    public Usuario getByCorreoSQL(String correo) {
+        return UserRepo.findByCorreoSQL(correo);
+    }
+    
     public boolean existsByUserName(String username) {
         return UserRepo.existsByUsername(username);
     }

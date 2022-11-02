@@ -129,10 +129,16 @@ html {
 
 .forgot-password {
   color: rgb(104, 145, 162);
+  text-decoration: none;
+  font-size: 1.2em;
 }
 
 .forgot-password:hover,
 .forgot-password:active,
 .forgot-password:focus {
   color: rgb(12, 97, 33);
+}
+
+.option-login {
+  text-align: center;
 }

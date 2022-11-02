@@ -1,0 +1,108 @@
+<header class="masthead text-center">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      RECUPERAR CONTRASEÑA
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Formulario para buscar el usuario-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="searchUser()" novalidate #f="ngForm">
+          <!-- Usuario-->
+
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="user"
+              name="user"
+              type="text"
+              data-sb-validations="required"
+              [(ngModel)]="User"
+              value="{{ User }}"
+              placeholder="Ingrese su correo o nombre de usuario"
+            />
+            <label for="name">Ingrese su correo o nombre de usuario</label>
+          </div>
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+    <br />
+    <br />
+    <div
+      class="alert alert-success"
+      role="alert"
+      *ngIf="encontrado; else AlertError"
+    >
+      ¡Usuario encontrado!
+    </div>
+    <ng-template #AlertError>
+      <div class="alert alert-danger" role="alert">Error</div>
+    </ng-template>
+    <br />
+    <br />
+    <!-- Formulario para cambiar la contraseña-->
+    <div class="row justify-content-center" *ngIf="encontrado">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="searchUser()" novalidate #f="ngForm">
+          <!--PASSWORD -->
+
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              [(ngModel)]="password"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Password"
+              required
+            />
+            <label for="password">*Password</label>
+          </div>
+
+          <!--CONFIRM PASSWORD -->
+
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="confirm_password"
+              type="password"
+              id="confirm_password"
+              name="password"
+              class="form-control"
+              placeholder="Confirm  Password"
+              required
+            />
+            <label for="confirm_password">*Confirmar Password</label>
+          </div>
+
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

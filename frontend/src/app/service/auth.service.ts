@@ -35,10 +35,15 @@ export class AuthService {
   }
   //Funcion para obtener los datos del usuario por el username
   public getByUsername(username: string): Observable<any> {
-    return this.httpClient.get<any>(this.authURL + username);
+    return this.httpClient.get<any>(this.authURL + 'username/' + username);
   }
 
-  //Funcion para obtener los datos del usuario por el username
+  //Funcion para obtener los datos del usuario por el correo
+  public getByCorreo(correo: string): Observable<any> {
+    return this.httpClient.get<any>(this.authURL + 'correo/' + correo);
+  }
+
+  //Funcion para obtener los datos del usuario por el id de la persona
   public getByPersona(id: number): Observable<any> {
     return this.httpClient.get<any>(this.authURL + 'persona/' + id);
   }
