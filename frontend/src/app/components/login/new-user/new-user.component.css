@@ -1,0 +1,29 @@
+header {
+  background-image: url('https://profile.es/wp-content/media/que-son-paradigmas-programacion.jpg');
+  background-color: #fff; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+/*
+.container,
+.option-login {
+  background-color: #fff;
+}
+*/
+h2,
+h6 {
+  color: #fff;
+  text-shadow: 0.1em 0.1em black;
+}
+.page-section-heading {
+  color: #fff;
+}
+
+.divider-custom-icon {
+  color: white;
+  text-shadow: 0.1em 0.1em black;
+}
+.divider-custom-line {
+  background-color: #fff;
+}
