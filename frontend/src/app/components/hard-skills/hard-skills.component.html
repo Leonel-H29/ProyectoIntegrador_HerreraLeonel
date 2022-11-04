@@ -12,5 +12,108 @@
       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
       <div class="divider-custom-line"></div>
     </div>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      title="Agregar HardSkill"
+      routerLink="/createhs/{{ Persona.idpersona }}"
+      *ngIf="isLogged && Persona != undefined && hasPermission"
+    >
+      <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <br />
+    <br />
+    <div class="row">
+      <div
+        class="text-center col-sm-4 cold-md-4 col-lg-4"
+        *ngFor="let HardSkill of skill"
+      >
+        <circle-progress
+          [percent]="HardSkill.porcentaje"
+          [radius]="100"
+          [title]="HardSkill.skill"
+          [titleFontSize]="'2em'"
+          [showUnits]="false"
+          [showSubtitle]="false"
+          [outerStrokeWidth]="10"
+          [innerStrokeWidth]="2"
+          [outerStrokeColor]="'#1abc9c'"
+          [innerStrokeColor]="'#2c3e50'"
+          [animation]="true"
+          [animationDuration]="600"
+        ></circle-progress>
+        <br />
+        <div
+          class="d-grid gap-2 col-1 mx-auto"
+          *ngIf="isLogged && hasPermission"
+        >
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Editar"
+            routerLink="/ediths/{{ Persona.idpersona }}/{{ HardSkill.idskill }}"
+          >
+            <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Eliminar"
+            data-bs-toggle="modal"
+            data-bs-target="#ModalDeleteSkill"
+            (click)="getHardSkillsAEliminar(HardSkill)"
+          >
+            <i class="fa-solid fa-trash"></i><b> Eliminar</b>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="ModalDeleteSkill"
+    tabindex="-1"
+    aria-labelledby="ModalDeleteSkillLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalDeleteSkillLabel">
+            Eliminar experiencia
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" *ngIf="HardSkillsAeliminar != undefined">
+          ¿Esta seguro de eliminar la experiencia
+          {{ HardSkillsAeliminar.skill }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            title="Cerrar"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="DeleteHardSkills(HardSkillsAeliminar.idskill)"
+            title="Eliminar"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

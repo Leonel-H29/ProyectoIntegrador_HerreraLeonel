@@ -4370,7 +4370,7 @@ fieldset:disabled .btn {
   background-color: transparent;
   border: 0.125rem solid transparent;
   border-radius: 0.5rem;
-  transition: box-shadow 0.15s ease-in-out;
+  /*transition: box-shadow 0.15s ease-in-out;*/
 }
 @media (prefers-reduced-motion: reduce) {
   .navbar-toggler {

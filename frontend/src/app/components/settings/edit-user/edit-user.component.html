@@ -1,0 +1,116 @@
+<app-header></app-header>
+
+<header class="masthead text-center">
+  <div class="container" *ngIf="hasPermission && isLogged">
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Editar Cuenta
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <!--NOMBRE-->
+          <input
+            [(ngModel)]="idusuario"
+            type="number"
+            id="idusuario"
+            name="idusuario"
+            class="form-control"
+            placeholder="ID usuario"
+            required
+            disabled="true"
+            autofocus
+          />
+          <!--EMAIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="correo"
+              type="email"
+              name="email"
+              id="inputEmail"
+              class="form-control"
+              placeholder="Email address"
+              required
+              autofocus
+            /><label for="name">Email address</label>
+          </div>
+
+          <!--CONFIRM EMAIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="confirm_correo"
+              type="email"
+              name="email"
+              id="inputConfirmEmail"
+              class="form-control"
+              placeholder="Confirm Email"
+              required
+              autofocus
+            /><label for="name">Confirm Email</label>
+          </div>
+
+          <!--USERNAME-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="username"
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="Username"
+              required
+              autofocus
+            /><label for="name">Username</label>
+          </div>
+
+          <!--PASSWORD -->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required
+            /><label for="name">Password</label>
+          </div>
+
+          <!--CONFIRM PASSWORD -->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="confirm_password"
+              type="password"
+              id="Confirmpassword"
+              name="password"
+              class="form-control"
+              placeholder="Confirm  Password"
+              required
+            /><label for="name">Confirm Password</label>
+          </div>
+
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            name="button"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

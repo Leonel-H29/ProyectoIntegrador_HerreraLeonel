@@ -1,0 +1,51 @@
+<app-header></app-header>
+
+<header class="masthead text-center">
+  <div class="container" *ngIf="hasPermission && isLogged">
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Eliminar cuenta
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          ¿Esta seguro de eliminar su cuenta {{ Persona.apellido | uppercase }},
+          {{ Persona.nombre | uppercase }}?
+        </h5>
+        <p class="card-text">
+          Si escoje 'Eliminar' su cuenta se borrara de forma permanete, en caso
+          contrario puede elegir 'Volver atras'
+        </p>
+        <div class="d-grid gap-2 d-md-block">
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Volver atras"
+            routerLink="/perfil/{{ Persona.idpersona }}"
+          >
+            Volver atras
+          </button>
+          &nbsp;
+          <button
+            class="btn btn-primary"
+            type="button"
+            title="Eliminar"
+            (click)="deleteUser(Persona.idpersona)"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

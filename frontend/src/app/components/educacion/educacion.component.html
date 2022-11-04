@@ -12,5 +12,122 @@
       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
       <div class="divider-custom-line"></div>
     </div>
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      title="Agregar educacion"
+      routerLink="/createedu/{{ Persona.idpersona }}"
+      *ngIf="isLogged && Persona != undefined && hasPermission"
+    >
+      <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <br />
+    <br />
+    <div *ngFor="let Educacion of educ">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">{{ Educacion.nombre_institucion }}</h3>
+          <div></div>
+          <h6
+            class="card-subtitle mb-2 text-muted"
+            *ngIf="Educacion.fecha_fin == null; else TemplateFechaFin"
+          >
+            Desde: {{ Educacion.fecha_inicio | date: 'dd/MM/y' }}
+          </h6>
+          <!--
+          <h6
+            class="card-subtitle mb-2 text-muted"
+          >
+            Tipo Empleo: {{ Educacion.idtipo_empleo }}
+          </h6>
+          ---->
+
+          <p class="card-text" *ngIf="Educacion.descripcion != null">
+            {{ Educacion.descripcion }}
+          </p>
+
+          <ng-template #TemplateFechaFin>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Desde: {{ Educacion.fecha_inicio | date: 'dd/MM/y' }} - Hasta:
+              {{ Educacion.fecha_fin | date: 'dd/MM/y' }}
+            </h6>
+          </ng-template>
+
+          <div
+            class="d-grid gap-2 col-1 mx-auto"
+            *ngIf="isLogged && hasPermission"
+          >
+            <button
+              class="btn btn-primary"
+              type="button"
+              title="Editar"
+              routerLink="/editedu/{{ Persona.idpersona }}/{{
+                Educacion.ideducacion
+              }}"
+            >
+              <i class="fa-regular fa-pen-to-square"></i><b> Editar</b>
+            </button>
+            <button
+              class="btn btn-primary"
+              type="button"
+              title="Eliminar"
+              data-bs-toggle="modal"
+              data-bs-target="#ModalDeleteEducacion"
+              (click)="getEducacionAEliminar(Educacion)"
+            >
+              <i class="fa-solid fa-trash"></i><b> Eliminar</b>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="ModalDeleteEducacion"
+    tabindex="-1"
+    aria-labelledby="ModalDeleteEducacionLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="ModalDeleteEducacionLabel">
+            Eliminar educacion
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" *ngIf="educacionAeliminar != undefined">
+          ¿Esta seguro de eliminar la experiencia
+          {{ educacionAeliminar.nombre_institucion }}?
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+            title="Cerrar"
+          >
+            Cerrar
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="DeleteEducacion(educacionAeliminar.ideducacion)"
+            title="Eliminar"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>

@@ -1,0 +1,64 @@
+<app-header></app-header>
+<header class="masthead">
+  <div class="container d-flex align-items-center flex-column">
+    <h1>BIENVENIDO {{ usuario }}</h1>
+  </div>
+</header>
+<!-- Perfil Section-->
+<section class="page-section portfolio" id="portfolio">
+  <div class="container">
+    <div
+      class="card mb-3"
+      style="max-width: 33rem"
+      *ngFor="let per of listPersona"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <!--
+        <img src="..." class="img-fluid rounded-start" alt="...">
+        -->
+          <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
+              style="width: 6rem; height: 6rem"
+              alt="Foto de perfil"
+              title="Foto de perfil"
+              class="img-fluid rounded-start"
+            />
+          </div>
+          <ng-template #TemplatePerfil>
+            <img
+              src="{{ per.foto_perfil_url }}"
+              style="width: 6rem; height: 6rem"
+              alt="Foto de perfil"
+              title="Foto de perfil"
+              class="img-fluid rounded-start"
+            />
+          </ng-template>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">
+              <a class="LinkPerfil" [routerLink]="['perfil/', per.idpersona]"
+                >{{ per.nombre | uppercase }} {{ per.apellido | uppercase }}</a
+              >
+            </h5>
+            <p class="card-text">
+              {{ per.provincia | uppercase }} - {{ per.pais | uppercase }}
+            </p>
+            <!--
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
+          --></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- About Section-->
+<app-about-of></app-about-of>
+
+<app-footer></app-footer>
+
+<!-- {{ listPersona }} -->

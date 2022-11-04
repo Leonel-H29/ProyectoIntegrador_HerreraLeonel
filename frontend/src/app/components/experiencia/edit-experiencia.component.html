@@ -1,0 +1,180 @@
+<app-header></app-header>
+<header class="masthead text-center">
+  <div class="container" *ngIf="expLab && hasPermission && isLogged">
+    <!--
+    <div>
+      {{ expLab.idexperiencia }}
+      {{ expLab.nombre_empresa }}
+      {{ expLab.fecha_inicio }} - {{ expLab.fecha_fin }}
+    </div>
+    -->
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Editar Experiencia
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <!-- Id Persona-->
+
+          <div class="form-floating mb-3" [hidden]="true">
+            <input
+              class="form-control"
+              id="idPersona"
+              name="idPersona"
+              type="number"
+              data-sb-validations="required"
+              [(ngModel)]="expLab.persona"
+              disabled="true"
+            />
+            <label for="name">Persona</label>
+          </div>
+          <!-- Id experiencia-->
+          <div class="form-floating mb-3" [hidden]="true">
+            <input
+              class="form-control"
+              id="idexperiencia"
+              name="idexperiencia"
+              type="text"
+              data-sb-validations="required"
+              [(ngModel)]="expLab.idexperiencia"
+              disabled="true"
+            />
+            <label for="name">ID</label>
+          </div>
+          <!-- Nombre de la empresa-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="nombreE"
+              name="nombreE"
+              type="text"
+              placeholder="Ingrese el nombre de la empresa"
+              data-sb-validations="required"
+              [(ngModel)]="expLab.nombre_empresa"
+            />
+            <label for="name">Nombre de la empresa</label>
+            <div class="invalid-feedback" data-sb-feedback="nombreE:required">
+              Este campo es obligatorio
+            </div>
+          </div>
+
+          <!-- Descripcion-->
+          <div class="form-floating mb-3">
+            <textarea
+              class="form-control"
+              id="descripcion"
+              name="descripcion"
+              type="text"
+              placeholder="Escriba una descripcion"
+              style="height: 10rem"
+              [(ngModel)]="expLab.descripcion"
+            ></textarea>
+            <label for="descripcion">Descripcion</label>
+          </div>
+          <!-- Fecha de Inicio-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="fechaInicio"
+              name="fechaInicio"
+              type="date"
+              placeholder="Fecha de inicio"
+              data-sb-validations="required,fechaInicio"
+              [(ngModel)]="expLab.fecha_inicio"
+            />
+            <label for="fechaInicio">Fecha de inicio</label>
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="fechaInicio:required"
+            >
+              Este campo es obligatorio
+            </div>
+            <div
+              class="invalid-feedback"
+              data-sb-feedback="fechaInicio:fechaInicio"
+            >
+              La fecha no es valida
+            </div>
+          </div>
+          <!-- Fecha de Final-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="fechaFin"
+              name="fechaFin"
+              type="date"
+              placeholder="Fecha Final"
+              data-sb-validations="fechaFin"
+              [(ngModel)]="expLab.fecha_fin"
+            />
+            <label for="fechaInicio">Fecha Final</label>
+
+            <div class="invalid-feedback" data-sb-feedback="fechaFin:fechaFin">
+              La fecha no es valida
+            </div>
+          </div>
+          <!-- Tipo de empleo-->
+          {{ selected }}
+
+          <div class="form-floating mb-3">
+            <select
+              class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example"
+              id="idTipo"
+              name="idTipo"
+              type="text"
+              data-sb-validations="idTipo"
+              [(ngModel)]="expLab.tipoEmpleo"
+            >
+              <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
+                {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
+              </option>
+              <!--
+              <option selected>Open this select menu</option>
+              <option value="1">One</option>
+              <option value="2">Two</option>
+              <option value="3">Three</option>
+              -->
+            </select>
+            <label for="idTipo">Tipo de empleo</label>
+
+            <div class="invalid-feedback" data-sb-feedback="idTipo:idTipo">
+              El tipo de empleo no es valido
+            </div>
+          </div>
+          <!---
+          {{ expLab.nombre_empresa }}
+          {{ expLab.persona }}
+          {{ expLab.descripcion }}
+          {{ expLab.fecha_inicio }}
+          {{ expLab.fecha_fin }}
+          {{ expLab.tipoEmpleo }}
+          -->
+          <br />
+
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            name="button"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

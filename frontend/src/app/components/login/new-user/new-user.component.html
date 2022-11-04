@@ -1,0 +1,248 @@
+<header class="masthead text-center">
+  <div class="container">
+    <!-- Contact Section Heading-->
+    <h2>CREAR CUENTA</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <h6>Los campos (*) son obligatorios</h6>
+    <!-- Seccion del formulario-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="onCreate()" novalidate #f="ngForm">
+          <!--NOMBRE-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="nombre"
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="form-control"
+              placeholder="*Nombre"
+              required
+              autofocus
+            />
+            <label for="nombre">*Nombre</label>
+          </div>
+
+          <!--APELLIDO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="apellido"
+              type="text"
+              id="apellido"
+              name="apellido"
+              class="form-control"
+              placeholder="*Apellido"
+              required
+              autofocus
+            />
+            <label for="apellido">*Apellido</label>
+          </div>
+
+          <!--DESCRIPCION-->
+          <div class="form-floating mb-3">
+            <textarea
+              [(ngModel)]="descripcion"
+              type="text"
+              id="descripcion"
+              name="descripcion"
+              class="form-control"
+              placeholder="Descripcion"
+              required
+              autofocus
+            ></textarea>
+            <label for="descripcion">Descripcion</label>
+          </div>
+
+          <!--PROVINCIA-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="provincia"
+              type="text"
+              id="provincia"
+              name="provincia"
+              class="form-control"
+              placeholder="*Provincia"
+              required
+              autofocus
+            />
+            <label for="provincia">*Provincia </label>
+          </div>
+
+          <!--PAIS-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="pais"
+              type="text"
+              id="pais"
+              name="pais"
+              class="form-control"
+              placeholder="*Pais"
+              required
+              autofocus
+            />
+            <label for="pais">*Pais</label>
+          </div>
+
+          <!--CODIGO POSTAL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="codigo_postal"
+              type="number"
+              id="codigo_postal"
+              name="codigo_postal"
+              class="form-control"
+              placeholder="*Codigo Postal"
+              required
+              autofocus
+            />
+            <label for="codigo_postal">*Codigo Postal</label>
+          </div>
+
+          <!--FECHA DE NACIMIENTO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="fecha_nacimiento"
+              type="date"
+              id="fecha_nacimiento"
+              name="fecha_nacimiento"
+              class="form-control"
+              placeholder="*Fecha de Nacimiento"
+              required
+              autofocus
+            />
+            <label for="fecha_nacimiento">*Fecha de Nacimiento</label>
+          </div>
+
+          <!--TELEFONO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="telefono"
+              type="text"
+              id="telefono"
+              name="telefono"
+              class="form-control"
+              placeholder="Telefono"
+              required
+              autofocus
+            />
+            <label for="telefono">Telefono</label>
+          </div>
+
+          <!--EMAIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="correo"
+              type="email"
+              name="email"
+              id="inputEmail"
+              class="form-control"
+              placeholder="*Correp"
+              required
+              autofocus
+            />
+            <label for="correo">*Correo</label>
+          </div>
+
+          <!--CONFIRM EMAIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="confirm_correo"
+              type="email"
+              name="email"
+              id="inputEmail"
+              class="form-control"
+              placeholder="*Confirmar Correo"
+              required
+              autofocus
+            />
+            <label for="confirm_correo">*Confirmar Correo</label>
+          </div>
+
+          <!--USERNAME-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="username"
+              type="text"
+              id="username"
+              name="username"
+              class="form-control"
+              placeholder="*Username"
+              required
+              autofocus
+            />
+            <label for="username">*Username</label>
+          </div>
+
+          <!--PASSWORD -->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="*Password"
+              required
+            />
+            <label for="password">*Password</label>
+          </div>
+
+          <!--CONFIRM PASSWORD -->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="confirm_password"
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              placeholder="*Confirmar Password"
+              required
+            />
+            <label for="confirm_password">*Confirmar Password</label>
+          </div>
+
+          <!--FOTO DE PERFIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="foto_perfil_url"
+              type="file"
+              id="foto_perfil_url"
+              name="foto_perfil_url"
+              class="form-control"
+              placeholder="Foto de perfil"
+              required
+              autofocus
+              (change)="uploadImage($event)"
+              accept=".jpg, .jpef, .png"
+            />
+            <label for="foto_perfil_url">Foto de perfil</label>
+            <div class="imagen">
+              <img
+                class="profile-img-card"
+                [src]="imgService.url"
+                alt="Foto de perfil"
+                title="Foto de perfil"
+                srcset=""
+              />
+            </div>
+          </div>
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

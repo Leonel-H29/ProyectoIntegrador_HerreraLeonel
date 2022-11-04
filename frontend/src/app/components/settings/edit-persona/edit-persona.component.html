@@ -1,0 +1,201 @@
+<app-header></app-header>
+
+<header class="masthead text-center">
+  <div class="container" *ngIf="hasPermission && isLogged">
+    <!-- Contact Section Heading-->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >
+      Editar Datos
+    </h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <!-- Contact Section Form-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+          <!-- Id Persona-->
+
+          <div class="form-floating mb-3" [hidden]="true">
+            <input
+              class="form-control"
+              id="idPersona"
+              name="idPersona"
+              type="number"
+              data-sb-validations="required"
+              [(ngModel)]="Persona.idpersona"
+              disabled="true"
+            />
+            <label for="name">Persona</label>
+          </div>
+          <!--NOMBRE-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.nombre"
+              type="text"
+              id="nombre"
+              name="nombre"
+              class="form-control"
+              placeholder="Nombre"
+              required
+              autofocus
+            />
+            <label for="name">Nombre</label>
+          </div>
+
+          <!--APELLIDO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.apellido"
+              type="text"
+              id="apellido"
+              name="apellido"
+              class="form-control"
+              placeholder="Apellido"
+              required
+              autofocus
+            /><label for="name">Apellido</label>
+          </div>
+
+          <!--DESCRIPCION-->
+          <div class="form-floating mb-3">
+            <textarea
+              [(ngModel)]="Persona.descripcion"
+              type="text"
+              id="descripcion"
+              name="descripcion"
+              class="form-control"
+              placeholder="Descripcion"
+              required
+              autofocus
+            ></textarea>
+            <label for="name">Descripcion</label>
+          </div>
+
+          <!--PROVINCIA-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.provincia"
+              type="text"
+              id="provincia"
+              name="provincia"
+              class="form-control"
+              placeholder="Provincia"
+              required
+              autofocus
+            /><label for="name">Provincia</label>
+          </div>
+
+          <!--PAIS-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.pais"
+              type="text"
+              id="pais"
+              name="pais"
+              class="form-control"
+              placeholder="Pais"
+              required
+              autofocus
+            /><label for="name">Pais</label>
+          </div>
+
+          <!--CODIGO POSTAL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.codigo_postal"
+              type="number"
+              id="codigo_postal"
+              name="codigo_postal"
+              class="form-control"
+              placeholder="Codigo Postal"
+              required
+              autofocus
+            /><label for="name"></label>
+          </div>
+
+          <!--FECHA DE NACIMIENTO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.fecha_nacimiento"
+              type="date"
+              id="fecha_nacimiento"
+              name="fecha_nacimiento"
+              class="form-control"
+              placeholder="Fecha de Nacimiento"
+              required
+              autofocus
+            />
+            <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+          </div>
+
+          <!--TELEFONO-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.telefono"
+              type="text"
+              id="telefono"
+              name="telefono"
+              class="form-control"
+              placeholder="Telefono"
+              required
+              autofocus
+            /><label for="name">Telefono</label>
+          </div>
+
+          <!--FOTO DE PERFIL-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.foto_perfil_url"
+              type="file"
+              id="foto_perfil_url"
+              name="foto_perfil_url"
+              class="form-control"
+              placeholder="Foto de perfil"
+              required
+              autofocus
+              (change)="uploadImage($event)"
+              accept=".jpg, .jpef, .png"
+            />
+            <label for="name">Foto de perfil</label>
+          </div>
+
+          <div class="imagen">
+            <img
+              class="profile-img-card"
+              [src]="Persona.foto_perfil_url"
+              alt="Foto de perfil"
+              title="Foto de perfil"
+              srcset=""
+              width="20"
+            />
+            <img
+              class="profile-img-card"
+              [src]="imgService.url"
+              alt="Foto de perfil"
+              title="Foto de perfil"
+              srcset=""
+              width="20"
+            />
+          </div>
+
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            name="button"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+<app-footer></app-footer>

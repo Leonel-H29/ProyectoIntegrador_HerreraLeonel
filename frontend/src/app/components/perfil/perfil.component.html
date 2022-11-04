@@ -1,0 +1,20 @@
+<app-header></app-header>
+<app-acerca-de></app-acerca-de>
+<app-experiencia
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-experiencia>
+<app-educacion
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-educacion>
+<app-hard-skills
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-hard-skills>
+<app-proyectos
+  [idPersonaLogged]="Persona.idpersona"
+  (GetidPersona)="Persona.idpersona = $event"
+></app-proyectos>
+<app-aside></app-aside>
+<app-footer></app-footer>

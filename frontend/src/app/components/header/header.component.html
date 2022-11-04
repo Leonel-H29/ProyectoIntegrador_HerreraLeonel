@@ -5,31 +5,81 @@
 >
   <div class="container">
     <app-izquierdo></app-izquierdo>
+    <div *ngIf="isLogged">
+      <button
+        class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <!--INICIO-->
+          <li class="nav-item mx-0 mx-lg-1">
+            <a
+              class="nav-link py-3 px-0 px-lg-3 rounded"
+              title="Inicio"
+              routerLink="/"
+              >INICIO</a
+            >
+          </li>
+          <!--PERFIL-->
+          <li class="nav-item mx-0 mx-lg-1">
+            <a
+              class="nav-link py-3 px-0 px-lg-3 rounded"
+              title="Perfil"
+              routerLink="/perfil/{{ Persona.idpersona }}"
+              >PERFIL</a
+            >
+          </li>
+          <!--AJUSTES-->
+
+          <li class="nav-item dropdown mx-0 mx-lg-1">
+            <a
+              class="nav-link dropdown-toggle py-3 px-0 px-lg-3 rounded"
+              id="navbarDropdownMenuLink1"
+              title="Ajustes"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              >AJUSTES</a
+            >
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
+              <li *ngFor="let opcion of OpcionesSett">
+                <a
+                  class="dropdown-item"
+                  title="{{ opcion.text }}"
+                  routerLink="{{ opcion.value }}{{ Persona.idpersona }}"
+                  >{{ opcion.text }}</a
+                >
+              </li>
+
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  title="Eliminar Cuenta"
+                  routerLink="/deleteaccount/{{ Persona.idpersona }}"
+                  >Eliminar Cuenta</a
+                >
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <app-derecho></app-derecho>
 
     <!--
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio"
-            >Portfolio</a
-          >
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">About</a>
-        </li>
-        <li class="nav-item mx-0 mx-lg-1">
-          <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#contact"
-            >Contact</a
-          >
-        </li>
-      </ul>
-    </div>
+
     -->
   </div>
 </nav>
-
-<header class="masthead bg-primary text-white text-center">
-  <app-acerca-de></app-acerca-de>
-</header>
