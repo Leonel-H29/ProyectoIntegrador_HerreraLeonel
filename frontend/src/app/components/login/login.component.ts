@@ -34,12 +34,12 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.IsLoadding = true;
     this.loginUser = new LoginUser(this.username, this.password);
     this.authService.Login(this.loginUser).subscribe(
       (data) => {
         this.IsLogged = true;
         this.IsLoginFail = false;
-        this.IsLoadding = true;
         this.tokenService.setToken(data.token);
         this.tokenService.setUsername(data.nombreUsuario);
         this.tokenService.setAuthorities(data.authorities);
