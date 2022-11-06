@@ -23,19 +23,24 @@ public class Redes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idRed;
+    int idred;
 
     @NotNull
     @Size(min = 1, max = 45, message = "La longitud del nombre de la red no es valida")
     String red;
+
+    @NotNull
+    @Size(min = 1, max = 260, message = "La longitud del nombre del link no es valida")
+    String url_red;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "idpersona")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Persona persona;
 
-    public Redes(String red, Persona persona) {
+    public Redes(String red, String url_red, Persona persona) {
         this.red = red;
+        this.url_red = url_red;
         this.persona = persona;
     }
 

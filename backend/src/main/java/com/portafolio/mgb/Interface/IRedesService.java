@@ -9,4 +9,12 @@ public interface IRedesService {
 
     public List<Redes> ListRedesByIdPersona(int idPers);
 
+    public Redes buscarRed(int id);
+
+    public void GuardarRed(Redes red);
+
+    public void EliminarRed(int id);
+
+    public boolean existsById(int id);
+
 }
