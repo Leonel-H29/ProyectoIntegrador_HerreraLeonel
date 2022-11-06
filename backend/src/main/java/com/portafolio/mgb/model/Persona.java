@@ -60,6 +60,9 @@ public class Persona {
     @Size(min = 0, max = 260, message = "La longitud del link de perfil no es valida")
     private String foto_perfil_url;
     
+    
+    //___________________________Relaciones___________________________
+    
     //@JsonProperty("idusuario")
     @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name="idusuario", unique=true)
@@ -73,7 +76,12 @@ public class Persona {
     
     @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
     private Set<HardSkills> hardSkill = new HashSet<>();
-
+    
+    @OneToMany(mappedBy = "persona", cascade = CascadeType.ALL)
+    private Set<Redes> red = new HashSet<>();
+    
+    
+    //___________________________Constructores___________________________
     public Persona() {
     }
 
@@ -88,7 +96,9 @@ public class Persona {
         this.telefono = telefono;
         this.foto_perfil_url = foto_perfil_url;
     }
-
+    
+    
+    //___________________________Setters___________________________
     public void setExperiencia(Set<Experiencia> experiencia){
         this.experiencia = experiencia;
         for(Experiencia exp : experiencia){
@@ -107,6 +117,13 @@ public class Persona {
         this.hardSkill = hs;
         for(HardSkills Skill : hardSkill){
             Skill.setPersona(this);
+        }
+    }
+    
+    public void setRed(Set<Redes> red){
+        this.red = red;
+        for(Redes _Red : red){
+            _Red.setPersona(this);
         }
     }
 

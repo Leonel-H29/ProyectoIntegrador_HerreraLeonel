@@ -11,7 +11,6 @@ import com.portafolio.mgb.security.Services.UsuarioService;
 import com.portafolio.mgb.security.jwt.JwtProvider;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
