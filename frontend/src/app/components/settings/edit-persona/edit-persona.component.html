@@ -2,6 +2,17 @@
 
 <header class="masthead text-center">
   <div class="container" *ngIf="hasPermission && isLogged">
+    <nav class="nav nav-pills justify-content-center flex-column flex-sm-row">
+      <a class="nav-link active" aria-current="page" title="Datos personales"
+        >Datos personales</a
+      >
+      <a
+        class="nav-link"
+        title="Redes"
+        routerLink="/editredes/{{ Persona.idpersona }}"
+        >Redes</a
+      >
+    </nav>
     <!-- Contact Section Heading-->
     <h2
       class="page-section-heading text-center text-uppercase text-secondary mb-0"

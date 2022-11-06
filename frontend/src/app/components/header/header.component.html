@@ -73,10 +73,13 @@
             </ul>
           </li>
         </ul>
+        <app-derecho></app-derecho>
       </div>
     </div>
 
-    <app-derecho></app-derecho>
+    <div *ngIf="!isLogged">
+      <app-derecho></app-derecho>
+    </div>
 
     <!--
 

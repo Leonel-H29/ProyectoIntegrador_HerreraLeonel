@@ -38,6 +38,8 @@ import { AboutOfComponent } from './components/home/about-of/about-of.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteUserComponent } from './components/settings/delete-user/delete-user.component';
 import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve-pass.component';
+import { RedesComponent } from './components/header/derecho/redes/redes.component';
+import { EditRedesComponent } from './components/settings/edit-redes/edit-redes.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve
     AboutOfComponent,
     DeleteUserComponent,
     RetrievePassComponent,
+    RedesComponent,
+    EditRedesComponent,
   ],
   imports: [
     BrowserModule,
