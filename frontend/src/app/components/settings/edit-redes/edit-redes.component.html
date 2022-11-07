@@ -1,0 +1,122 @@
+<app-header></app-header>
+<header class="masthead text-center">
+  <div class="container" *ngIf="hasPermission && isLogged">
+    <nav class="nav nav-pills justify-content-center flex-column flex-sm-row">
+      <a
+        class="nav-link"
+        title="Datos personales"
+        routerLink="/editper/{{ idPersonaLogged }}"
+        >Datos personales</a
+      >
+      <a class="nav-link active" aria-current="page" title="Redes"
+        >Redes Sociales</a
+      >
+    </nav>
+    <!-- Contact Section Heading-->
+    <h2>EDITAR REDES</h2>
+    <!-- Icon Divider-->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+    <div class="nav justify-content-end">
+      <button class="btn btn-outline-dark" title="Agregar">
+        <i class="fa-solid fa-circle-plus"></i>
+      </button>
+    </div>
+
+    <!-- Formulario para buscar el usuario-->
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7">
+        <form id="contactForm" (ngSubmit)="saveRed()" novalidate #f="ngForm">
+          <!-- Usuario-->
+          <div class="form-floating mb-3" [hidden]="true">
+            <input
+              class="form-control"
+              id="idPersona"
+              name="idPersona"
+              type="number"
+              data-sb-validations="required"
+              [(ngModel)]="Persona.idpersona"
+              disabled="true"
+            />
+            <label for="name">Persona</label>
+          </div>
+
+          <div class="form-floating mb-3">
+            <select
+              class="form-select form-select-lg mb-3"
+              aria-label=".form-select-lg example"
+              id="Web"
+              name="Web"
+              type="text"
+              [(ngModel)]="NombreRed"
+            >
+              <option [ngValue]="web" *ngFor="let web of Opciones">
+                {{ web }}
+              </option>
+            </select>
+            <label for="Web">Elija una opcion</label>
+          </div>
+          {{ NombreRed }}
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="url"
+              name="url"
+              type="text"
+              [(ngModel)]="UrlWeb"
+              value="{{ UrlWeb }}"
+              placeholder="Escriba la url"
+            />
+
+            <label for="Web">Escriba la url</label>
+          </div>
+          {{ UrlWeb }}
+          <!-- Submit Button-->
+          <button
+            class="btn btn-primary btn-xl"
+            id="submitButton"
+            type="submit"
+            title="Enviar"
+          >
+            ENVIAR
+          </button>
+        </form>
+      </div>
+    </div>
+    <br />
+    <br />
+    <!--
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Country</th>
+          <th scope="col">Area</th>
+          <th scope="col">Population</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let country of countries; index as i">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>
+            <img
+              [src]="
+                'https://upload.wikimedia.org/wikipedia/commons/' + country.flag
+              "
+              class="me-2"
+              style="width: 20px"
+            />
+            {{ country.name }}
+          </td>
+          <td>{{ country.area | number }}</td>
+          <td>{{ country.population | number }}</td>
+        </tr>
+      </tbody>
+    </table>
+    -->
+  </div>
+</header>
+<app-footer></app-footer>

@@ -11,6 +11,15 @@ header {
   background-color: #fff;
 }
 */
+#contactForm input,
+#contactForm select,
+#contactForm textarea,
+button {
+  box-shadow: 0.1em 0.1em black;
+}
+a {
+  text-shadow: 0.1em 0.1em black;
+}
 h2,
 h4 {
   color: #fff;

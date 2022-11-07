@@ -29,15 +29,17 @@ import { EditEducacionComponent } from './components/educacion/edit-educacion.co
 import { SettingsComponent } from './components/settings/settings.component';
 import { EditUserComponent } from './components/settings/edit-user/edit-user.component';
 import { NewUserComponent } from './components/login/new-user/new-user.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideStorage,getStorage } from '@angular/fire/storage';
+import { provideStorage, getStorage } from '@angular/fire/storage';
 import { AsideComponent } from './components/aside/aside.component';
 import { EditPersonaComponent } from './components/settings/edit-persona/edit-persona.component';
 import { AboutOfComponent } from './components/home/about-of/about-of.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteUserComponent } from './components/settings/delete-user/delete-user.component';
 import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve-pass.component';
+import { RedesComponent } from './components/header/derecho/redes/redes.component';
+import { EditRedesComponent } from './components/settings/edit-redes/edit-redes.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,8 @@ import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve
     AboutOfComponent,
     DeleteUserComponent,
     RetrievePassComponent,
+    RedesComponent,
+    EditRedesComponent,
   ],
   imports: [
     BrowserModule,

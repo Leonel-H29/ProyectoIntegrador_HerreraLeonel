@@ -12,6 +12,7 @@ import { TokenService } from 'src/app/service/token.service';
 export class LoginComponent implements OnInit {
   IsLogged = false;
   IsLoginFail = false;
+  IsLoadding = false;
   loginUser!: LoginUser;
   username!: string;
   password!: string;
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(): void {
+    this.IsLoadding = true;
     this.loginUser = new LoginUser(this.username, this.password);
     this.authService.Login(this.loginUser).subscribe(
       (data) => {
@@ -45,6 +47,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       },
       (err) => {
+        this.IsLoadding = false;
         this.IsLogged = false;
         this.IsLoginFail = true;
         this.errorMsj = err.error.mensaje;
