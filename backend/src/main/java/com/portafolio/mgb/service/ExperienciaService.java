@@ -3,7 +3,6 @@ package com.portafolio.mgb.service;
 import com.portafolio.mgb.Interface.IExperienciaService;
 import com.portafolio.mgb.model.Experiencia;
 import com.portafolio.mgb.repository.ExperienciaRepository;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 //import java.util.Optional;

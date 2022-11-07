@@ -4,8 +4,8 @@ HELP.md
 #!**/src/main/**/target/
 #!**/src/test/**/target/
 
-.settings/
-.mvn/
+#.settings/
+#.mvn/
 
 ### STS ###
 .apt_generated
