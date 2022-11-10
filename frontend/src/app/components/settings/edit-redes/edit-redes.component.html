@@ -20,11 +20,6 @@
       <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
       <div class="divider-custom-line"></div>
     </div>
-    <div class="nav justify-content-end">
-      <button class="btn btn-outline-dark" title="Agregar">
-        <i class="fa-solid fa-circle-plus"></i>
-      </button>
-    </div>
 
     <!-- Formulario para buscar el usuario-->
     <div class="row justify-content-center">
@@ -43,37 +38,88 @@
             />
             <label for="name">Persona</label>
           </div>
-
+          <!--Facebook-->
           <div class="form-floating mb-3">
-            <select
-              class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
-              id="Web"
-              name="Web"
-              type="text"
-              [(ngModel)]="NombreRed"
-            >
-              <option [ngValue]="web" *ngFor="let web of Opciones">
-                {{ web }}
-              </option>
-            </select>
-            <label for="Web">Elija una opcion</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                ><i class="fa-brands fa-facebook"></i
+              ></span>
+              <input
+                type="text"
+                class="form-control"
+                name="Facebook"
+                placeholder="Link de Facebook"
+                aria-describedby="basic-addon1"
+              />
+              <label for="Facebook"> | Facebook</label>
+            </div>
           </div>
           {{ NombreRed }}
+          <!--Instagram-->
           <div class="form-floating mb-3">
-            <input
-              class="form-control"
-              id="url"
-              name="url"
-              type="text"
-              [(ngModel)]="UrlWeb"
-              value="{{ UrlWeb }}"
-              placeholder="Escriba la url"
-            />
-
-            <label for="Web">Escriba la url</label>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa-brands fa-instagram"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                name="Instagram"
+                placeholder="Link de Instagram"
+                aria-describedby="basic-addon1"
+              />
+              <label for="Twitter">| Instagram</label>
+            </div>
           </div>
-          {{ UrlWeb }}
+          <!--Twitter-->
+          <div class="form-floating mb-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa-brands fa-twitter"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                name="Twitter"
+                placeholder="Link de Twitter"
+                aria-describedby="basic-addon1"
+              />
+              <label for="Twitter">| Twitter</label>
+            </div>
+          </div>
+          <!--Linkedin-->
+          <div class="form-floating mb-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa-brands fa-linkedin"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                name="Linkedin"
+                placeholder="Link de Linkedin"
+                aria-describedby="basic-addon1"
+              />
+              <label for="Linkedin">| Linkedin</label>
+            </div>
+          </div>
+          <!--GitHub-->
+          <div class="form-floating mb-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1">
+                <i class="fa-brands fa-github"></i>
+              </span>
+              <input
+                type="text"
+                name="GitHub"
+                class="form-control"
+                placeholder="Link de GitHub"
+                aria-describedby="basic-addon1"
+              />
+              <label for="GitHub"> | GitHub</label>
+            </div>
+          </div>
+
           <!-- Submit Button-->
           <button
             class="btn btn-primary btn-xl"
@@ -86,37 +132,6 @@
         </form>
       </div>
     </div>
-    <br />
-    <br />
-    <!--
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Country</th>
-          <th scope="col">Area</th>
-          <th scope="col">Population</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let country of countries; index as i">
-          <th scope="row">{{ i + 1 }}</th>
-          <td>
-            <img
-              [src]="
-                'https://upload.wikimedia.org/wikipedia/commons/' + country.flag
-              "
-              class="me-2"
-              style="width: 20px"
-            />
-            {{ country.name }}
-          </td>
-          <td>{{ country.area | number }}</td>
-          <td>{{ country.population | number }}</td>
-        </tr>
-      </tbody>
-    </table>
-    -->
   </div>
 </header>
 <app-footer></app-footer>
