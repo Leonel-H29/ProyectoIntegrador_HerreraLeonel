@@ -28,7 +28,9 @@ export class RedesComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.getRedes();
+    if (this.idPersonaLogged != undefined) {
+      this.getRedes();
+    }
   }
 
   getRedes(): void {
@@ -37,7 +39,6 @@ export class RedesComponent implements OnInit, AfterViewInit {
         this.RedesUser = data;
       },
       (err) => {
-        alert('Error al modificar el registro');
         console.log('Error: ', err);
         //this.router.navigate(['']);
       }
