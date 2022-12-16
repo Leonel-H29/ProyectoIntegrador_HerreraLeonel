@@ -187,17 +187,22 @@
                 />
 
                 <!-- Portfolio Modal - Text-->
-                <p class="mb-4">
-                  {{ ProyectosAmostrar.fecha_inicio | date: 'dd/MM/y' }} -
-                  {{ ProyectosAmostrar.fecha_fin | date: 'dd/MM/y' }}
+                <p class="description">
+                  {{ ProyectosAmostrar.fecha_inicio | date : 'dd/MM/y' }} -
+                  {{ ProyectosAmostrar.fecha_fin | date : 'dd/MM/y' }}
                   <br />
                   <br />
                   {{ ProyectosAmostrar.descripcion }}
                 </p>
 
                 <div class="d-grid gap-2 col-6 mx-auto">
-                  <button class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="fas fa-xmark fa-fw"></i>
+                  <button
+                    *ngIf="ProyectosAmostrar.url_proyecto != null"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                    (click)="goPage(ProyectosAmostrar.url_proyecto)"
+                  >
+                    <i class="fa-solid fa-arrow-right"></i>
                     Ir a la pagina
                   </button>
                   <button class="btn btn-primary" data-bs-dismiss="modal">

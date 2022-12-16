@@ -130,6 +130,10 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
     );
     //this.hasPermissions();
   }
+
+  goPage(url: string) {
+    window.location.replace(url);
+  }
   /*
   hasPermissions(): void {
     this.PersServ.getPersonaByUsername(

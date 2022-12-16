@@ -14,7 +14,6 @@ import { RedesService } from 'src/app/service/redes.service';
   styleUrls: ['./redes.component.css'],
 })
 export class RedesComponent implements OnInit, AfterViewInit {
-  //showRedes = true;
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
   RedesUser: Redes[] = [];
   constructor(
