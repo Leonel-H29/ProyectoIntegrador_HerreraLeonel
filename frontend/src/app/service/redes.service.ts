@@ -19,19 +19,19 @@ export class RedesService {
     return this.httpClient.get<Redes[]>(this.proyURL + 'list/' + id);
   }
 
-  public GetProyecto(id: number): Observable<Redes> {
+  public GetRedes(id: number): Observable<Redes> {
     return this.httpClient.get<Redes>(this.proyURL + 'get/' + id);
   }
 
-  public SaveProyecto(expe: Redes): Observable<any> {
-    return this.httpClient.post<any>(this.proyURL + 'create', expe);
+  public SaveRed(red: Redes): Observable<any> {
+    return this.httpClient.post<any>(this.proyURL + 'create', red);
   }
 
-  public UpdateProyecto(id: number, proy: Redes): Observable<any> {
-    return this.httpClient.put<any>(this.proyURL + 'update/' + id, proy);
+  public UpdateRed(id: number, red: Redes): Observable<any> {
+    return this.httpClient.put<any>(this.proyURL + 'update/' + id, red);
   }
 
-  public DeleteProyecto(id: number): Observable<any> {
+  public DeleteRedes(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.proyURL + 'delete/' + id);
   }
 }

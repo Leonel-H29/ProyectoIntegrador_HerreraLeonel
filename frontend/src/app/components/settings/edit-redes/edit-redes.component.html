@@ -24,7 +24,7 @@
     <!-- Formulario para buscar el usuario-->
     <div class="row justify-content-center">
       <div class="col-lg-8 col-xl-7">
-        <form id="contactForm" (ngSubmit)="saveRed()" novalidate #f="ngForm">
+        <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
           <!-- Usuario-->
           <div class="form-floating mb-3" [hidden]="true">
             <input
@@ -50,6 +50,7 @@
                 name="Facebook"
                 placeholder="Link de Facebook"
                 aria-describedby="basic-addon1"
+                [(ngModel)]="DataFacebook.url_red"
               />
               <label for="Facebook"> | Facebook</label>
             </div>
@@ -67,6 +68,7 @@
                 name="Instagram"
                 placeholder="Link de Instagram"
                 aria-describedby="basic-addon1"
+                [(ngModel)]="DataInstagram.url_red"
               />
               <label for="Twitter">| Instagram</label>
             </div>
@@ -83,6 +85,7 @@
                 name="Twitter"
                 placeholder="Link de Twitter"
                 aria-describedby="basic-addon1"
+                [(ngModel)]="DataTwitter.url_red"
               />
               <label for="Twitter">| Twitter</label>
             </div>
@@ -99,6 +102,7 @@
                 name="Linkedin"
                 placeholder="Link de Linkedin"
                 aria-describedby="basic-addon1"
+                [(ngModel)]="DataLinkedin.url_red"
               />
               <label for="Linkedin">| Linkedin</label>
             </div>
@@ -115,9 +119,17 @@
                 class="form-control"
                 placeholder="Link de GitHub"
                 aria-describedby="basic-addon1"
+                [(ngModel)]="DataGithub.url_red"
               />
               <label for="GitHub"> | GitHub</label>
             </div>
+          </div>
+
+          <br />
+          <div>
+            {{ DataFacebook.url_red }} | {{ DataInstagram.url_red }} |
+            {{ DataTwitter.url_red }} | {{ DataLinkedin.url_red }} |
+            {{ DataGithub.url_red }}
           </div>
 
           <!-- Submit Button-->
