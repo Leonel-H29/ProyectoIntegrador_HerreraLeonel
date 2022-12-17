@@ -22,13 +22,13 @@ export class EditUserComponent implements OnInit, AfterViewInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
 
   idusuario: number = 0;
-  username: string = '';
-  correo: string = '';
+  //username: string = '';
+  //correo: string = '';
   password: string = '';
   confirm_correo: string = '';
   confirm_password: string = '';
 
-  NuevoUsuario: NewUser = null;
+  NuevoUsuario: NewUser = new NewUser();
 
   isLogged = false;
   hasPermission = false;
@@ -65,9 +65,9 @@ export class EditUserComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate() {
-    if (this.correo != this.confirm_correo) {
+    if (this.NuevoUsuario.correo != this.confirm_correo) {
       alert('Los correos deben coincidir');
-      this.router.navigate(['/editaccount']);
+      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
     } else if (this.password != this.confirm_password) {
       alert('Las contraseñas deben coincidir');
       this.router.navigate(['/editaccount' + this.idPersonaLogged]);
@@ -78,21 +78,11 @@ export class EditUserComponent implements OnInit, AfterViewInit {
   }
 
   SaveUser() {
-    const NUser = new NewUser();
-    NUser.username = this.username;
-    NUser.correo = this.correo;
-    NUser.password = this.password;
-
-    if (
-      NUser.username == null ||
-      NUser.correo == null ||
-      NUser.password == null
-    ) {
-      alert('No puede haber campos vacios');
-      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
-    }
-
-    this.authService.editUser(this.idusuario, NUser).subscribe(
+    const changeUser = new NewUser();
+    changeUser.username = this.NuevoUsuario.username;
+    changeUser.correo = this.NuevoUsuario.correo;
+    changeUser.password = this.password;
+    this.authService.editUser(this.idusuario, changeUser).subscribe(
       (data) => {
         console.log('Usuario Actualizado: ', data);
         alert('Usuario Actualizado - Inicio Sesion nuevamente');
@@ -103,57 +93,18 @@ export class EditUserComponent implements OnInit, AfterViewInit {
         console.log(err);
       }
     );
-    //this.onLogOut();
   }
-  /*
-  onLogOut(): void {
-    this.tokenService.Logout();
-    window.location.reload();
-  }
-  */
 
   getUsuario(): void {
     this.authService.getByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.idusuario = data.idusuario;
-        this.username = data.username;
-        this.correo = JSON.stringify(data.correo);
-        this.password = JSON.stringify(data.password);
-
-        console.log(
-          'Get user: ',
-          this.idusuario,
-          this.username,
-          this.correo,
-          this.password
-        );
+        this.NuevoUsuario = data;
       },
       (err) => {
         alert('No se pudo encontrar a la persona');
         this.router.navigate(['/perfil/' + this.idPersonaLogged]);
-        //this.router.navigate(['']);
       }
     );
-    if (this.username === '' || this.correo === '' || this.password === '') {
-      this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
-    }
-
-    //this.hasPermissions();
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.idPersonaLogged) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }*/
 }

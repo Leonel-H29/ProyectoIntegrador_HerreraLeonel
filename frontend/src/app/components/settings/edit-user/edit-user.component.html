@@ -33,7 +33,7 @@
           <!--EMAIL-->
           <div class="form-floating mb-3">
             <input
-              [(ngModel)]="correo"
+              [(ngModel)]="NuevoUsuario.correo"
               type="email"
               name="email"
               id="inputEmail"
@@ -41,7 +41,7 @@
               placeholder="Email address"
               required
               autofocus
-            /><label for="name">Email address</label>
+            /><label for="email">* Email address</label>
           </div>
 
           <!--CONFIRM EMAIL-->
@@ -50,18 +50,19 @@
               [(ngModel)]="confirm_correo"
               type="email"
               name="email"
-              id="inputConfirmEmail"
+              id="confirm_correo"
+              name="confirm_correo"
               class="form-control"
               placeholder="Confirm Email"
               required
               autofocus
-            /><label for="name">Confirm Email</label>
+            /><label for="confirm_correo">* Confirm Email</label>
           </div>
 
           <!--USERNAME-->
           <div class="form-floating mb-3">
             <input
-              [(ngModel)]="username"
+              [(ngModel)]="NuevoUsuario.username"
               type="text"
               id="username"
               name="username"
@@ -69,7 +70,7 @@
               placeholder="Username"
               required
               autofocus
-            /><label for="name">Username</label>
+            /><label for="username">* Username</label>
           </div>
 
           <!--PASSWORD -->
@@ -82,7 +83,7 @@
               class="form-control"
               placeholder="Password"
               required
-            /><label for="name">Password</label>
+            /><label for="password">* Password</label>
           </div>
 
           <!--CONFIRM PASSWORD -->
@@ -91,11 +92,11 @@
               [(ngModel)]="confirm_password"
               type="password"
               id="Confirmpassword"
-              name="password"
+              name="Confirmpassword"
               class="form-control"
               placeholder="Confirm  Password"
               required
-            /><label for="name">Confirm Password</label>
+            /><label for="confirm_password">* Confirm Password</label>
           </div>
 
           <!-- Submit Button-->
