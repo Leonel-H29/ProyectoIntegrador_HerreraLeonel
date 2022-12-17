@@ -33,6 +33,9 @@ export class EditUserComponent implements OnInit, AfterViewInit {
   isLogged = false;
   hasPermission = false;
 
+  showPassword = false;
+  typeInputPass = 'password';
+
   constructor(
     private authService: AuthService,
     private persService: PersonaService,
@@ -106,5 +109,18 @@ export class EditUserComponent implements OnInit, AfterViewInit {
         this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
+  }
+  showPass() {
+    if (!this.showPassword) {
+      this.showPassword = true;
+      this.typeInputPass = 'text';
+    }
+  }
+
+  hiddenPass() {
+    if (this.showPassword) {
+      this.showPassword = false;
+      this.typeInputPass = 'password';
+    }
   }
 }

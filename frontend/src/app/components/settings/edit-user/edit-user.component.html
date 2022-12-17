@@ -20,6 +20,7 @@
         <form id="contactForm" (ngSubmit)="onUpdate()" novalidate #f="ngForm">
           <!--NOMBRE-->
           <input
+            [hidden]="true"
             [(ngModel)]="idusuario"
             type="number"
             id="idusuario"
@@ -74,30 +75,84 @@
           </div>
 
           <!--PASSWORD -->
-          <div class="form-floating mb-3">
-            <input
-              [(ngModel)]="password"
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="Password"
-              required
-            /><label for="password">* Password</label>
+          <div class="input-group">
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="password"
+                type="{{ typeInputPass }}"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="*Password"
+                required
+              />
+              <label for="password">*Password</label>
+            </div>
+            &nbsp;
+            <!-- Show Password Button-->
+            <div *ngIf="!showPassword; else ButtonHiddenPass">
+              <button
+                class="btn btn-outline-secondary mb-3"
+                type="button"
+                id="button-password"
+                title="Mostrar contraseña"
+                (click)="showPass()"
+              >
+                <i class="fa-sharp fa-solid fa-eye"></i>
+              </button>
+            </div>
           </div>
+          <ng-template #ButtonHiddenPass>
+            <button
+              class="btn btn-outline-secondary mb-3"
+              type="button"
+              id="button-password"
+              title="Mostrar contraseña"
+              (click)="hiddenPass()"
+            >
+              <i class="fa-sharp fa-solid fa-eye-slash"></i>
+            </button>
+          </ng-template>
 
           <!--CONFIRM PASSWORD -->
-          <div class="form-floating mb-3">
-            <input
-              [(ngModel)]="confirm_password"
-              type="password"
-              id="Confirmpassword"
-              name="Confirmpassword"
-              class="form-control"
-              placeholder="Confirm  Password"
-              required
-            /><label for="confirm_password">* Confirm Password</label>
+          <div class="input-group">
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="confirm_password"
+                type="{{ typeInputPass }}"
+                id="button-confirm-password"
+                name="password"
+                class="form-control"
+                placeholder="*Confirmar Password"
+                required
+              />
+              <label for="confirm_password">*Confirmar Password</label>
+            </div>
+            &nbsp;
+            <!-- Show Password Button-->
+            <div *ngIf="!showPassword; else ButtonHiddenPass">
+              <button
+                class="btn btn-outline-secondary mb-3"
+                type="button"
+                id="button-password"
+                title="Mostrar contraseña"
+                (click)="showPass()"
+              >
+                <i class="fa-sharp fa-solid fa-eye"></i>
+              </button>
+            </div>
           </div>
+          <ng-template #ButtonHiddenPass>
+            <button
+              class="btn btn-outline-secondary mb-3"
+              type="button"
+              id="button-password"
+              title="Mostrar contraseña"
+              (click)="hiddenPass()"
+            >
+              <i class="fa-sharp fa-solid fa-eye-slash"></i>
+            </button>
+          </ng-template>
 
           <!-- Submit Button-->
           <button
