@@ -27,18 +27,44 @@
             />
             <label for="username">Username</label>
           </div>
-          <div class="form-floating mb-3">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              class="form-control"
-              placeholder="Password"
-              required
-              [(ngModel)]="password"
-            />
-            <label for="password">Password</label>
+          <div class="input-group">
+            <div class="form-floating mb-3">
+              <input
+                type="{{ typeInputPass }}"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="Password"
+                required
+                [(ngModel)]="password"
+              />
+              <label for="password">Password</label>
+            </div>
+            &nbsp;
+            <!-- Show Password Button-->
+            <div *ngIf="!showPassword; else ButtonHiddenPass">
+              <button
+                class="btn btn-outline-secondary mb-3"
+                type="button"
+                id="button-password"
+                title="Mostrar contraseña"
+                (click)="showPass()"
+              >
+                <i class="fa-regular fa-eye-slash"></i>
+              </button>
+            </div>
           </div>
+          <ng-template #ButtonHiddenPass>
+            <button
+              class="btn btn-outline-secondary mb-3"
+              type="button"
+              id="button-password"
+              title="Mostrar contraseña"
+              (click)="hiddenPass()"
+            >
+              <i class="fa-regular fa-eye-slash"></i>
+            </button>
+          </ng-template>
 
           <!-- Submit Button-->
           <div *ngIf="!IsLoadding; else ButtonLoadding">

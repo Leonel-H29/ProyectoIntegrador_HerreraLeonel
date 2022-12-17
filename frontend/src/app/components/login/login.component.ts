@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   IsLogged = false;
   IsLoginFail = false;
   IsLoadding = false;
+  showPassword = false;
+  typeInputPass = 'password';
   loginUser!: LoginUser;
   username!: string;
   password!: string;
@@ -55,5 +57,19 @@ export class LoginComponent implements OnInit {
         console.log(this.errorMsj);
       }
     );
+  }
+
+  showPass() {
+    if (!this.showPassword) {
+      this.showPassword = true;
+      this.typeInputPass = 'text';
+    }
+  }
+
+  hiddenPass() {
+    if (this.showPassword) {
+      this.showPassword = false;
+      this.typeInputPass = 'password';
+    }
   }
 }
