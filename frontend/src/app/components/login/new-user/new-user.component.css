@@ -33,3 +33,18 @@ h6 {
 .divider-custom-line {
   background-color: #fff;
 }
+#button-password {
+  border-radius: 0%;
+  height: 5.55em;
+  background: #fff;
+  box-shadow: 0em 0em 0.1em black;
+}
+
+#button-password:hover {
+  background: #1abc9c;
+  /*box-shadow: 0em 0.1em 0.1em black;*/
+}
+#button-password:focus {
+  background: #1abc9c;
+  /*box-shadow: 0em 0.1em 0.1em black;*/
+}

@@ -36,6 +36,9 @@ export class NewUserComponent implements OnInit, AfterViewInit {
   //Persona: persona = new persona('', '', '', '', '', 0, new Date(), '', '');
   ListPersona: persona[] = [];
 
+  showPassword = false;
+  typeInputPass = 'password';
+
   constructor(
     private authService: AuthService,
     private persService: PersonaService,
@@ -112,18 +115,6 @@ export class NewUserComponent implements OnInit, AfterViewInit {
       );
     }
   }
-  /*
-  public generaCadenaAleatoria(): string {
-    const n = 20;
-    let result = '';
-    const chars =
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for (let i = 0; i < n; i++) {
-      result += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return result;
-  }
-  */
 
   uploadImage($event: any) {
     //const id = this.getLastId();
@@ -144,5 +135,18 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         this.imgService.uploadImage($event, name);
       }
     });
+  }
+  showPass() {
+    if (!this.showPassword) {
+      this.showPassword = true;
+      this.typeInputPass = 'text';
+    }
+  }
+
+  hiddenPass() {
+    if (this.showPassword) {
+      this.showPassword = false;
+      this.typeInputPass = 'password';
+    }
   }
 }
