@@ -40,6 +40,7 @@ export class ImageService {
       })
       .catch((error) => {
         console.log(error);
+        this.url = 'https://cdn-icons-png.flaticon.com/512/1361/1361728.png';
       });
   }
 }
