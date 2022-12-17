@@ -20,6 +20,9 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
   dataUser: NewUser = new NewUser();
   idUsuario!: number;
   encontrado = false;
+  showMsj = false;
+  showPassword = false;
+  typeInputPass = 'password';
 
   constructor(
     private changeDet: ChangeDetectorRef,
@@ -74,6 +77,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
         }
       );
     }
+    this.showMsj = true;
   }
 
   changePassword() {
@@ -95,6 +99,19 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/retrievepass']);
           }
         );
+    }
+  }
+  showPass() {
+    if (!this.showPassword) {
+      this.showPassword = true;
+      this.typeInputPass = 'text';
+    }
+  }
+
+  hiddenPass() {
+    if (this.showPassword) {
+      this.showPassword = false;
+      this.typeInputPass = 'password';
     }
   }
 }

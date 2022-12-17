@@ -41,16 +41,18 @@
     </div>
     <br />
     <br />
-    <div
-      class="alert alert-success"
-      role="alert"
-      *ngIf="encontrado; else AlertError"
-    >
-      ¡Usuario encontrado!
+    <div *ngIf="showMsj">
+      <div
+        class="alert alert-success"
+        role="alert"
+        *ngIf="encontrado; else AlertError"
+      >
+        ¡Usuario encontrado!
+      </div>
+      <ng-template #AlertError>
+        <div class="alert alert-danger" role="alert">Error</div>
+      </ng-template>
     </div>
-    <ng-template #AlertError>
-      <div class="alert alert-danger" role="alert">Error</div>
-    </ng-template>
     <br />
     <br />
     <!-- Formulario para cambiar la contraseña-->
@@ -63,34 +65,84 @@
           #f="ngForm"
         >
           <!--PASSWORD -->
-
-          <div class="form-floating mb-3">
-            <input
-              class="form-control"
-              [(ngModel)]="password"
-              type="password"
-              id="password"
-              name="password"
-              placeholder="Password"
-              required
-            />
-            <label for="password">*Password</label>
+          <div class="input-group">
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="password"
+                type="{{ typeInputPass }}"
+                id="password"
+                name="password"
+                class="form-control"
+                placeholder="*Password"
+                required
+              />
+              <label for="password">*Password</label>
+            </div>
+            &nbsp;
+            <!-- Show Password Button-->
+            <div *ngIf="!showPassword; else ButtonHiddenPass">
+              <button
+                class="btn btn-outline-secondary mb-3"
+                type="button"
+                id="button-password"
+                title="Mostrar contraseña"
+                (click)="showPass()"
+              >
+                <i class="fa-sharp fa-solid fa-eye"></i>
+              </button>
+            </div>
           </div>
+          <ng-template #ButtonHiddenPass>
+            <button
+              class="btn btn-outline-secondary mb-3"
+              type="button"
+              id="button-password"
+              title="Mostrar contraseña"
+              (click)="hiddenPass()"
+            >
+              <i class="fa-sharp fa-solid fa-eye-slash"></i>
+            </button>
+          </ng-template>
 
           <!--CONFIRM PASSWORD -->
-
-          <div class="form-floating mb-3">
-            <input
-              [(ngModel)]="confirm_password"
-              type="password"
-              id="confirm_password"
-              name="password"
-              class="form-control"
-              placeholder="Confirm  Password"
-              required
-            />
-            <label for="confirm_password">*Confirmar Password</label>
+          <div class="input-group">
+            <div class="form-floating mb-3">
+              <input
+                [(ngModel)]="confirm_password"
+                type="{{ typeInputPass }}"
+                id="button-confirm-password"
+                name="password"
+                class="form-control"
+                placeholder="*Confirmar Password"
+                required
+              />
+              <label for="confirm_password">*Confirmar Password</label>
+            </div>
+            &nbsp;
+            <!-- Show Password Button-->
+            <div *ngIf="!showPassword; else ButtonHiddenPass">
+              <button
+                class="btn btn-outline-secondary mb-3"
+                type="button"
+                id="button-password"
+                title="Mostrar contraseña"
+                (click)="showPass()"
+              >
+                <i class="fa-sharp fa-solid fa-eye"></i>
+              </button>
+            </div>
           </div>
+          <ng-template #ButtonHiddenPass>
+            <button
+              class="btn btn-outline-secondary mb-3"
+              type="button"
+              id="button-password"
+              title="Mostrar contraseña"
+              (click)="hiddenPass()"
+            >
+              <i class="fa-sharp fa-solid fa-eye-slash"></i>
+            </button>
+          </ng-template>
 
           <!-- Submit Button-->
           <button
