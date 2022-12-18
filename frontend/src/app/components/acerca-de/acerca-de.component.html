@@ -4,14 +4,7 @@
     *ngIf="persona != undefined"
   >
     <!-- Masthead Avatar Image-->
-    <!--
-    <img
-      class="masthead-avatar mb-5"
-      src="../../../../assets/resourses/img/perfil.jpg"
-      alt="Foto de perfil"
-      title="Foto de perfil"
-    />
-    -->
+
     <div *ngIf="persona.foto_perfil_url == null; else TemplatePerfil">
       <img
         class="masthead-avatar mb-5"
@@ -22,13 +15,15 @@
       />
     </div>
     <ng-template #TemplatePerfil>
-      <img
-        src="{{ persona.foto_perfil_url }}"
-        class="masthead-avatar mb-5"
-        id="foto-perfil"
-        alt="Foto de perfil"
-        title="Foto de perfil"
-      />
+      <a href="{{ persona.foto_perfil_url }}" target="_blank">
+        <img
+          src="{{ persona.foto_perfil_url }}"
+          class="masthead-avatar mb-5"
+          id="foto-perfil"
+          alt="Foto de perfil"
+          title="Foto de perfil"
+        />
+      </a>
     </ng-template>
 
     <!-- Masthead Heading-->
