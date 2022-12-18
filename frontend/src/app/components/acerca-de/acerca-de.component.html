@@ -15,6 +15,7 @@
     <div *ngIf="persona.foto_perfil_url == null; else TemplatePerfil">
       <img
         class="masthead-avatar mb-5"
+        id="foto-perfil"
         src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
         alt="Foto de perfil"
         title="Foto de perfil"
@@ -24,6 +25,7 @@
       <img
         src="{{ persona.foto_perfil_url }}"
         class="masthead-avatar mb-5"
+        id="foto-perfil"
         alt="Foto de perfil"
         title="Foto de perfil"
       />
