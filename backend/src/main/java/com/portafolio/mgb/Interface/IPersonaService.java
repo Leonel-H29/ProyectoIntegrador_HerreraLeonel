@@ -17,6 +17,8 @@ public interface IPersonaService {
 
     public void eliminarPersona(int id);
     
-    public Persona getByUserNameSQL(String username); 
+    public Persona getByUserNameSQL(String username);
+    
+    public void addRedes(int id);
 
 }

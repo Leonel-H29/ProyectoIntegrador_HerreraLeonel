@@ -70,14 +70,14 @@ public class RedesService implements IRedesService {
                 //RedRepo.save(red);
                 if (existsById(red.getIdred())) {
                     System.out.println("El red ya existe");
-                    RedRepo.EditRedSQL(red.getRed(), red.getPersona().getIdpersona(), red.getIdred());
+                    RedRepo.EditRedSQL(red.getRed(), red.getUrl_red(), red.getPersona().getIdpersona(), red.getIdred());
                 }
-                RedRepo.SaveRedSQL(red.getRed(), red.getPersona().getIdpersona());
+                RedRepo.SaveRedSQL(red.getRed(), red.getUrl_red(), red.getPersona().getIdpersona());
             } else {
                 System.out.println("No se ha podido guardar la red");
             }
         } catch (Exception ex) {
-            System.out.println("Error en Guardar Redes: " + ex.getMessage());
+            System.out.println("Error en Guardar Redes: " + ex);
         }
     }
 

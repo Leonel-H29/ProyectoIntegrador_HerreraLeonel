@@ -78,14 +78,6 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
   CargarHardSkills(): void {
     this.skillService.ListaHardSkillsByPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        /*
-        data.forEach((element) => {
-          console.log(element);
-          if (element.HardSkills.idHardSkills == this.HardSkills.idHardSkills) {
-            this.expe.push(element);
-          }
-        });
-        */
         this.skill = data;
         console.log('HardSkills: ', this.skill);
       },

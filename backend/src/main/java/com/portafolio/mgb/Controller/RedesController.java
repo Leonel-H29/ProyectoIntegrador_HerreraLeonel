@@ -47,11 +47,17 @@ public class RedesController {
 
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody Redes Red) {
+        /*
+        if (Red == null) {
+            return new ResponseEntity(new Mensaje("Hubo un error en los datos"), HttpStatus.BAD_REQUEST);
+        }
+*/
+        
         if (StringUtils.isBlank(Red.getRed())) {
             return new ResponseEntity(new Mensaje("El nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         }
 
-        Redes _red = new Redes(Red.getRed(),Red.getUrl_red(), Red.getPersona());
+        Redes _red = new Redes(Red.getRed(), Red.getUrl_red(), Red.getPersona());
         RedesServ.GuardarRed(_red);
         return new ResponseEntity(new Mensaje("Red agregada"), HttpStatus.OK);
     }

@@ -29,8 +29,7 @@ public class Redes {
     @Size(min = 1, max = 45, message = "La longitud del nombre de la red no es valida")
     String red;
 
-    @NotNull
-    @Size(min = 1, max = 260, message = "La longitud del nombre del link no es valida")
+    @Size(min = 0, max = 260, message = "La longitud del nombre del link no es valida")
     String url_red;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)

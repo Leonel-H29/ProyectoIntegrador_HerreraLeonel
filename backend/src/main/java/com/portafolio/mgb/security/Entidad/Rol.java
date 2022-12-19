@@ -12,16 +12,20 @@ import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter @Getter
+@Setter
+@Getter
 @Entity
 @Table(name = "rol")
 public class Rol {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idrol;
-    
-    @NotNull @Enumerated(EnumType.STRING)
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private RolNombre rolNombre;
+
 
     public Rol() {
     }
@@ -30,5 +34,6 @@ public class Rol {
         this.rolNombre = rolNombre;
     }
     
-    
+
+
 }

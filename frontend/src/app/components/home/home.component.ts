@@ -3,6 +3,7 @@ import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,6 +14,8 @@ export class HomeComponent implements OnInit {
   isLogged = false;
   listPersona: persona[] = new Array<persona>();
   usuario: string = '';
+  searchTerm: string;
+  //listFiltered: any = [];
   constructor(
     public personaService: PersonaService,
     private tokenService: TokenService,
@@ -41,6 +44,17 @@ export class HomeComponent implements OnInit {
         console.error('No se ha podido traer la lista: ', err);
       }
     );
+  }
+
+  filterList(): void {
+    this.listPersona
+      //.filter(item => item.toLowerCase().indexOf(term.toLowerCase()) >= 0);
+      .filter(
+        (item) =>
+          item.apellido == this.searchTerm ||
+          item.nombre == this.searchTerm ||
+          item.provincia == this.searchTerm
+      );
   }
 
   login() {

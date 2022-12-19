@@ -7,6 +7,21 @@
 <!-- Perfil Section-->
 <section class="page-section portfolio" id="portfolio">
   <div class="container">
+    <div class="input-group input-group-lg">
+      <span class="input-group-text" id="inputGroup-sizing-lg"
+        ><i class="fa-solid fa-magnifying-glass"></i
+      ></span>
+      <input
+        id="input-search"
+        type="text"
+        class="form-control"
+        placeholder="Ingrese el usuario | provincia"
+        aria-label="Sizing example input"
+        aria-describedby="inputGroup-sizing-lg"
+        [(ngModel)]="searchTerm"
+        (keyup)="filterList()"
+      />
+    </div>
     <div
       class="card mb-3"
       style="max-width: 33rem"

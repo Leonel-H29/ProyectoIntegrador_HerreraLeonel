@@ -44,7 +44,8 @@ public class Usuario {
     @Size(min = 6, max = 60, message = "La longitud del password no es valida")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER) 
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "idusuario"), inverseJoinColumns = @JoinColumn(name = "idrol"))
     private Set<Rol> roles = new HashSet<>();
 

@@ -41,7 +41,7 @@ public class PersonaService implements IPersonaService {
     public void crearPersona(Persona pers) {
         try {
             //RepoPers.save(pers);
-            RepoPers.SavePersonaSQL(pers.getNombre(), pers.getApellido(), pers.getProvincia(), pers.getPais(),pers.getCodigo_postal(), pers.getFecha_nacimiento(), pers.getTelefono(), pers.getDescripcion(), pers.getFoto_perfil_url(), pers.getUsuario().getIdusuario());
+            RepoPers.SavePersonaSQL(pers.getNombre(), pers.getApellido(), pers.getProvincia(), pers.getPais(), pers.getCodigo_postal(), pers.getFecha_nacimiento(), pers.getTelefono(), pers.getDescripcion(), pers.getFoto_perfil_url(), pers.getUsuario().getIdusuario());
             System.out.println("La persona ya se encuentra registrada");
             System.out.println(pers);
             /*
@@ -53,6 +53,9 @@ public class PersonaService implements IPersonaService {
                 System.out.println("La persona ya se encuentra registrada");
             }
              */
+            Persona persona = verPersonas().get(verPersonas().size() - 1);
+            this.addRedes(persona.getIdpersona());
+
         } catch (Exception ex) {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
@@ -121,9 +124,19 @@ public class PersonaService implements IPersonaService {
             System.out.println("No se ha podido realizar la peticion: " + ex.toString());
         }
     }
+
     @Override
     public Persona getByUserNameSQL(String username) {
         return RepoPers.findByUsernameSQL(username);
+    }
+
+    @Override
+    public void addRedes(int id) {
+        RepoPers.AddRedes("Facebook", id);
+        RepoPers.AddRedes("Instagram", id);
+        RepoPers.AddRedes("Twitter", id);
+        RepoPers.AddRedes("Linkedin", id);
+        RepoPers.AddRedes("GitHub", id);
     }
 
 }
