@@ -7,10 +7,8 @@
 <!-- Perfil Section-->
 <section class="page-section portfolio" id="portfolio">
   <div class="container">
+    <!--Formulario de busqueda-->
     <div class="input-group input-group-lg">
-      <span class="input-group-text" id="inputGroup-sizing-lg"
-        ><i class="fa-solid fa-magnifying-glass"></i
-      ></span>
       <input
         id="input-search"
         type="text"
@@ -20,8 +18,18 @@
         aria-describedby="inputGroup-sizing-lg"
         [(ngModel)]="searchTerm"
         (keyup)="filterList()"
+        required="true"
       />
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="button-addon2"
+      >
+        <i class="fa-solid fa-magnifying-glass"></i> Buscar
+      </button>
     </div>
+    <!---------------------------->
+    <!--Cards Personas-->
     <div
       class="card mb-3"
       style="max-width: 33rem"
@@ -29,9 +37,6 @@
     >
       <div class="row g-0">
         <div class="col-md-4">
-          <!--
-        <img src="..." class="img-fluid rounded-start" alt="...">
-        -->
           <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
             <img
               src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
@@ -61,19 +66,14 @@
             <p class="card-text">
               {{ per.provincia | uppercase }} - {{ per.pais | uppercase }}
             </p>
-            <!--
-          <p class="card-text">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </p>
-          --></div>
+          </div>
         </div>
       </div>
     </div>
+    <!------------------>
   </div>
 </section>
 <!-- About Section-->
 <app-about-of></app-about-of>
 
 <app-footer></app-footer>
-
-<!-- {{ listPersona }} -->

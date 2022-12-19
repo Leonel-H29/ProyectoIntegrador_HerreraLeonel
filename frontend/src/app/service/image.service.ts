@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import {
   Storage,
@@ -12,11 +13,12 @@ import {
 })
 export class ImageService {
   url: string = '';
+  DIR_IMG = environment.DIR_IMG;
   constructor(private storage: Storage) {}
   public uploadImage($event: any, name: string) {
     const file = $event.target.files[0];
     console.log('file: ', file);
-    const imgRef = ref(this.storage, 'imagen/' + name);
+    const imgRef = ref(this.storage, this.DIR_IMG + name);
     uploadBytes(imgRef, file)
       .then((response) => {
         this.getImages(name);
@@ -28,7 +30,7 @@ export class ImageService {
   }
 
   getImages(name: string) {
-    const imagesRef = ref(this.storage, 'imagen/');
+    const imagesRef = ref(this.storage, this.DIR_IMG);
     list(imagesRef)
       .then(async (response) => {
         for (let item of response.items) {
