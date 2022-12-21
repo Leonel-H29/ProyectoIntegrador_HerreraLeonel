@@ -10,6 +10,6 @@ export const environment = {
     measurementId: 'G-VYJ1LJ62MJ',
   },
   production: true,
-  URL: 'https://backend-portafolioap.herokuapp.com/',
+  URL: 'https://back-portafolio-prod-production.up.railway.app/',
   DIR_IMG: 'imagen-production/',
 };

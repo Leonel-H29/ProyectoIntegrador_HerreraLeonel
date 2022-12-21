@@ -23,6 +23,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
   showMsj = false;
   showPassword = false;
   typeInputPass = 'password';
+  IsLoadding = false;
 
   constructor(
     private changeDet: ChangeDetectorRef,
@@ -81,6 +82,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
   }
 
   changePassword() {
+    this.IsLoadding = true;
     if (this.password == '' || this.confirm_password == '') {
       alert('Las contraseñas no pueden ser vacias');
     } else if (this.password != this.confirm_password) {
@@ -95,6 +97,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
             this.router.navigate(['/login']);
           },
           (err) => {
+            this.IsLoadding = false;
             alert('Error al cambiar la contraseña');
             this.router.navigate(['/retrievepass']);
           }

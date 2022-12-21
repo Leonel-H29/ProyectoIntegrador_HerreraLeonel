@@ -72,6 +72,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
     NUser.username = this.username;
     NUser.correo = this.correo;
     NUser.password = this.password;
+    console.log('Usuario a cargar: ', NUser);
     this.authService.newUser(NUser).subscribe(
       (data) => {
         console.log('Usuario Creado: ', data);
@@ -102,6 +103,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         this.imgService.url,
         user
       );
+      console.log('Usuario a cargar: ', NPersona);
       this.persService.SavePersona(NPersona).subscribe(
         (data) => {
           console.log('Persona Creada: ', data);

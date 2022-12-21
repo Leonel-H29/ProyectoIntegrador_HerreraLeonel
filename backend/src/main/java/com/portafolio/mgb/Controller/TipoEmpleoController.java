@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("tipoemp")
-@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app/","http://localhost:4200/"})
+@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app/","http://localhost:4200/","http://192.168.1.5:4200/"}, allowedHeaders = "*", exposedHeaders = "*")
 public class TipoEmpleoController {
     
     @Autowired
