@@ -38,6 +38,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
 
   showPassword = false;
   typeInputPass = 'password';
+  IsLoadding = false;
 
   constructor(
     private authService: AuthService,
@@ -55,6 +56,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   onCreate() {
+    this.IsLoadding = true;
     if (this.correo != this.confirm_correo) {
       alert('Los correos deben coincidir');
       this.router.navigate(['/createaccount']);
@@ -82,6 +84,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         });
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Fallo la operacion en Usuario');
         console.log(err);
       }
@@ -111,6 +114,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
           this.router.navigate(['/login']);
         },
         (err) => {
+          this.IsLoadding = false;
           alert('Fallo la operacion en Persona');
           console.log(err);
         }
