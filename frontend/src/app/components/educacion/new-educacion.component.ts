@@ -37,6 +37,7 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
   );
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private EduServ: EducacionService,
@@ -56,15 +57,18 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
     if (this.tokenService.getToken()) {
       this.isLogged = true;
     }
+    /*
     console.log(
       'Educacion: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   OnCreate() {
+    this.IsLoadding = true;
     const educ = new Educacion(
       this.NNombreInst,
       this.NFechaInicio,
@@ -80,6 +84,7 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Fallo la operacion');
         console.log(err);
         this.router.navigate([
@@ -92,7 +97,6 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
 
   getPersona(): void {
     const id = this.activatedRouter.snapshot.params['id'];
-    //this.Persona = this.PersServ.getPersona(id);
     this.PersServ.getPersona(id).subscribe(
       (data) => {
         this.NPersona = data;
@@ -105,31 +109,13 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
     this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
       (data) => (this.hasPermission = data)
     );
-    //this.hasPermissions();
+    /*
     console.log(
       'Educacion: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
-    //this.hasPermissions();
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        console.log(data.idpersona, this.NPersona.idpersona);
-        if (data.idpersona == this.NPersona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-  }
-  */
 }
