@@ -30,6 +30,7 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
     '',
     new NewUser()
   );
+  IsLoadding = false;
   constructor(
     private hardSServ: HardSkillService,
     private persService: PersonaService,
@@ -62,17 +63,21 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
         this.hardS.persona = this.Persona;
         //this.getPersona();
         console.log('HS: ', this.hardS);
+        if (this.hardS.persona.apellido.length == 0) {
+          window.location.reload();
+        }
       },
       (err) => {
         console.log('HS: ', null);
         alert('Error al modificar el registro');
         console.log('Error: ', err);
-        this.router.navigate(['']);
+        window.location.reload();
       }
     );
   }
 
   onUpdate(): void {
+    this.IsLoadding = true;
     const id = this.activatedRouter.snapshot.params['idhs'];
     //this.getPersona();
     this.hardSServ.UpdateHardSkills(id, this.hardS).subscribe(
@@ -83,7 +88,9 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Error al modificar el registro');
+
         const ruta =
           'ediths/' + this.activatedRouter.snapshot.params['idper'] + '/' + id;
         this.router.navigate([ruta]);
@@ -102,34 +109,19 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
       (err) => {
         alert('No se pudo encontrar a la persona');
         //this.router.navigate(['']);
+        window.location.reload();
       }
     );
-    //this.hasPermissions();
     this.persService
       .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
-    //this.hasPermissions();
-    console.log(
+    /*
+      console.log(
       'Hard Skill: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }*/
 }
