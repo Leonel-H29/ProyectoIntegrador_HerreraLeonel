@@ -34,6 +34,7 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
   );
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private HsService: HardSkillService,
@@ -55,6 +56,7 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
   }
 
   OnCreate() {
+    this.IsLoadding = true;
     const skill = new HardSkills(this.Nskill, this.Nporcentaje, this.NPersona);
     this.HsService.SaveHardSkills(skill).subscribe(
       (data) => {
@@ -65,6 +67,7 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Fallo la operacion');
         console.log(err);
         this.router.navigate([
@@ -76,7 +79,6 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
 
   getPersona(): void {
     const id = this.activatedRouter.snapshot.params['id'];
-    //this.Persona = this.PersServ.getPersona(id);
     this.PersServ.getPersona(id).subscribe(
       (data) => {
         this.NPersona = data;
@@ -89,31 +91,13 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
     this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
       (data) => (this.hasPermission = data)
     );
-    //this.hasPermissions();
+    /*
     console.log(
       'Hard Skill: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
-    //this.hasPermissions();
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        console.log(data.idpersona, this.NPersona.idpersona);
-        if (data.idpersona == this.NPersona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-  }
-  */
 }
