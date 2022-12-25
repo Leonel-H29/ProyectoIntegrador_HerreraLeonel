@@ -44,6 +44,7 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
   DataGithub: Redes = new Redes('GitHub', '', this.Persona);
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private authService: AuthService,
@@ -129,6 +130,7 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     try {
+      this.IsLoadding = true;
       this.saveRed(this.DataFacebook);
       this.saveRed(this.DataInstagram);
       this.saveRed(this.DataTwitter);
@@ -137,6 +139,7 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
       //alert('Registros modificados');
       this.router.navigate(['perfil/' + this.idPersonaLogged]);
     } catch (ex) {
+      this.IsLoadding = false;
       console.log(ex);
     }
   }
@@ -155,6 +158,7 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
         this.router.navigate([ruta]);
       }
     );
+    //this.IsLoadding = false;
   }
 
   getPersona(): void {

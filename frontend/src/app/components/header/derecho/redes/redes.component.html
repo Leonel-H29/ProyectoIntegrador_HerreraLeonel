@@ -1,7 +1,7 @@
 <div class="divider-custom">
   <div *ngFor="let red of RedesUser">
     <a
-      *ngIf="red.url_red != null"
+      *ngIf="red.url_red != null && red.url_red.length != 0"
       class="btn btn-outline-light btn-social mx-1"
       href="{{ red.url_red }}"
       title="Link de {{ red.red }}"

@@ -55,7 +55,6 @@
               <label for="Facebook"> | Facebook</label>
             </div>
           </div>
-          {{ NombreRed }}
           <!--Instagram-->
           <div class="form-floating mb-3">
             <div class="input-group mb-3">
@@ -126,21 +125,29 @@
           </div>
 
           <br />
-          <div>
-            {{ DataFacebook.url_red }} | {{ DataInstagram.url_red }} |
-            {{ DataTwitter.url_red }} | {{ DataLinkedin.url_red }} |
-            {{ DataGithub.url_red }}
-          </div>
 
           <!-- Submit Button-->
-          <button
-            class="btn btn-primary btn-xl"
-            id="submitButton"
-            type="submit"
-            title="Enviar"
-          >
-            ENVIAR
-          </button>
+          <div *ngIf="!IsLoadding; else ButtonLoadding">
+            <button
+              class="btn btn-primary btn-xl"
+              id="submitButton"
+              type="submit"
+              title="Enviar"
+            >
+              ENVIAR
+            </button>
+          </div>
+
+          <ng-template #ButtonLoadding>
+            <button class="btn btn-primary btn-xl" id="submitButton" disabled>
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              ENVIANDO...
+            </button>
+          </ng-template>
         </form>
       </div>
     </div>
