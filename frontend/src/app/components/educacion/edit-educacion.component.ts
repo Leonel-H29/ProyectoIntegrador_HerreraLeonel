@@ -30,6 +30,7 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
     '',
     new NewUser()
   );
+  IsLoadding = false;
   constructor(
     private educServ: EducacionService,
     private persService: PersonaService,
@@ -61,6 +62,9 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
       (data) => {
         this.educacion = data;
         this.educacion.persona = this.Persona;
+        if (this.educacion.persona.apellido.length == 0) {
+          window.location.reload();
+        }
 
         console.log('educacion: ', this.educacion);
       },
@@ -74,6 +78,7 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate(): void {
+    this.IsLoadding = true;
     const id = this.activatedRouter.snapshot.params['idedu'];
     this.educServ.UpdateEducacion(id, this.educacion).subscribe(
       (data) => {
@@ -83,6 +88,7 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         const ruta =
           'editedu/' + this.activatedRouter.snapshot.params['idper'] + '/' + id;
         alert('Error al modificar el registro');
@@ -104,33 +110,16 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    //this.hasPermissions();
     this.persService
       .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
-    //this.hasPermissions();
+    /*
     console.log(
       'Educacion: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }
-  */
 }

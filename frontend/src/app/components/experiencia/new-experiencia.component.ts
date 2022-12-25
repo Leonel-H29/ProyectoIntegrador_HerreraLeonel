@@ -43,9 +43,9 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
   );
 
   ListaTiposEmpleos: TipoEmpleo[];
-  //Persona: persona;
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private Expeserv: ExperiencialabService,
@@ -71,6 +71,8 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
 
   OnCreate() {
     if (this.NTipo) {
+      this.IsLoadding = true;
+
       const expe = new Experiencialab(
         this.NnombreE,
         this.NfechaInicio,
@@ -87,6 +89,8 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
           ]);
         },
         (err) => {
+          this.IsLoadding = false;
+
           alert('Fallo la operacion');
           console.log(err);
           this.router.navigate([
@@ -106,7 +110,6 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
 
   getPersona(): void {
     const id = this.activatedRouter.snapshot.params['id'];
-    //this.Persona = this.PersServ.getPersona(id);
     this.PersServ.getPersona(id).subscribe(
       (data) => {
         this.NPersona = data;
@@ -119,31 +122,13 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
     this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
       (data) => (this.hasPermission = data)
     );
-    //this.hasPermissions();
+    /*
     console.log(
       'Experiencia: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
-    //this.hasPermissions();
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        console.log(data.idpersona, this.NPersona.idpersona);
-        if (data.idpersona == this.NPersona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-  }
-  */
 }
