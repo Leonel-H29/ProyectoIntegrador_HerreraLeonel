@@ -16,7 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewExperienciaComponent } from './components/experiencia/new-experiencia.component';
 import { EditExperienciaComponent } from './components/experiencia/edit-experiencia.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
@@ -40,6 +40,14 @@ import { DeleteUserComponent } from './components/settings/delete-user/delete-us
 import { RetrievePassComponent } from './components/login/retrieve-pass/retrieve-pass.component';
 import { RedesComponent } from './components/header/derecho/redes/redes.component';
 import { EditRedesComponent } from './components/settings/edit-redes/edit-redes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+/* Angular Material */
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { SearchComponent } from './components/home/search/search.component';
+import { PipeSearchPipe } from './components/home/search/pipe-search.pipe';
 
 @NgModule({
   declarations: [
@@ -74,16 +82,23 @@ import { EditRedesComponent } from './components/settings/edit-redes/edit-redes.
     RetrievePassComponent,
     RedesComponent,
     EditRedesComponent,
+    SearchComponent,
+    PipeSearchPipe,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     NgCircleProgressModule.forRoot({}),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     NgbModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

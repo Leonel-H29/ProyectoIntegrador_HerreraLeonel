@@ -8,32 +8,14 @@
 <section class="page-section portfolio" id="portfolio">
   <div class="container">
     <!--Formulario de busqueda-->
-    <div class="input-group input-group-lg">
-      <input
-        id="input-search"
-        type="text"
-        class="form-control"
-        placeholder="Ingrese el usuario | provincia"
-        aria-label="Sizing example input"
-        aria-describedby="inputGroup-sizing-lg"
-        [(ngModel)]="searchTerm"
-        (keyup)="filterList()"
-        required="true"
-      />
-      <button
-        class="btn btn-outline-secondary"
-        type="button"
-        id="button-addon2"
-      >
-        <i class="fa-solid fa-magnifying-glass"></i> Buscar
-      </button>
-    </div>
+    <app-search (search)="handleSearch($event)"></app-search>
+
     <!---------------------------->
     <!--Cards Personas-->
     <div
       class="card mb-3"
       style="max-width: 33rem"
-      *ngFor="let per of listPersona"
+      *ngFor="let per of listPersona | pipeSearch : searchTerm"
     >
       <div class="row g-0">
         <div class="col-md-4">

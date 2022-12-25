@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { PersonaService } from 'src/app/service/persona.service';
 import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { debounce, debounceTime, Subject } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   isLogged = false;
   listPersona: persona[] = new Array<persona>();
   usuario: string = '';
-  searchTerm: string;
+  searchTerm: string = '';
+
   //listFiltered: any = [];
   constructor(
     public personaService: PersonaService,
@@ -46,15 +48,8 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  filterList(): void {
-    this.listPersona
-      //.filter(item => item.toLowerCase().indexOf(term.toLowerCase()) >= 0);
-      .filter(
-        (item) =>
-          item.apellido == this.searchTerm ||
-          item.nombre == this.searchTerm ||
-          item.provincia == this.searchTerm
-      );
+  handleSearch(value: string) {
+    this.searchTerm = value;
   }
 
   login() {
