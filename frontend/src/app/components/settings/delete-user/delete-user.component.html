@@ -35,14 +35,27 @@
             Volver atras
           </button>
           &nbsp;
-          <button
-            class="btn btn-primary"
-            type="button"
-            title="Eliminar"
-            (click)="deleteUser(Persona.idpersona)"
-          >
-            Eliminar
-          </button>
+          <div *ngIf="!IsLoadding; else ButtonLoadding">
+            <button
+              class="btn btn-primary"
+              type="button"
+              title="Eliminar"
+              (click)="deleteUser(Persona.idpersona)"
+            >
+              Eliminar
+            </button>
+          </div>
+
+          <ng-template #ButtonLoadding>
+            <button class="btn btn-primary" type="button" disabled>
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Eliminando...
+            </button>
+          </ng-template>
         </div>
       </div>
     </div>

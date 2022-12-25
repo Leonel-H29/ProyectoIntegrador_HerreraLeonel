@@ -32,6 +32,7 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
   );
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private changeDet: ChangeDetectorRef,
@@ -69,6 +70,7 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
 
   deleteUser(id?: number) {
     if (id != undefined) {
+      this.IsLoadding = true;
       this.authService.getByPersona(id).subscribe(
         (data) => {
           console.log('ID usuario: ', data.idusuario);
@@ -78,11 +80,13 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
               this.router.navigate(['/login']);
             },
             (err) => {
+              this.IsLoadding = false;
               alert('No se ha podido eliminar la operacion');
             }
           );
         },
         (err) => {
+          this.IsLoadding = false;
           alert('No se ha podido encontrar el usuario');
         }
       );
