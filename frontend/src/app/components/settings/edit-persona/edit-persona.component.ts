@@ -34,6 +34,7 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
 
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private authService: AuthService,
@@ -83,6 +84,7 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
 
   onUpdate() {
     if (this.Persona.usuario != null) {
+      this.IsLoadding = true;
       this.Persona.foto_perfil_url = this.imgService.url;
       this.persService
         .EditPersona(this.idPersonaLogged, this.Persona)
@@ -93,6 +95,7 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
             this.router.navigate(['perfil/' + this.idPersonaLogged]);
           },
           (err) => {
+            this.IsLoadding = false;
             alert('Fallo la operacion');
             console.log(err);
           }
