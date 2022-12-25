@@ -32,6 +32,7 @@ export class EditUserComponent implements OnInit, AfterViewInit {
 
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   showPassword = false;
   typeInputPass = 'password';
@@ -59,19 +60,24 @@ export class EditUserComponent implements OnInit, AfterViewInit {
         .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
         .subscribe((data) => (this.hasPermission = data));
     }
+    /*
     console.log(
       'Usuario: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   onUpdate() {
+    this.IsLoadding = true;
     if (this.NuevoUsuario.correo != this.confirm_correo) {
       alert('Los correos deben coincidir');
+      this.IsLoadding = false;
       this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
     } else if (this.password != this.confirm_password) {
+      this.IsLoadding = false;
       alert('Las contraseñas deben coincidir');
       this.router.navigate(['/editaccount' + this.idPersonaLogged]);
     } else {
@@ -89,9 +95,10 @@ export class EditUserComponent implements OnInit, AfterViewInit {
       (data) => {
         console.log('Usuario Actualizado: ', data);
         alert('Usuario Actualizado - Inicio Sesion nuevamente');
-        //this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Fallo la operacion en Usuario');
         console.log(err);
       }
