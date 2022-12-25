@@ -34,6 +34,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   );
   ListaTiposEmpleos: TipoEmpleo[];
   selected: TipoEmpleo = null;
+  IsLoadding = false;
   constructor(
     private expService: ExperiencialabService,
     private TipoEmpServ: TipoEmpleoService,
@@ -49,7 +50,6 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.changeDet.detectChanges();
-    //if (this.expLab) this.selected = this.expLab.tipoEmpleo;
   }
 
   ngOnInit(): void {
@@ -67,7 +67,9 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
       (data) => {
         this.expLab = data;
         this.expLab.persona = this.Persona;
-        //this.selected = this.expLab.tipoEmpleo;
+        if (this.expLab.persona.apellido.length == 0) {
+          window.location.reload();
+        }
         console.log('expLab: ', this.expLab);
       },
       (err) => {
@@ -80,6 +82,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate(): void {
+    this.IsLoadding = true;
     const id = this.activatedRouter.snapshot.params['idexp'];
     //this.expLab.tipoEmpleo = this.selected;
     this.expService.UpdateExperiencia(id, this.expLab).subscribe(
@@ -90,6 +93,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Error al modificar el registro');
         const ruta =
           'editexp/' +
@@ -115,17 +119,18 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    //this.hasPermissions();
+
     this.persService
       .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
-    //this.hasPermissions();
+    /*
     console.log(
       'Experiencia: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   getTiposEmpleos(): void {
@@ -134,20 +139,4 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
       console.log('Tipo de empleos: ', this.ListaTiposEmpleos);
     });
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }*/
 }

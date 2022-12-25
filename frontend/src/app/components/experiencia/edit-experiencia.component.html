@@ -124,7 +124,6 @@
             </div>
           </div>
           <!-- Tipo de empleo-->
-          {{ selected }}
 
           <div class="form-floating mb-3">
             <select
@@ -139,12 +138,6 @@
               <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
                 {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
               </option>
-              <!--
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-              -->
             </select>
             <label for="idTipo">Tipo de empleo</label>
 
@@ -152,26 +145,32 @@
               El tipo de empleo no es valido
             </div>
           </div>
-          <!---
-          {{ expLab.nombre_empresa }}
-          {{ expLab.persona }}
-          {{ expLab.descripcion }}
-          {{ expLab.fecha_inicio }}
-          {{ expLab.fecha_fin }}
-          {{ expLab.tipoEmpleo }}
-          -->
+
           <br />
 
           <!-- Submit Button-->
-          <button
-            class="btn btn-primary btn-xl"
-            id="submitButton"
-            type="submit"
-            name="button"
-            title="Enviar"
-          >
-            ENVIAR
-          </button>
+          <div *ngIf="!IsLoadding; else ButtonLoadding">
+            <button
+              class="btn btn-primary btn-xl"
+              id="submitButton"
+              type="submit"
+              name="button"
+              title="Enviar"
+            >
+              ENVIAR
+            </button>
+          </div>
+
+          <ng-template #ButtonLoadding>
+            <button class="btn btn-primary btn-xl" id="submitButton" disabled>
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              ENVIANDO...
+            </button>
+          </ng-template>
         </form>
       </div>
     </div>
