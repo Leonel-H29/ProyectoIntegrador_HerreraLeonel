@@ -38,6 +38,7 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
 
   isLogged = false;
   hasPermission = false;
+  IsLoadding = false;
 
   constructor(
     private ProyServ: ProyectosService,
@@ -60,6 +61,8 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
   }
 
   OnCreate() {
+    this.IsLoadding = true;
+
     const proj = new Proyectos(
       this.Nproyecto,
       this.NDescripcion,
@@ -76,6 +79,7 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Fallo la operacion');
         const ruta = 'createproy/' + this.activatedRouter.snapshot.params['id'];
         console.log(err);
@@ -86,7 +90,6 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
 
   getPersona(): void {
     const id = this.activatedRouter.snapshot.params['id'];
-    //this.Persona = this.PersServ.getPersona(id);
     this.PersServ.getPersona(id).subscribe(
       (data) => {
         this.NPersona = data;
@@ -99,30 +102,13 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
     this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
       (data) => (this.hasPermission = data)
     );
-    //this.hasPermissions();
+    /*
     console.log(
       'Proyectos: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        console.log(data.idpersona, this.NPersona.idpersona);
-        if (data.idpersona == this.NPersona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-  }
-  */
 }

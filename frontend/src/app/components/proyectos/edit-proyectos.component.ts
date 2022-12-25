@@ -30,6 +30,7 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
     '',
     new NewUser()
   );
+  IsLoadding = false;
   constructor(
     private proyService: ProyectosService,
     private persService: PersonaService,
@@ -60,6 +61,9 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
       (data) => {
         this.project = data;
         this.project.persona = this.Persona;
+        if (this.project.persona.apellido.length == 0) {
+          window.location.reload();
+        }
         console.log('project: ', this.project);
       },
       (err) => {
@@ -72,8 +76,8 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
   }
 
   onUpdate(): void {
+    this.IsLoadding = true;
     const id = this.activatedRouter.snapshot.params['idproy'];
-    //this.getPersona();
     this.proyService.UpdateProyecto(id, this.project).subscribe(
       (data) => {
         alert('Registro modificado');
@@ -82,6 +86,7 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
         ]);
       },
       (err) => {
+        this.IsLoadding = false;
         alert('Error al modificar el registro');
         const ruta =
           'editproy/' +
@@ -106,32 +111,17 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
         //this.router.navigate(['']);
       }
     );
-    //this.hasPermissions();
+
     this.persService
       .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
-    //this.hasPermissions();
+    /*
     console.log(
       'Proyectos: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
-  /*
-  hasPermissions(): void {
-    this.persService
-      .getPersonaByUsername(this.tokenService.getUsername())
-      .subscribe(
-        (data) => {
-          if (data.idpersona == this.Persona.idpersona) {
-            this.hasPermission = true;
-          }
-          //return 'false';
-        },
-        (err) => {
-          alert('No se pudo encontrar a la persona');
-        }
-      );
-  }*/
 }
