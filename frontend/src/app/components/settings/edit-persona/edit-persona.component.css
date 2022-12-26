@@ -3,3 +3,7 @@ nav {
   padding-bottom: 2em;
   font-size: 1.6em;
 }
+
+.form-check .form-check-label {
+  font-size: 1.6em;
+}

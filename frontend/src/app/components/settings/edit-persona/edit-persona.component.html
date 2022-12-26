@@ -159,22 +159,65 @@
           </div>
 
           <!--FOTO DE PERFIL-->
-          <div class="form-floating mb-3">
+          <div class="form-check">
             <input
-              [(ngModel)]="Persona.foto_perfil_url"
-              type="file"
-              id="foto_perfil_url"
-              name="foto_perfil_url"
-              class="form-control"
-              placeholder="Foto de perfil"
-              required
-              autofocus
-              (change)="uploadImage($event)"
-              accept=".jpg, .jpef, .png"
+              [(ngModel)]="selected"
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="exampleRadios1"
+              value="option1"
+              checked
             />
-            <label for="name">Foto de perfil</label>
-          </div>
+            <label class="form-check-label" for="exampleRadios1">
+              <i class="fa-solid fa-computer"></i>
+              Traer desde el dispositivo
+            </label>
 
+            <div class="form-floating mb-3" [hidden]="selected == 'option2'">
+              <input
+                [(ngModel)]="Persona.foto_perfil_url"
+                type="file"
+                id="foto_perfil_url"
+                name="foto_perfil_url"
+                class="form-control"
+                placeholder="Foto de perfil"
+                required
+                autofocus
+                (change)="uploadImage($event)"
+                accept=".jpg, .jpef, .png"
+              />
+              <label for="name">Foto de perfil</label>
+            </div>
+          </div>
+          <div class="form-check">
+            <input
+              [(ngModel)]="selected"
+              class="form-check-input"
+              type="radio"
+              name="exampleRadios"
+              id="exampleRadios2"
+              value="option2"
+            />
+            <label class="form-check-label" for="exampleRadios2">
+              <i class="fa-solid fa-link"></i>
+              Buscar por URL
+            </label>
+            <div class="form-floating mb-3" [hidden]="selected == 'option1'">
+              <input
+                [(ngModel)]="Persona.foto_perfil_url"
+                type="text"
+                id="foto_perfil_url"
+                name="foto_perfil_url"
+                class="form-control"
+                placeholder="Foto de perfil"
+                required
+                autofocus
+              /><label for="name">Foto de perfil</label>
+            </div>
+          </div>
+          {{ selected }}
+          <!--
           <div class="imagen">
             <img
               class="profile-img-card"
@@ -193,6 +236,7 @@
               width="20"
             />
           </div>
+          -->
 
           <!-- Submit Button-->
           <div *ngIf="!IsLoadding; else ButtonLoadding">

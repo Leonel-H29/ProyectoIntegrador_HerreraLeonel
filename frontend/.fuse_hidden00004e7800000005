@@ -1,0 +1,124 @@
+[debug] [2022-12-25T23:40:49.000Z] ----------------------------------------------------------------------
+[debug] [2022-12-25T23:40:49.003Z] Command:       /home/leonel/.nvm/versions/node/v18.8.0/bin/node /home/leonel/.nvm/versions/node/v18.8.0/bin/firebase deploy
+[debug] [2022-12-25T23:40:49.003Z] CLI Version:   11.15.0
+[debug] [2022-12-25T23:40:49.003Z] Platform:      linux
+[debug] [2022-12-25T23:40:49.004Z] Node Version:  v18.8.0
+[debug] [2022-12-25T23:40:49.004Z] Time:          Sun Dec 25 2022 20:40:49 GMT-0300 (hora estándar de Argentina)
+[debug] [2022-12-25T23:40:49.004Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-25T23:40:49.079Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-25T23:40:49.079Z] > authorizing via signed-in user (leonelherreradkno@gmail.com)
+[debug] [2022-12-25T23:40:49.080Z] [iam] checking project portafolio-argentina-programa for permissions ["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2022-12-25T23:40:49.082Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions [none]
+[debug] [2022-12-25T23:40:49.082Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions x-goog-quota-user=projects/portafolio-argentina-programa
+[debug] [2022-12-25T23:40:49.082Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-12-25T23:40:50.050Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions 200
+[debug] [2022-12-25T23:40:50.051Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-12-25T23:40:50.052Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portafolio-argentina-programa [none]
+[debug] [2022-12-25T23:41:53.167Z] ----------------------------------------------------------------------
+[debug] [2022-12-25T23:41:53.169Z] Command:       /home/leonel/.nvm/versions/node/v18.8.0/bin/node /home/leonel/.nvm/versions/node/v18.8.0/bin/firebase deploy
+[debug] [2022-12-25T23:41:53.169Z] CLI Version:   11.15.0
+[debug] [2022-12-25T23:41:53.170Z] Platform:      linux
+[debug] [2022-12-25T23:41:53.170Z] Node Version:  v18.8.0
+[debug] [2022-12-25T23:41:53.170Z] Time:          Sun Dec 25 2022 20:41:53 GMT-0300 (hora estándar de Argentina)
+[debug] [2022-12-25T23:41:53.170Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-12-25T23:41:53.247Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-12-25T23:41:53.247Z] > authorizing via signed-in user (leonelherreradkno@gmail.com)
+[debug] [2022-12-25T23:41:53.247Z] [iam] checking project portafolio-argentina-programa for permissions ["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]
+[debug] [2022-12-25T23:41:53.250Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions [none]
+[debug] [2022-12-25T23:41:53.250Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions x-goog-quota-user=projects/portafolio-argentina-programa
+[debug] [2022-12-25T23:41:53.250Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-12-25T23:41:54.214Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions 200
+[debug] [2022-12-25T23:41:54.214Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portafolio-argentina-programa:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update","firebaserules.releases.create","firebaserules.releases.update","firebaserules.rulesets.create"]}
+[debug] [2022-12-25T23:41:54.216Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portafolio-argentina-programa [none]
+[debug] [2022-12-25T23:41:54.630Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portafolio-argentina-programa 200
+[debug] [2022-12-25T23:41:54.631Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portafolio-argentina-programa {"projectId":"portafolio-argentina-programa","projectNumber":"405511686423","displayName":"Portafolio Argentina Programa","name":"projects/portafolio-argentina-programa","resources":{"hostingSite":"portafolio-argentina-programa","storageBucket":"portafolio-argentina-programa.appspot.com","locationId":"southamerica-east1"},"state":"ACTIVE","etag":"1_0c214991-bdef-4ede-8864-9fd7a23a4c63"}
+[info] 
+[info] === Deploying to 'portafolio-argentina-programa'...
+[info] 
+[info] i  deploying storage, hosting 
+[debug] [2022-12-25T23:41:54.634Z] >>> [apiv2][query] GET https://appengine.googleapis.com/v1/apps/portafolio-argentina-programa [none]
+[debug] [2022-12-25T23:41:55.147Z] <<< [apiv2][status] GET https://appengine.googleapis.com/v1/apps/portafolio-argentina-programa 200
+[debug] [2022-12-25T23:41:55.147Z] <<< [apiv2][body] GET https://appengine.googleapis.com/v1/apps/portafolio-argentina-programa {"name":"apps/portafolio-argentina-programa","id":"portafolio-argentina-programa","authDomain":"gmail.com","locationId":"southamerica-east1","codeBucket":"staging.portafolio-argentina-programa.appspot.com","servingStatus":"SERVING","defaultHostname":"portafolio-argentina-programa.rj.r.appspot.com","defaultBucket":"portafolio-argentina-programa.appspot.com","serviceAccount":"portafolio-argentina-programa@appspot.gserviceaccount.com","gcrDomain":"us.gcr.io","databaseType":"CLOUD_DATASTORE_COMPATIBILITY","featureSettings":{"splitHealthChecks":true,"useContainerOptimizedOs":true}}
+[info] i  firebase.storage: checking storage.rules for compilation errors... 
+[debug] [2022-12-25T23:41:55.150Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa:test [none]
+[debug] [2022-12-25T23:41:55.150Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa:test [omitted]
+[debug] [2022-12-25T23:41:56.206Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa:test 200
+[debug] [2022-12-25T23:41:56.206Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa:test {}
+[info] ✔  firebase.storage: rules file storage.rules compiled successfully 
+[debug] [2022-12-25T23:41:56.210Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions [none]
+[debug] [2022-12-25T23:41:56.210Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-12-25T23:41:57.578Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions 200
+[debug] [2022-12-25T23:41:57.578Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions {"name":"projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2022-12-25T23:41:57.581Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases pageSize=10&pageToken=
+[debug] [2022-12-25T23:41:58.472Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases 200
+[debug] [2022-12-25T23:41:58.472Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases {"releases":[{"name":"projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com","rulesetName":"projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793","createTime":"2022-10-15T16:52:15.208691Z","updateTime":"2022-12-25T23:31:07.468313Z"}]}
+[debug] [2022-12-25T23:41:58.473Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793 [none]
+[debug] [2022-12-25T23:41:59.359Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793 200
+[debug] [2022-12-25T23:41:59.359Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793 [omitted]
+[info] i  storage: latest version of storage.rules already up to date, skipping upload... 
+[info] i  hosting[portafolio-argentina-programa]: beginning deploy... 
+[info] i  hosting[portafolio-argentina-programa]: found 12 files in dist/frontend 
+[debug] [2022-12-25T23:41:59.381Z] [hosting] uploading with 200 concurrency
+[debug] [2022-12-25T23:41:59.459Z] [hosting] hash cache [ZGlzdC9mcm9udGVuZA] stored for 12 files
+[debug] [2022-12-25T23:41:59.459Z] [hosting][hash queue][FINAL] {"max":70,"min":26,"avg":36.166666666666664,"active":0,"complete":12,"success":12,"errored":0,"retried":0,"total":12,"elapsed":74}
+[debug] [2022-12-25T23:41:59.459Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7:populateFiles [none]
+[debug] [2022-12-25T23:41:59.460Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7:populateFiles {"files":{"/favicon.ico":"5ba04cf43d3c8c026bd5edd43046db96acb28b5686d99ea7d7e148feabfffc8f","/3rdpartylicenses.txt":"4ae36ad7a6526a1c27c636f0590bdab6b1465fcff753099de257be4fc35496d6","/runtime.89bfad0fe920d2c9.js":"20fbd5cb2d4a2635a1bf7f060eea344dcbc6f44b3860a30028eed2f5bbe473b2","/scripts.b3ebcd7942ffa7ab.js":"3f450617867d09cda1b262514b3a986888ce092ced46127ab2f30ff8ea3e9a3e","/index.html":"e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590","/assets/resourses/img/APLogo.png":"150e81d9994db933a19222a751fefbb559421b7225510c14e2301be3a43fdfe8","/polyfills.7445b0344a852da7.js":"0e82a33707223bad3b731d67ecc7ef28856b8582aa8476d115c797a4141cda24","/assets/resourses/img/perfil.png":"54300d45701441e058b98dbfa293adc4e528b0d154ac9bd2c10796539a273cf4","/assets/resourses/img/perfil.jpg":"5058a1b6413cf4b0c441ba5c85ab79b34edfffce03a2020bab2248e34438b450","/assets/resourses/img/APLogoICO.ico":"ce587ae6694b249e63ae9215a89e8feb604dec76a054a9a93fe07c0921aa0d22","/styles.8a2de3cfb1d4bb50.css":"4f4a752e7403e04745749b30e2fee9bdaf786813f1181940b9ddcf3ce07e2d0b","/main.f780cd52c98b73be.js":"da34161a4d634dba20c3ace8a6085908aeb8ce0445231505fbfbc47d240ecf2c"}}
+[debug] [2022-12-25T23:42:00.584Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7:populateFiles 200
+[debug] [2022-12-25T23:42:00.584Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7:populateFiles {"uploadRequiredHashes":["e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7/files"}
+[debug] [2022-12-25T23:42:00.585Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7/files/e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590 [none]
+[debug] [2022-12-25T23:42:00.585Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7/files/e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590 [stream]
+[debug] [2022-12-25T23:42:00.587Z] [hosting][populate queue][FINAL] {"max":1128,"min":1128,"avg":1128,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1130}
+[debug] [2022-12-25T23:42:00.587Z] [hosting] uploads queued: 1
+[debug] [2022-12-25T23:42:02.545Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7/files/e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590 200
+[debug] [2022-12-25T23:42:02.545Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7/files/e40623f2080cc0077618c075f603df1420130e3236136b79c565c0013a695590 [stream]
+[debug] [2022-12-25T23:42:02.546Z] [hosting][upload queue][FINAL] {"max":1962,"min":1962,"avg":1962,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1962}
+[info] ✔  hosting[portafolio-argentina-programa]: file upload complete 
+[debug] [2022-12-25T23:42:02.547Z] [hosting] deploy completed after 3181ms
+[debug] [2022-12-25T23:42:02.552Z] [rules] releasing firebase.storage/portafolio-argentina-programa.appspot.com with ruleset projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793
+[debug] [2022-12-25T23:42:02.552Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com [none]
+[debug] [2022-12-25T23:42:02.552Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com {"release":{"name":"projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com","rulesetName":"projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793"}}
+[debug] [2022-12-25T23:42:03.502Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com 200
+[debug] [2022-12-25T23:42:03.502Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com {"name":"projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com","rulesetName":"projects/portafolio-argentina-programa/rulesets/3145618a-4aa8-466d-a37b-f0d64aab4793","createTime":"2022-10-15T16:52:15.208691Z","updateTime":"2022-12-25T23:42:03.337300Z"}
+[debug] [2022-12-25T23:42:03.502Z] [rules] updated release projects/portafolio-argentina-programa/releases/firebase.storage/portafolio-argentina-programa.appspot.com
+[info] ✔  storage: released rules storage.rules to firebase.storage 
+[debug] [2022-12-25T23:42:03.503Z] [
+  {
+    "config": {
+      "public": "dist/frontend",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "portafolio-argentina-programa"
+    },
+    "version": "projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7"
+  }
+]
+[info] i  hosting[portafolio-argentina-programa]: finalizing version... 
+[debug] [2022-12-25T23:42:03.507Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7 updateMask=status%2Cconfig
+[debug] [2022-12-25T23:42:03.507Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2022-12-25T23:42:04.623Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7 200
+[debug] [2022-12-25T23:42:04.623Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7 {"name":"projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2022-12-25T23:41:57.135191Z","createUser":{"email":"leonelherreradkno@gmail.com"},"finalizeTime":"2022-12-25T23:42:04.445393Z","finalizeUser":{"email":"leonelherreradkno@gmail.com"}}
+[debug] [2022-12-25T23:42:04.624Z] [hosting] finalized version for portafolio-argentina-programa:[object Object]
+[info] ✔  hosting[portafolio-argentina-programa]: version finalized 
+[info] i  hosting[portafolio-argentina-programa]: releasing new version... 
+[debug] [2022-12-25T23:42:04.625Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/channels/live/releases versionName=projects%2F405511686423%2Fsites%2Fportafolio-argentina-programa%2Fversions%2Fbe5041ab749d7cc7
+[debug] [2022-12-25T23:42:04.625Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/channels/live/releases {}
+[debug] [2022-12-25T23:42:05.767Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/channels/live/releases 200
+[debug] [2022-12-25T23:42:05.767Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portafolio-argentina-programa/channels/live/releases {"name":"projects/405511686423/sites/portafolio-argentina-programa/channels/live/releases/1672011725008053","version":{"name":"projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2022-12-25T23:41:57.135191Z","createUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"},"finalizeTime":"2022-12-25T23:42:04.445393Z","finalizeUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"}},"type":"DEPLOY","releaseTime":"2022-12-25T23:42:05.008053289Z","releaseUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"}}
+[debug] [2022-12-25T23:42:05.767Z] [hosting] release: {"name":"projects/405511686423/sites/portafolio-argentina-programa/channels/live/releases/1672011725008053","version":{"name":"projects/405511686423/sites/portafolio-argentina-programa/versions/be5041ab749d7cc7","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2022-12-25T23:41:57.135191Z","createUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"},"finalizeTime":"2022-12-25T23:42:04.445393Z","finalizeUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"}},"type":"DEPLOY","releaseTime":"2022-12-25T23:42:05.008053289Z","releaseUser":{"email":"leonelherreradkno@gmail.com","imageUrl":"https://lh3.googleusercontent.com/a/AEdFTp7HlHSrdTOTwAut1dIkysH0EANqFOI_74pnO6OgaA"}}
+[info] ✔  hosting[portafolio-argentina-programa]: release complete 
+[info] 
+[info] ✔  Deploy complete! 
+[info] 
+[info] Project Console: https://console.firebase.google.com/project/portafolio-argentina-programa/overview
+[info] Hosting URL: https://portafolio-argentina-programa.web.app
