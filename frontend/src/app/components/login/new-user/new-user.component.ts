@@ -39,6 +39,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
   showPassword = false;
   typeInputPass = 'password';
   IsLoadding = false;
+  selected: string = 'option1';
 
   constructor(
     private authService: AuthService,
@@ -93,6 +94,8 @@ export class NewUserComponent implements OnInit, AfterViewInit {
 
   SavePersona(user: NewUser) {
     if (user != null) {
+      if (this.selected == 'option1')
+        this.foto_perfil_url = this.imgService.url;
       const NPersona = new persona(
         this.nombre,
         this.apellido,
@@ -102,8 +105,8 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         this.codigo_postal,
         this.fecha_nacimiento,
         this.telefono,
-        //this.foto_perfil_url,
-        this.imgService.url,
+        this.foto_perfil_url,
+        //this.imgService.url,
         user
       );
       console.log('Usuario a cargar: ', NPersona);

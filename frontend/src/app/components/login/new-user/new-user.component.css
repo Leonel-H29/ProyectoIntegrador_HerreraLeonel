@@ -48,3 +48,8 @@ h6 {
   background: #1abc9c;
   /*box-shadow: 0em 0.1em 0.1em black;*/
 }
+
+.form-check .form-check-label {
+  font-size: 1.6em;
+  color: #1abc9c;
+}
