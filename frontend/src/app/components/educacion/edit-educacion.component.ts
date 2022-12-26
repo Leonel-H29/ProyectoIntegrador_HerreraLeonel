@@ -11,12 +11,15 @@ import {
   ChangeDetectorRef,
 } from '@angular/core';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-educacion',
   templateUrl: './edit-educacion.component.html',
   styleUrls: ['./edit-educacion.component.css'],
 })
 export class EditEducacionComponent implements OnInit, AfterViewInit {
+  idPersonaLogged: number = this.activatedRouter.snapshot.params['idper'];
+  idEducacionEdit: number = this.activatedRouter.snapshot.params['idedu'];
   educacion: Educacion = null;
   Persona: persona = new persona(
     '',
@@ -56,21 +59,23 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
   }
 
   getEducacion(): void {
-    const id = this.activatedRouter.snapshot.params['idedu'];
-
-    this.educServ.GetEducacion(id).subscribe(
+    this.educServ.GetEducacion(this.idEducacionEdit).subscribe(
       (data) => {
         this.educacion = data;
         this.educacion.persona = this.Persona;
         if (this.educacion.persona.apellido.length == 0) {
           window.location.reload();
         }
-
-        console.log('educacion: ', this.educacion);
+        //console.log('educacion: ', this.educacion);
       },
       (err) => {
-        console.log('educacion: ', null);
-        alert('Error al modificar el registro');
+        //console.log('educacion: ', null);
+        //alert('Error al modificar el registro');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al inicio',
+          'error'
+        );
         console.log('Error: ', err);
         this.router.navigate(['']);
       }
@@ -79,39 +84,48 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     this.IsLoadding = true;
-    const id = this.activatedRouter.snapshot.params['idedu'];
-    this.educServ.UpdateEducacion(id, this.educacion).subscribe(
-      (data) => {
-        alert('Registro modificado');
-        this.router.navigate([
-          'perfil/' + this.activatedRouter.snapshot.params['idper'],
-        ]);
-      },
-      (err) => {
-        this.IsLoadding = false;
-        const ruta =
-          'editedu/' + this.activatedRouter.snapshot.params['idper'] + '/' + id;
-        alert('Error al modificar el registro');
-        this.router.navigate([ruta]);
-      }
-    );
+    this.educServ
+      .UpdateEducacion(this.idEducacionEdit, this.educacion)
+      .subscribe(
+        (data) => {
+          //alert('Registro modificado');
+          Swal.fire('Registro modificado', 'Press Ok', 'success');
+          this.router.navigate(['perfil/' + this.idPersonaLogged]);
+        },
+        (err) => {
+          this.IsLoadding = false;
+          const ruta =
+            'editedu/' + this.idPersonaLogged + '/' + this.idEducacionEdit;
+          //alert('Error al modificar el registro');
+          Swal.fire(
+            'Error al modificar el registro',
+            'Vuelva a intentarlo',
+            'error'
+          );
+          this.router.navigate([ruta]);
+        }
+      );
   }
 
   getPersona(): void {
-    const idPersonaLogged = this.activatedRouter.snapshot.params['idper'];
-
-    this.persService.getPersona(idPersonaLogged).subscribe(
+    this.persService.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.Persona = data;
         //console.log(this.educacion);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+        //alert('No se pudo encontrar a la persona');
         //this.router.navigate(['']);
       }
     );
     this.persService
-      .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
+      .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
     /*
     console.log(

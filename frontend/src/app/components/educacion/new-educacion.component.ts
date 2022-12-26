@@ -12,6 +12,7 @@ import { PersonaService } from 'src/app/service/persona.service';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-educacion',
@@ -19,6 +20,7 @@ import { NewUser } from 'src/app/model/new-user';
   styleUrls: ['./new-educacion.component.css'],
 })
 export class NewEducacionComponent implements OnInit, AfterViewInit {
+  idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
   NNombreInst: string = '';
   NFechaInicio: Date = new Date();
   NFechaFin: Date = new Date();
@@ -78,37 +80,41 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
     );
     this.EduServ.SaveEducacion(educ).subscribe(
       (data) => {
-        alert('Educacion añadida');
-        this.router.navigate([
-          'perfil/' + this.activatedRouter.snapshot.params['id'],
-        ]);
+        //alert('Educacion añadida');
+        Swal.fire('Educacion añadida', 'Press Ok', 'success');
+        this.router.navigate(['perfil/' + this.idPersonaLogged]);
       },
       (err) => {
         this.IsLoadding = false;
-        alert('Fallo la operacion');
+        //alert('Fallo la operacion');
         console.log(err);
-        this.router.navigate([
-          'createedu/' + this.activatedRouter.snapshot.params['id'],
-        ]);
+        Swal.fire('Fallo la operacion', 'Vuelva a intentarlo', 'error');
+        this.router.navigate(['createedu/' + this.idPersonaLogged]);
         //this.router.navigate(['']);
       }
     );
   }
 
   getPersona(): void {
-    const id = this.activatedRouter.snapshot.params['id'];
-    this.PersServ.getPersona(id).subscribe(
+    this.PersServ.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.NPersona = data;
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
-    this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
-      (data) => (this.hasPermission = data)
-    );
+    this.PersServ.hasPermissions(
+      this.idPersonaLogged,
+      this.tokenService.getUsername()
+    ).subscribe((data) => (this.hasPermission = data));
     /*
     console.log(
       'Educacion: isLogged - ',

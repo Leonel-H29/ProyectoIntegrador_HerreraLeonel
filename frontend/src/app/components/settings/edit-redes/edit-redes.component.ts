@@ -12,6 +12,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { PersonaService } from 'src/app/service/persona.service';
 import { RedesService } from 'src/app/service/redes.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-redes',
@@ -77,24 +78,25 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
     this.redService.ListaRedesByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.RedesUser = data;
-        //this.expLab = data;
-        //this.expLab.persona = this.Persona;
-        console.log('Redes: ', this.RedesUser);
-
         this.dataFacebook();
         this.dataInstagram();
         this.dataTwitter();
         this.dataLinkedin();
         this.dataGitHub();
 
-        console.log('Redes: ', this.DataFacebook);
-        console.log('Redes: ', this.DataInstagram);
-        console.log('Redes: ', this.DataTwitter);
-        console.log('Redes: ', this.DataLinkedin);
-        console.log('Redes: ', this.DataGithub);
+        //console.log('Redes: ', this.DataFacebook);
+        //console.log('Redes: ', this.DataInstagram);
+        //console.log('Redes: ', this.DataTwitter);
+        //console.log('Redes: ', this.DataLinkedin);
+        //console.log('Redes: ', this.DataGithub);
       },
       (err) => {
-        alert('Error al modificar el registro');
+        //alert('Error al modificar el registro');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al inicio',
+          'error'
+        );
         console.log('Error: ', err);
         this.router.navigate(['']);
       }
@@ -137,11 +139,12 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
       this.saveRed(this.DataLinkedin);
       this.saveRed(this.DataGithub);
       //alert('Registros modificados');
-      this.router.navigate(['perfil/' + this.idPersonaLogged]);
+      //this.router.navigate(['perfil/' + this.idPersonaLogged]);
     } catch (ex) {
       this.IsLoadding = false;
       console.log(ex);
     }
+    this.router.navigate(['perfil/' + this.idPersonaLogged]);
   }
 
   saveRed(red: Redes) {
@@ -149,27 +152,43 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
     this.redService.UpdateRed(red.idred, redUpdate).subscribe(
       (data) => {
         console.log('Red actualizada');
-        alert('Registro modificado');
+        //alert('Registro modificado');
         //this.router.navigate(['perfil/' + this.idPersonaLogged]);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: red.red + ' actualizada',
+          showConfirmButton: false,
+          timer: 1500,
+        });
       },
       (err) => {
-        alert('Error al modificar el registro');
+        //alert('Error al modificar el registro');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: red.red,
+          showConfirmButton: false,
+          timer: 1500,
+        });
         const ruta = 'editredes/' + this.idPersonaLogged;
         this.router.navigate([ruta]);
       }
     );
-    //this.IsLoadding = false;
   }
 
   getPersona(): void {
     this.persService.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        //this.expLab.persona = data;
         this.Persona = data;
-        //console.log(this.project);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al perfil',
+          'error'
+        );
+        //alert('No se pudo encontrar a la persona');
         this.router.navigate(['/perfil/' + this.idPersonaLogged]);
         //this.router.navigate(['']);
       }
