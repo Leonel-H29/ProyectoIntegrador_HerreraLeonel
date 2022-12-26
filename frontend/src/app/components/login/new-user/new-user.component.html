@@ -273,7 +273,7 @@
               <i class="fa-solid fa-computer"></i>
               Traer desde el dispositivo
             </label>
-            <div class="form-floating mb-3">
+            <div class="form-floating mb-3" [hidden]="selected == 'option2'">
               <input
                 [(ngModel)]="foto_perfil_url"
                 type="file"
