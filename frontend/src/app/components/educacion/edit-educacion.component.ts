@@ -115,7 +115,7 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
       },
       (err) => {
         Swal.fire(
-          'Error al modificar el registro',
+          'No se pudo encontrar a la persona',
           'Volver al perfil',
           'error'
         );

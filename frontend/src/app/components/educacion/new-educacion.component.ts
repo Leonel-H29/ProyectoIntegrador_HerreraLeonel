@@ -104,7 +104,7 @@ export class NewEducacionComponent implements OnInit, AfterViewInit {
       (err) => {
         //alert('No se pudo encontrar a la persona');
         Swal.fire(
-          'Error al modificar el registro',
+          'No se pudo encontrar a la persona',
           'Volver al perfil',
           'error'
         );

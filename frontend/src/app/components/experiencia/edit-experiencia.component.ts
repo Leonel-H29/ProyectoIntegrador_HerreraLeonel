@@ -13,12 +13,15 @@ import { ExperiencialabService } from 'src/app/service/experiencialab.service';
 import { TipoEmpleoService } from 'src/app/service/tipo-empleo.service';
 import { NewUser } from 'src/app/model/new-user';
 import { persona } from './../../model/persona.model';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-experiencia',
   templateUrl: './edit-experiencia.component.html',
   styleUrls: ['./edit-experiencia.component.css'],
 })
 export class EditExperienciaComponent implements OnInit, AfterViewInit {
+  idPersonaLogged: number = this.activatedRouter.snapshot.params['idper'];
+  idExperienciaEdit: number = this.activatedRouter.snapshot.params['idexp'];
   expLab: Experiencialab = null;
   Persona: persona = new persona(
     '',
@@ -61,20 +64,24 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   getExperiencia(): void {
-    const id = this.activatedRouter.snapshot.params['idexp'];
     this.getTiposEmpleos();
-    this.expService.GetExperiencia(id).subscribe(
+    this.expService.GetExperiencia(this.idExperienciaEdit).subscribe(
       (data) => {
         this.expLab = data;
         this.expLab.persona = this.Persona;
         if (this.expLab.persona.apellido.length == 0) {
           window.location.reload();
         }
-        console.log('expLab: ', this.expLab);
+        //console.log('expLab: ', this.expLab);
       },
       (err) => {
-        console.log('expLab: ', null);
-        alert('Error al modificar el registro');
+        //console.log('expLab: ', null);
+        //alert('Error al modificar el registro');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Volver al inicio',
+          'error'
+        );
         console.log('Error: ', err);
         this.router.navigate(['']);
       }
@@ -83,45 +90,48 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     this.IsLoadding = true;
-    const id = this.activatedRouter.snapshot.params['idexp'];
-    //this.expLab.tipoEmpleo = this.selected;
-    this.expService.UpdateExperiencia(id, this.expLab).subscribe(
-      (data) => {
-        alert('Registro modificado');
-        this.router.navigate([
-          'perfil/' + this.activatedRouter.snapshot.params['idper'],
-        ]);
-      },
-      (err) => {
-        this.IsLoadding = false;
-        alert('Error al modificar el registro');
-        const ruta =
-          'editexp/' +
-          this.activatedRouter.snapshot.params['idper'] +
-          '/' +
-          this.activatedRouter.snapshot.params['idexp'];
-        this.router.navigate([ruta]);
-      }
-    );
+
+    this.expService
+      .UpdateExperiencia(this.idExperienciaEdit, this.expLab)
+      .subscribe(
+        (data) => {
+          //alert('Registro modificado');
+          Swal.fire('Registro modificado', 'Press Ok', 'success');
+          this.router.navigate(['perfil/' + this.idPersonaLogged]);
+        },
+        (err) => {
+          this.IsLoadding = false;
+          //alert('Error al modificar el registro');
+          Swal.fire(
+            'Error al modificar el registro',
+            'Vuelva a intentarlo',
+            'error'
+          );
+          const ruta =
+            'editexp/' + this.idPersonaLogged + '/' + this.idExperienciaEdit;
+          this.router.navigate([ruta]);
+        }
+      );
   }
 
   getPersona(): void {
-    const idPersonaLogged = this.activatedRouter.snapshot.params['idper'];
-
-    this.persService.getPersona(idPersonaLogged).subscribe(
+    this.persService.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
-        //this.expLab.persona = data;
         this.Persona = data;
-        //console.log(this.project);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
-        //this.router.navigate(['']);
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
 
     this.persService
-      .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
+      .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
     /*
     console.log(
@@ -136,7 +146,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   getTiposEmpleos(): void {
     this.TipoEmpServ.ListaTipoEmpleo().subscribe((data) => {
       this.ListaTiposEmpleos = data;
-      console.log('Tipo de empleos: ', this.ListaTiposEmpleos);
+      //console.log('Tipo de empleos: ', this.ListaTiposEmpleos);
     });
   }
 }
