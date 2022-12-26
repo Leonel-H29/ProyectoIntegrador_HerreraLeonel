@@ -5,6 +5,7 @@ import { TokenService } from 'src/app/service/token.service';
 import { Router } from '@angular/router';
 import { debounce, debounceTime, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   constructor(
     public personaService: PersonaService,
     private tokenService: TokenService,
-    private router: Router
+    private router: Router,
+    private imgServ: ImageService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +42,9 @@ export class HomeComponent implements OnInit {
       (data) => {
         this.listPersona = data;
         console.log(this.listPersona);
+        this.listPersona.forEach((per) => {
+          per.foto_perfil_url = this.imgServ.fetchImage(per.foto_perfil_url);
+        });
       },
       (err) => {
         //this.listPersona = [];
