@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-retrieve-pass',
@@ -48,16 +49,13 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
           this.dataUser.correo = data.correo;
           this.dataUser.password = data.password;
           this.dataUser.authorities = data.authorities;
-          //console.log(this.idUsuario);
-          //console.log(data);
-          console.log(this.dataUser);
+          //console.log(this.dataUser);
         }
       },
       (err) => {
         console.log('No se ha encontrado por username');
       }
     );
-
     if (this.encontrado == false) {
       this.authService.getByCorreo(this.User).subscribe(
         (data) => {
@@ -68,9 +66,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
             this.dataUser.correo = data.correo;
             this.dataUser.password = data.password;
             this.dataUser.authorities = data.authorities;
-            //console.log(this.idUsuario);
-            //console.log(data);
-            console.log(this.dataUser);
+            //console.log(this.dataUser);
           }
         },
         (err) => {
@@ -84,21 +80,35 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
   changePassword() {
     this.IsLoadding = true;
     if (this.password == '' || this.confirm_password == '') {
-      alert('Las contraseñas no pueden ser vacias');
+      //alert('Las contraseñas no pueden ser vacias');
+      Swal.fire(
+        'Error al modificar el registro',
+        'Las contraseñas no pueden ser vacias',
+        'error'
+      );
+      this.IsLoadding = false;
     } else if (this.password != this.confirm_password) {
-      alert('Las contraseñas deben coincidir');
+      //alert('Las contraseñas deben coincidir');
+      Swal.fire(
+        'Error al modificar el registro',
+        'Las contraseñas deben coincidir',
+        'error'
+      );
+      this.IsLoadding = false;
     } else {
       this.dataUser.password = this.password;
       this.authService
         .retrievePassword(this.idUsuario, this.dataUser)
         .subscribe(
           (data) => {
-            alert('Contraseña modificada');
+            Swal.fire('Contraseña modificada', 'Press Ok', 'success');
+            //alert('Contraseña modificada');
             this.router.navigate(['/login']);
           },
           (err) => {
             this.IsLoadding = false;
-            alert('Error al cambiar la contraseña');
+            //alert('Error al cambiar la contraseña');
+            Swal.fire('Error al cambiar la contraseña', '', 'error');
             this.router.navigate(['/retrievepass']);
           }
         );
