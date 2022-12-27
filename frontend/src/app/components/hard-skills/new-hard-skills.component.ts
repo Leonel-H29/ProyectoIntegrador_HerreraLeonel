@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-hard-skills',
@@ -18,6 +19,7 @@ import { NewUser } from 'src/app/model/new-user';
   styleUrls: ['./new-hard-skills.component.css'],
 })
 export class NewHardSkillsComponent implements OnInit, AfterViewInit {
+  idPersonaLogged: number = this.activatedRouter.snapshot.params['id'];
   Nskill: string = '';
   Nporcentaje: number = 0;
   NPersona: persona = new persona(
@@ -60,37 +62,41 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
     const skill = new HardSkills(this.Nskill, this.Nporcentaje, this.NPersona);
     this.HsService.SaveHardSkills(skill).subscribe(
       (data) => {
-        alert('Hard Skill añadida');
+        //alert('Hard Skill añadida');
+        Swal.fire('Hard Skill añadida', 'Press Ok', 'success');
         console.log(data);
-        this.router.navigate([
-          'perfil/' + this.activatedRouter.snapshot.params['id'],
-        ]);
+        this.router.navigate(['perfil/' + this.idPersonaLogged]);
       },
       (err) => {
         this.IsLoadding = false;
-        alert('Fallo la operacion');
+        //alert('Fallo la operacion');
         console.log(err);
-        this.router.navigate([
-          'createhs/' + this.activatedRouter.snapshot.params['id'],
-        ]);
+        Swal.fire('Fallo la operacion', 'Vuelva a intentarlo', 'error');
+        this.router.navigate(['createhs/' + this.idPersonaLogged]);
       }
     );
   }
 
   getPersona(): void {
-    const id = this.activatedRouter.snapshot.params['id'];
-    this.PersServ.getPersona(id).subscribe(
+    this.PersServ.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.NPersona = data;
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
-    this.PersServ.hasPermissions(id, this.tokenService.getUsername()).subscribe(
-      (data) => (this.hasPermission = data)
-    );
+    this.PersServ.hasPermissions(
+      this.idPersonaLogged,
+      this.tokenService.getUsername()
+    ).subscribe((data) => (this.hasPermission = data));
     /*
     console.log(
       'Hard Skill: isLogged - ',
