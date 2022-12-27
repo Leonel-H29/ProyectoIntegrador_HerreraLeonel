@@ -10,6 +10,7 @@ import { persona } from 'src/app/model/persona.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { PersonaService } from 'src/app/service/persona.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-delete-user',
@@ -60,7 +61,13 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
     this.persService
@@ -73,21 +80,34 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
       this.IsLoadding = true;
       this.authService.getByPersona(id).subscribe(
         (data) => {
-          console.log('ID usuario: ', data.idusuario);
+          //console.log('ID usuario: ', data.idusuario);
           this.authService.deleteUser(data.idusuario).subscribe(
             (data) => {
-              alert('Se elimino su cuenta');
+              //alert('Se elimino su cuenta');
+              Swal.fire('Se elimino su cuenta', 'Press Ok', 'success');
               this.router.navigate(['/login']);
             },
             (err) => {
               this.IsLoadding = false;
-              alert('No se ha podido eliminar la operacion');
+              //alert('No se ha podido eliminar la operacion');
+              Swal.fire(
+                'No se ha podido eliminar la operacion',
+                'Volver al perfil',
+                'error'
+              );
+              this.router.navigate(['/perfil/' + this.idPersonaLogged]);
             }
           );
         },
         (err) => {
           this.IsLoadding = false;
-          alert('No se ha podido encontrar el usuario');
+          //alert('No se ha podido encontrar el usuario');
+          Swal.fire(
+            'No se ha podido encontrar el usuario',
+            'Volver al perfil',
+            'error'
+          );
+          this.router.navigate(['/perfil/' + this.idPersonaLogged]);
         }
       );
     }
