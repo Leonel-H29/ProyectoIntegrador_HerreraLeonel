@@ -12,6 +12,7 @@ import { persona } from 'src/app/model/persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TokenService } from 'src/app/service/token.service';
 import * as CryptoJS from 'crypto-js';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-user',
@@ -73,12 +74,22 @@ export class EditUserComponent implements OnInit, AfterViewInit {
   onUpdate() {
     this.IsLoadding = true;
     if (this.NuevoUsuario.correo != this.confirm_correo) {
-      alert('Los correos deben coincidir');
+      //alert('Los correos deben coincidir');
+      Swal.fire(
+        'Error al modificar el registro',
+        'Los correos deben coincidir',
+        'error'
+      );
       this.IsLoadding = false;
       this.router.navigate(['/editaccount/' + this.idPersonaLogged]);
     } else if (this.password != this.confirm_password) {
       this.IsLoadding = false;
-      alert('Las contraseñas deben coincidir');
+      //alert('Las contraseñas deben coincidir');
+      Swal.fire(
+        'Error al modificar el registro',
+        'Las contraseñas deben coincidir',
+        'error'
+      );
       this.router.navigate(['/editaccount' + this.idPersonaLogged]);
     } else {
       /*Se crea primero la cuenta de usuario*/
@@ -93,13 +104,19 @@ export class EditUserComponent implements OnInit, AfterViewInit {
     changeUser.password = this.password;
     this.authService.editUser(this.idusuario, changeUser).subscribe(
       (data) => {
-        console.log('Usuario Actualizado: ', data);
-        alert('Usuario Actualizado - Inicio Sesion nuevamente');
+        //console.log('Usuario Actualizado: ', data);
+        //alert('Usuario Actualizado - Inicio Sesion nuevamente');
+        Swal.fire('Usuario Actualizado', 'Press Ok', 'success');
         this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       },
       (err) => {
         this.IsLoadding = false;
-        alert('Fallo la operacion en Usuario');
+        Swal.fire(
+          'Fallo la operacion en Usuario',
+          'Vuelva a intentarlo',
+          'error'
+        );
+        //alert('Fallo la operacion en Usuario');
         console.log(err);
       }
     );
@@ -112,7 +129,12 @@ export class EditUserComponent implements OnInit, AfterViewInit {
         this.NuevoUsuario = data;
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al perfil',
+          'error'
+        );
         this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
