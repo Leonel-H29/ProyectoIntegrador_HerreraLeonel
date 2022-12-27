@@ -61,13 +61,18 @@ export class NewUserComponent implements OnInit, AfterViewInit {
     this.IsLoadding = true;
     if (this.correo != this.confirm_correo) {
       //alert('Los correos deben coincidir');
-      Swal.fire('Los correos deben coincidir', 'Vuelva a intentarlo', 'error');
+      Swal.fire(
+        'Error al modificar el registro',
+        'Los correos deben coincidir',
+        'error'
+      );
       this.router.navigate(['/createaccount']);
     } else if (this.password != this.confirm_password) {
       //alert('Las contraseñas deben coincidir');
+
       Swal.fire(
+        'Error al modificar el registro',
         'Las contraseñas deben coincidir',
-        'Vuelva a intentarlo',
         'error'
       );
       this.router.navigate(['/createaccount']);
