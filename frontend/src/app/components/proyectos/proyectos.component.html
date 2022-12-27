@@ -25,26 +25,6 @@
     <br />
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4 mb-5" *ngFor="let proyectos of proy">
-        <!--
-        <div
-          class="portfolio-item mx-auto"
-          data-bs-toggle="modal"
-          data-bs-target="#portfolioModal1"
-        >
-          <div
-            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100"
-          >
-            <div class="portfolio-item-caption-content text-center text-white">
-              <i class="fas fa-plus fa-3x"></i>
-            </div>
-          </div>
-          <img
-            class="img-fluid"
-            src="http://naiarafernandez.com/wp-content/uploads/2015/10/que-debo-tener-en-cuenta-para-planificar-un-proyecto-web.png"
-            alt="..."
-          />
-        </div>
-      -->
         <div class="col">
           <div class="card">
             <img
@@ -53,7 +33,7 @@
               alt="..."
             />
             <div class="card-body">
-              <h4 class="card-title">{{ proyectos.nombre }}</h4>
+              <h4 class="card-title">{{ proyectos.nombre | uppercase }}</h4>
               <br />
               <br />
               <div class="d-grid gap-2 col-6 mx-auto">
