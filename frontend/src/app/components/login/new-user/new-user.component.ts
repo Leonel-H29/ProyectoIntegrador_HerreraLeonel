@@ -10,6 +10,7 @@ import { PersonaService } from 'src/app/service/persona.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { persona } from 'src/app/model/persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-user',
@@ -59,10 +60,16 @@ export class NewUserComponent implements OnInit, AfterViewInit {
   onCreate() {
     this.IsLoadding = true;
     if (this.correo != this.confirm_correo) {
-      alert('Los correos deben coincidir');
+      //alert('Los correos deben coincidir');
+      Swal.fire('Los correos deben coincidir', 'Vuelva a intentarlo', 'error');
       this.router.navigate(['/createaccount']);
     } else if (this.password != this.confirm_password) {
-      alert('Las contraseñas deben coincidir');
+      //alert('Las contraseñas deben coincidir');
+      Swal.fire(
+        'Las contraseñas deben coincidir',
+        'Vuelva a intentarlo',
+        'error'
+      );
       this.router.navigate(['/createaccount']);
     } else {
       /*Se crea primero la cuenta de usuario*/
@@ -75,10 +82,10 @@ export class NewUserComponent implements OnInit, AfterViewInit {
     NUser.username = this.username;
     NUser.correo = this.correo;
     NUser.password = this.password;
-    console.log('Usuario a cargar: ', NUser);
+    //console.log('Usuario a cargar: ', NUser);
     this.authService.newUser(NUser).subscribe(
       (data) => {
-        console.log('Usuario Creado: ', data);
+        //console.log('Usuario Creado: ', data);
         /*Se cargan los datos de la persona*/
         this.authService.getByUsername(NUser.username).subscribe((element) => {
           this.SavePersona(element);
@@ -86,7 +93,12 @@ export class NewUserComponent implements OnInit, AfterViewInit {
       },
       (err) => {
         this.IsLoadding = false;
-        alert('Fallo la operacion en Usuario');
+        //alert('Fallo la operacion en Usuario');
+        Swal.fire(
+          'Fallo la operacion en Usuario',
+          'Vuelva a intentarlo',
+          'error'
+        );
         console.log(err);
       }
     );
@@ -109,16 +121,22 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         //this.imgService.url,
         user
       );
-      console.log('Usuario a cargar: ', NPersona);
+      //console.log('Usuario a cargar: ', NPersona);
       this.persService.SavePersona(NPersona).subscribe(
         (data) => {
-          console.log('Persona Creada: ', data);
-          alert('Usuario Creado');
+          //console.log('Persona Creada: ', data);
+          //alert('Usuario Creado');
+          Swal.fire('Usuario Creado', 'Press Ok', 'success');
           this.router.navigate(['/login']);
         },
         (err) => {
           this.IsLoadding = false;
-          alert('Fallo la operacion en Persona');
+          Swal.fire(
+            'Fallo la operacion en Persona',
+            'Vuelva a intentarlo',
+            'error'
+          );
+          //alert('Fallo la operacion en Persona');
           console.log(err);
         }
       );

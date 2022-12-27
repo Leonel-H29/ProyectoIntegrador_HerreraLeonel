@@ -59,8 +59,7 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
   }
 
   getHardSkill(): void {
-    const id = this.activatedRouter.snapshot.params['idhs'];
-    this.hardSServ.GetHardSkills(id).subscribe(
+    this.hardSServ.GetHardSkills(this.idHSEdit).subscribe(
       (data) => {
         this.hardS = data;
         this.hardS.persona = this.Persona;
