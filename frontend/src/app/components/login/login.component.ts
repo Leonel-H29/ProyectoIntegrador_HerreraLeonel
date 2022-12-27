@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { LoginUser } from 'src/app/model/login-user';
 import { AuthService } from 'src/app/service/auth.service';
 import { TokenService } from 'src/app/service/token.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -53,8 +54,9 @@ export class LoginComponent implements OnInit {
         this.IsLogged = false;
         this.IsLoginFail = true;
         this.errorMsj = err.error.mensaje;
-        alert(this.errorMsj);
-        console.log(this.errorMsj);
+        Swal.fire('Fallo la operacion', this.errorMsj, 'error');
+        //alert(this.errorMsj);
+        //console.log(this.errorMsj);
       }
     );
   }
