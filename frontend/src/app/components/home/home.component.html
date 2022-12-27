@@ -20,22 +20,26 @@
       <div class="row g-0">
         <div class="col-md-4">
           <div *ngIf="per.foto_perfil_url == null; else TemplatePerfil">
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
-              style="width: 6rem; height: 6rem"
-              alt="Foto de perfil"
-              title="Foto de perfil"
-              class="img-fluid rounded-start"
-            />
+            <a class="LinkPerfil" [routerLink]="['perfil/', per.idpersona]">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1361/1361728.png"
+                style="width: 6rem; height: 6rem"
+                alt="Foto de perfil"
+                title="Foto de perfil"
+                class="img-fluid rounded-start"
+              />
+            </a>
           </div>
           <ng-template #TemplatePerfil>
-            <img
-              src="{{ per.foto_perfil_url }}"
-              style="width: 6rem; height: 6rem"
-              alt="Foto de perfil"
-              title="Foto de perfil"
-              class="img-fluid rounded-start"
-            />
+            <a class="LinkPerfil" [routerLink]="['perfil/', per.idpersona]">
+              <img
+                src="{{ per.foto_perfil_url }}"
+                style="width: 6rem; height: 6rem"
+                alt="Foto de perfil"
+                title="Foto de perfil"
+                class="img-fluid rounded-start"
+              />
+            </a>
           </ng-template>
         </div>
         <div class="col-md-8">
