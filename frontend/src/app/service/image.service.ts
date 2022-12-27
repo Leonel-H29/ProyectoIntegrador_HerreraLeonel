@@ -49,28 +49,10 @@ export class ImageService {
   }
 
   fetchImage(img: string): string {
-    if (img != null && img != '') {
-      axios
-        .get(img, {
-          responseType: 'stream',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json;charset=UTF-8',
-            'X-Requested-With': 'XMLHttpRequest',
-          },
-          timeout: 1000,
-        })
-        .then((response) => {
-          //console.log(response);
-          //return img;
-        })
-        .catch((error) => {
-          //console.log(error);
-          img = 'https://cdn-icons-png.flaticon.com/512/1361/1361728.png';
-        });
-    } else {
-      console.log('Sin foto de perfil');
-      img = 'https://cdn-icons-png.flaticon.com/512/1361/1361728.png';
+    //console.log(img);
+    if (img == null || img.length == 0) {
+      //console.log('Sin foto de perfil');
+      return 'https://cdn-icons-png.flaticon.com/512/1361/1361728.png';
     }
     return img;
   }
