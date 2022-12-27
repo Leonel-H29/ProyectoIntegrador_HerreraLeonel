@@ -11,12 +11,15 @@ import {
 } from '@angular/core';
 import { NewUser } from 'src/app/model/new-user';
 import { persona } from './../../model/persona.model';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-edit-proyectos',
   templateUrl: './edit-proyectos.component.html',
   styleUrls: ['./edit-proyectos.component.css'],
 })
 export class EditProyectosComponent implements OnInit, AfterViewInit {
+  idPersonaLogged: number = this.activatedRouter.snapshot.params['idper'];
+  idProyectoEdit: number = this.activatedRouter.snapshot.params['idproy'];
   project: Proyectos = null;
   Persona: persona = new persona(
     '',
@@ -56,19 +59,23 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
   }
 
   getProyecto(): void {
-    const id = this.activatedRouter.snapshot.params['idproy'];
-    this.proyService.GetProyecto(id).subscribe(
+    this.proyService.GetProyecto(this.idProyectoEdit).subscribe(
       (data) => {
         this.project = data;
         this.project.persona = this.Persona;
         if (this.project.persona.apellido.length == 0) {
           window.location.reload();
         }
-        console.log('project: ', this.project);
+        //console.log('project: ', this.project);
       },
       (err) => {
-        console.log('project: ', null);
-        alert('Error al modificar el registro');
+        //console.log('project: ', null);
+        //alert('Error al modificar el registro');
+        Swal.fire(
+          'Error al modificar el registro',
+          'Vuelva a intentarlo',
+          'error'
+        );
         console.log('Error: ', err);
         this.router.navigate(['']);
       }
@@ -77,43 +84,48 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     this.IsLoadding = true;
-    const id = this.activatedRouter.snapshot.params['idproy'];
-    this.proyService.UpdateProyecto(id, this.project).subscribe(
-      (data) => {
-        alert('Registro modificado');
-        this.router.navigate([
-          'perfil/' + this.activatedRouter.snapshot.params['idper'],
-        ]);
-      },
-      (err) => {
-        this.IsLoadding = false;
-        alert('Error al modificar el registro');
-        const ruta =
-          'editproy/' +
-          this.activatedRouter.snapshot.params['idper'] +
-          '/' +
-          id;
-        this.router.navigate(['']);
-      }
-    );
+    this.proyService
+      .UpdateProyecto(this.idProyectoEdit, this.project)
+      .subscribe(
+        (data) => {
+          //alert('Registro modificado');
+          Swal.fire('Registro modificado', 'Press Ok', 'success');
+          this.router.navigate(['perfil/' + this.idPersonaLogged]);
+        },
+        (err) => {
+          this.IsLoadding = false;
+          //alert('Error al modificar el registro');
+          Swal.fire(
+            'Error al modificar el registro',
+            'Vuelva a intentarlo',
+            'error'
+          );
+          const ruta =
+            'editproy/' + this.idPersonaLogged + '/' + this.idProyectoEdit;
+          this.router.navigate([ruta]);
+        }
+      );
   }
 
   getPersona(): void {
-    const idPersonaLogged = this.activatedRouter.snapshot.params['idper'];
-
-    this.persService.getPersona(idPersonaLogged).subscribe(
+    this.persService.getPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.Persona = data;
         //console.log(this.project);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
-        //this.router.navigate(['']);
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al perfil',
+          'error'
+        );
+        this.router.navigate(['/perfil/' + this.idPersonaLogged]);
       }
     );
 
     this.persService
-      .hasPermissions(idPersonaLogged, this.tokenService.getUsername())
+      .hasPermissions(this.idPersonaLogged, this.tokenService.getUsername())
       .subscribe((data) => (this.hasPermission = data));
     /*
     console.log(
