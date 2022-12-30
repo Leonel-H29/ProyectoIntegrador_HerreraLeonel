@@ -37,7 +37,7 @@ public class Persona {
     @Size(min = 1, max = 60, message = "La longitud del apellido no es valida")
     private String apellido;
     
-    @Size(min = 0, max = 20, message = "La longitud de la profesion no es valida")
+    @Size(min = 0, max = 50, message = "La longitud de la profesion no es valida")
     private String profesion;
 
     @Size(min = 0, max = 200, message = "La longitud de la descripcion no es valida")
