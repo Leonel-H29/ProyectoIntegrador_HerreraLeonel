@@ -20,11 +20,11 @@ public interface PersonaRepository extends JpaRepository<Persona, Integer> {
 
     @Modifying
     @Query(
-            value = "INSERT INTO persona (nombre,apellido,provincia,pais,codigo_postal,fecha_nacimiento,telefono,descripcion,foto_perfil_url,idusuario) "
-            + "VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10)",
+            value = "INSERT INTO persona (nombre,apellido,provincia,pais,codigo_postal,fecha_nacimiento,telefono,descripcion,foto_perfil_url, profesion,idusuario) "
+            + "VALUES (?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)",
             nativeQuery = true
     )
-    public void SavePersonaSQL(String NameP, String ApeP, String ProvP, String PaisP, int codPostal, LocalDate FNac, String Tel, String desc, String urlFP, int idUs);
+    public void SavePersonaSQL(String NameP, String ApeP, String ProvP, String PaisP, int codPostal, LocalDate FNac, String Tel, String desc, String urlFP, String ProfP,int idUs);
 
     @Modifying
     @Query(

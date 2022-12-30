@@ -41,7 +41,7 @@ public class PersonaService implements IPersonaService {
     public void crearPersona(Persona pers) {
         try {
             //RepoPers.save(pers);
-            RepoPers.SavePersonaSQL(pers.getNombre(), pers.getApellido(), pers.getProvincia(), pers.getPais(), pers.getCodigo_postal(), pers.getFecha_nacimiento(), pers.getTelefono(), pers.getDescripcion(), pers.getFoto_perfil_url(), pers.getUsuario().getIdusuario());
+            RepoPers.SavePersonaSQL(pers.getNombre(), pers.getApellido(), pers.getProvincia(), pers.getPais(), pers.getCodigo_postal(), pers.getFecha_nacimiento(), pers.getTelefono(), pers.getDescripcion(), pers.getFoto_perfil_url(), pers.getProfesion(),pers.getUsuario().getIdusuario());
             System.out.println("La persona ya se encuentra registrada");
             System.out.println(pers);
             /*
