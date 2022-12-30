@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("educacion")
-@CrossOrigin(origins = {"https://portafolio-argentina-programa.web.app/","http://localhost:4200/","http://192.168.1.5:4200/"}, allowedHeaders = "*", exposedHeaders = "*")
+@RequestMapping("/educacion")
+@CrossOrigin(origins = {"https://portafolio-argentina-programa.firebaseapp.com","http://localhost:4200","http://192.168.1.5:4200"}, allowedHeaders = "*", exposedHeaders = "*")
 public class EducacionController {
     
     @Autowired
