@@ -11,7 +11,7 @@ public interface IPersonaService {
     
     public void crearPersona(Persona pers);
 
-    public void editarPersona(int id, String nNombre, String nApellido, String nDescripcion, String nProvincia, String nPais, int nCodigoP, LocalDate nFechaN, String nTelefono, String nFoto, Usuario user);
+    public void editarPersona(int id, String nNombre, String nApellido,String nProfesion ,String nDescripcion, String nProvincia, String nPais, int nCodigoP, LocalDate nFechaN, String nTelefono, String nFoto, Usuario user);
 
     public Persona buscarPersona(int id);
 

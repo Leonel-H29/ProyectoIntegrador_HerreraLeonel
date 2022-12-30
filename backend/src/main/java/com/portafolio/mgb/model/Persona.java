@@ -37,8 +37,8 @@ public class Persona {
     @Size(min = 1, max = 60, message = "La longitud del apellido no es valida")
     private String apellido;
     
-    //@Size(min = 0, max = 200, message = "La longitud de la profesion no es valida")
-    //private String profesion;
+    @Size(min = 0, max = 20, message = "La longitud de la profesion no es valida")
+    private String profesion;
 
     @Size(min = 0, max = 200, message = "La longitud de la descripcion no es valida")
     private String descripcion;
@@ -88,17 +88,21 @@ public class Persona {
     public Persona() {
     }
 
-    public Persona(String nombre, String apellido, String descripcion, String provincia, String pais, int codigo_postal, LocalDate fecha_nacimiento, String telefono, String foto_perfil_url) {
+    public Persona(String nombre, String apellido, String profesion, String descripcion, String provincia, String pais, int codigo_postal, LocalDate fecha_nacimiento, String telefono, String foto_perfil_url, Usuario usuario) {
         this.nombre = nombre;
         this.apellido = apellido;
+        this.profesion = profesion;
         this.descripcion = descripcion;
         this.provincia = provincia;
         this.pais = pais;
         this.codigo_postal = codigo_postal;
-        this.fecha_nacimiento = fecha_nacimiento;        
+        this.fecha_nacimiento = fecha_nacimiento;
         this.telefono = telefono;
         this.foto_perfil_url = foto_perfil_url;
+        this.usuario = usuario;
     }
+
+    
     
     
     //___________________________Setters___________________________

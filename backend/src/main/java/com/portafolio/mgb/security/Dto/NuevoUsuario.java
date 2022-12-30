@@ -13,6 +13,8 @@ public class NuevoUsuario {
     private String nombre;
 
     private String apellido;
+    
+    private String profesion;
 
     private String descripcion;
 

@@ -47,7 +47,7 @@ public class PersonaController {
     public void editarPersona(@PathVariable int id, @RequestBody Persona per
     ) {
 
-        perServ.editarPersona(id, per.getNombre(), per.getApellido(), per.getDescripcion(), per.getProvincia(), per.getPais(), per.getCodigo_postal(), per.getFecha_nacimiento(), per.getTelefono(), per.getFoto_perfil_url(), per.getUsuario());
+        perServ.editarPersona(id, per.getNombre(), per.getApellido(),per.getProfesion(), per.getDescripcion(), per.getProvincia(), per.getPais(), per.getCodigo_postal(), per.getFecha_nacimiento(), per.getTelefono(), per.getFoto_perfil_url(), per.getUsuario());
 
     }
 
@@ -63,9 +63,8 @@ public class PersonaController {
 
     @GetMapping("/user/{id}/{username}")
     public boolean hasPermission(@PathVariable int id, @PathVariable String username) {
-        return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona();
-
-        //return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona() || perServ.buscarPersona(id).getUsuario().getRoles().contains("ROLE_ADMIN");
+        //return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona();1
+        return perServ.buscarPersona(id).getIdpersona() == perServ.getByUserNameSQL(username).getIdpersona() || perServ.buscarPersona(id).getUsuario().getRoles().contains("admin");
     }
 
 }

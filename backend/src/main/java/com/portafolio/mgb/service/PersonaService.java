@@ -66,6 +66,7 @@ public class PersonaService implements IPersonaService {
     public void editarPersona(int id,
             String nNombre,
             String nApellido,
+            String nProfesion, 
             String nDescripcion,
             String nProvincia,
             String nPais,
@@ -80,6 +81,7 @@ public class PersonaService implements IPersonaService {
             Persona persona = buscarPersona(id);
             persona.setNombre(nNombre);
             persona.setApellido(nApellido);
+            persona.setProfesion(nProfesion);
             persona.setDescripcion(nDescripcion);
             persona.setProvincia(nProvincia);
             persona.setPais(nPais);
