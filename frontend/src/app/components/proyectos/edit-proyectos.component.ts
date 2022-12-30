@@ -27,6 +27,7 @@ export class EditProyectosComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

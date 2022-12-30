@@ -32,6 +32,7 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

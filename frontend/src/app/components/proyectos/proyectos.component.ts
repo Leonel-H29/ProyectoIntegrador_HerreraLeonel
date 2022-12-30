@@ -34,6 +34,7 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

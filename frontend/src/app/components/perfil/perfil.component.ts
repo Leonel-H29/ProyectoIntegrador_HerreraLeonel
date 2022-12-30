@@ -24,6 +24,7 @@ export class PerfilComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

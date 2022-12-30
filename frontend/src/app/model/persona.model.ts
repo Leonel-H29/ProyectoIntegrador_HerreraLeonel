@@ -3,6 +3,7 @@ export class persona {
   idpersona?: number;
   nombre: string;
   apellido: string;
+  profesion: string;
   descripcion: string;
   provincia: string;
   pais: string;
@@ -15,6 +16,7 @@ export class persona {
   constructor(
     nombre: string,
     apellido: string,
+    profesion: string,
     descripcion: string,
     provincia: string,
     pais: string,
@@ -26,6 +28,7 @@ export class persona {
   ) {
     this.nombre = nombre;
     this.apellido = apellido;
+    this.profesion = profesion;
     this.descripcion = descripcion;
     this.provincia = provincia;
     this.pais = pais;

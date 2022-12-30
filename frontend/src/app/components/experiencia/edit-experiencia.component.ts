@@ -29,6 +29,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

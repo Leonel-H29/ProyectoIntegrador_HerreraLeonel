@@ -27,6 +27,7 @@ export class EditEducacionComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

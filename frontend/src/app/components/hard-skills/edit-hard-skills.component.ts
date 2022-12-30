@@ -27,6 +27,7 @@ export class EditHardSkillsComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

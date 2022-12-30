@@ -17,6 +17,7 @@ export class AcercaDeComponent implements OnInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

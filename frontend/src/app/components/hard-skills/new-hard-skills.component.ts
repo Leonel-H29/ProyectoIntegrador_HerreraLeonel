@@ -28,6 +28,7 @@ export class NewHardSkillsComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

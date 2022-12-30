@@ -32,6 +32,7 @@ export class NewProyectosComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

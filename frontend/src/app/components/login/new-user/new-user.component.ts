@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 export class NewUserComponent implements OnInit, AfterViewInit {
   nombre: string = '';
   apellido: string = '';
+  profesion: string = '';
   descripcion: string = '';
   provincia: string = '';
   pais: string = '';
@@ -66,6 +67,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         'Los correos deben coincidir',
         'error'
       );
+      this.IsLoadding = false;
       this.router.navigate(['/createaccount']);
     } else if (this.password != this.confirm_password) {
       //alert('Las contraseñas deben coincidir');
@@ -75,6 +77,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
         'Las contraseñas deben coincidir',
         'error'
       );
+      this.IsLoadding = false;
       this.router.navigate(['/createaccount']);
     } else {
       /*Se crea primero la cuenta de usuario*/
@@ -116,6 +119,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
       const NPersona = new persona(
         this.nombre,
         this.apellido,
+        this.profesion,
         this.descripcion,
         this.provincia,
         this.pais,
@@ -129,7 +133,7 @@ export class NewUserComponent implements OnInit, AfterViewInit {
       //console.log('Usuario a cargar: ', NPersona);
       this.persService.SavePersona(NPersona).subscribe(
         (data) => {
-          //console.log('Persona Creada: ', data);
+          console.log('Persona Creada: ', data);
           //alert('Usuario Creado');
           Swal.fire('Usuario Creado', 'Press Ok', 'success');
           this.router.navigate(['/login']);

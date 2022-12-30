@@ -26,6 +26,7 @@ export class EditPersonaComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

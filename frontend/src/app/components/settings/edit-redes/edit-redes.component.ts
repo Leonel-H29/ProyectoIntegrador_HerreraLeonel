@@ -30,6 +30,7 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

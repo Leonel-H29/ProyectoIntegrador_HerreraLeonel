@@ -25,6 +25,7 @@ export class DeleteUserComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

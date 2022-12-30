@@ -37,6 +37,7 @@ export class NewExperienciaComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

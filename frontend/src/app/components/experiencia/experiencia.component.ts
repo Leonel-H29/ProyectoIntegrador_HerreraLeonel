@@ -32,6 +32,7 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

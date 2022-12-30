@@ -32,6 +32,7 @@ export class EducacionComponent implements OnInit, AfterViewInit {
     '',
     '',
     '',
+    '',
     0,
     new Date(),
     '',

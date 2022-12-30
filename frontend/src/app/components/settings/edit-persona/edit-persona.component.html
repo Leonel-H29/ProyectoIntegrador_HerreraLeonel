@@ -72,6 +72,20 @@
             /><label for="name">Apellido</label>
           </div>
 
+          <!--PROFESION-->
+          <div class="form-floating mb-3">
+            <input
+              [(ngModel)]="Persona.profesion"
+              type="text"
+              id="profesion"
+              name="profesion"
+              class="form-control"
+              placeholder="Profesion"
+              autofocus
+            />
+            <label for="name">Profesion</label>
+          </div>
+
           <!--DESCRIPCION-->
           <div class="form-floating mb-3">
             <textarea
@@ -81,7 +95,6 @@
               name="descripcion"
               class="form-control"
               placeholder="Descripcion"
-              required
               autofocus
             ></textarea>
             <label for="name">Descripcion</label>
@@ -153,7 +166,6 @@
               name="telefono"
               class="form-control"
               placeholder="Telefono"
-              required
               autofocus
             /><label for="name">Telefono</label>
           </div>
