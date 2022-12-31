@@ -15,6 +15,7 @@ import { HardSkills } from 'src/app/model/hard-skills';
 import { HardSkillService } from 'src/app/service/hard-skills.service';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-hard-skills',
@@ -58,8 +59,7 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPersona();
-    ///console.log('Id Persona: ', this.idPersonaLogged);
-    //console.log('Persona: ', this.Persona);
+
     this.CargarHardSkills();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -68,22 +68,30 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
         this.tokenService.getUsername()
       ).subscribe((data) => (this.hasPermission = data));
     }
+    /*
     console.log(
       'Hard Skill: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   CargarHardSkills(): void {
     this.skillService.ListaHardSkillsByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.skill = data;
-        console.log('HardSkills: ', this.skill);
+        //console.log('HardSkills: ', this.skill);
       },
       (err) => {
-        alert('Se encontro un error en la lista');
+        Swal.fire(
+          'Se encontro un error en la lista',
+          'Volver al inicio',
+          'error'
+        );
+
+        //alert('Se encontro un error en la lista');
         //console.log(err);
         this.router.navigate(['']);
       }
@@ -94,12 +102,20 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
     if (id != undefined) {
       this.skillService.DeleteHardSkills(id).subscribe(
         (data) => {
-          alert('Se elimino la Hard & Soft Skill');
-          this.CargarHardSkills();
-          this.router.navigate(['']);
+          Swal.fire('Se elimino la Hard & Soft Skill', 'Press Ok', 'success');
+          //alert('Se elimino la Hard & Soft Skill');
+
+          window.location.reload();
+          this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+          //this.CargarHardSkills();
         },
         (err) => {
-          alert('No se ha podido eliminar la HardSkills');
+          //alert('No se ha podido eliminar la HardSkills');
+          Swal.fire(
+            'No se ha podido eliminar la Hard & Soft Skill',
+            'Volver a intertarlo',
+            'error'
+          );
         }
       );
     }
@@ -119,25 +135,13 @@ export class HardSkillsComponent implements OnInit, AfterViewInit {
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al inicio',
+          'error'
+        );
         this.router.navigate(['']);
-      }
-    );
-    this.hasPermissions();
-  }
-
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        if (data.idpersona == this.Persona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
       }
     );
   }

@@ -16,6 +16,7 @@ import { ProyectosService } from 'src/app/service/proyectos.service';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
 import { map, Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-proyectos',
@@ -68,24 +69,29 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
         this.tokenService.getUsername()
       ).subscribe((data) => (this.hasPermission = data));
     }
+    /*
     console.log(
       'Proyectos: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
-
-    //console.log(this.PersServ.hasPermissions(this.Persona.idpersona));
+    */
   }
 
   CargarProyectos(): void {
     this.proyService.ListaProyectosByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.proy = data;
-        console.log('Proyectos: ', this.proy);
+        //console.log('Proyectos: ', this.proy);
       },
       (err) => {
-        alert('Se encontro un error en la lista');
+        Swal.fire(
+          'Se encontro un error en la lista',
+          'Volver al inicio',
+          'error'
+        );
+        //alert('Se encontro un error en la lista');
         //console.log(err);
         this.router.navigate(['']);
       }
@@ -96,12 +102,20 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
     if (id != undefined) {
       this.proyService.DeleteProyecto(id).subscribe(
         (data) => {
-          alert('Se elimino el proyecto');
-          this.CargarProyectos();
-          this.router.navigate(['']);
+          //alert('Se elimino el proyecto');
+          Swal.fire('Se elimino el proyecto', 'Press Ok', 'success');
+          window.location.reload();
+          this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+
+          //this.CargarProyectos();
         },
         (err) => {
-          alert('No se ha podido eliminar la Proyectos');
+          //alert('No se ha podido eliminar el Proyecto');
+          Swal.fire(
+            'No se ha podido eliminar el Proyecto',
+            'Volver a intertarlo',
+            'error'
+          );
         }
       );
     }
@@ -125,44 +139,18 @@ export class ProyectosComponent implements OnInit, AfterViewInit {
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al inicio',
+          'error'
+        );
         this.router.navigate(['']);
       }
     );
-    //this.hasPermissions();
   }
 
   goPage(url: string) {
     window.location.replace(url);
   }
-  /*
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        if (data.idpersona == this.Persona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
-      }
-    );
-  }
-  */
-
-  /*
-
-  public hasPermissions(): Observable<boolean> {
-    return this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).pipe(
-      //filter((data) => data.idpersona == id),
-      map((data) => data.idpersona == this.idPersonaLogged)
-    );
-    //.subscribe((data) => console.log(data));
-  }
-  */
 }

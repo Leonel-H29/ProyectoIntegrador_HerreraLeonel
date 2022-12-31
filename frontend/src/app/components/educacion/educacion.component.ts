@@ -15,6 +15,7 @@ import { EducacionService } from 'src/app/service/educacion.service';
 import { Educacion } from 'src/app/model/educacion';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-educacion',
@@ -57,8 +58,6 @@ export class EducacionComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.getPersona();
-    //console.log('Id Persona: ', this.idPersonaLogged);
-    //console.log('Persona: ', this.Persona);
     this.CargarEducaciones();
     if (this.tokenService.getToken()) {
       this.isLogged = true;
@@ -67,22 +66,29 @@ export class EducacionComponent implements OnInit, AfterViewInit {
         this.tokenService.getUsername()
       ).subscribe((data) => (this.hasPermission = data));
     }
+    /*
     console.log(
       'Educacion: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   CargarEducaciones(): void {
     this.eduService.ListaEduByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.educ = data;
-        console.log('Educacion: ', this.educ);
+        //console.log('Educacion: ', this.educ);
       },
       (err) => {
-        alert('Se encontro un error en la lista');
+        Swal.fire(
+          'Se encontro un error en la lista',
+          'Volver al inicio',
+          'error'
+        );
+        //alert('Se encontro un error en la lista');
         //console.log(err);
         this.router.navigate(['']);
       }
@@ -93,12 +99,20 @@ export class EducacionComponent implements OnInit, AfterViewInit {
     if (id != undefined) {
       this.eduService.DeleteEducacion(id).subscribe(
         (data) => {
-          alert('Se elimino la educacion');
-          this.CargarEducaciones();
-          this.router.navigate(['']);
+          Swal.fire('Se elimino la educacion', 'Press Ok', 'success');
+          //alert('Se elimino la educacion');
+          window.location.reload();
+          this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+
+          //this.CargarEducaciones();
         },
         (err) => {
-          alert('No se ha podido eliminar la educacion');
+          //alert('No se ha podido eliminar la educacion');
+          Swal.fire(
+            'No se ha podido eliminar la experiencia',
+            'Volver a intertarlo',
+            'error'
+          );
         }
       );
     }
@@ -118,25 +132,13 @@ export class EducacionComponent implements OnInit, AfterViewInit {
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al inicio',
+          'error'
+        );
         this.router.navigate(['']);
-      }
-    );
-    this.hasPermissions();
-  }
-
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        if (data.idpersona == this.Persona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
       }
     );
   }

@@ -15,6 +15,7 @@ import { PersonaService } from 'src/app/service/persona.service';
 import { Router } from '@angular/router';
 import { persona } from 'src/app/model/persona.model';
 import { NewUser } from 'src/app/model/new-user';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-experiencia',
@@ -58,11 +59,6 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    /*
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    }
-    */
     this.getPersona();
     this.CargarExperiencias();
     if (this.tokenService.getToken()) {
@@ -72,22 +68,29 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
         this.tokenService.getUsername()
       ).subscribe((data) => (this.hasPermission = data));
     }
+    /*
     console.log(
       'Experencia: isLogged - ',
       this.isLogged,
       'hasPermission: ',
       this.hasPermission
     );
+    */
   }
 
   CargarExperiencias(): void {
     this.expService.ListaExpByPersona(this.idPersonaLogged).subscribe(
       (data) => {
         this.expe = data;
-        console.log('Experiencia: ', this.expe);
+        //console.log('Experiencia: ', this.expe);
       },
       (err) => {
-        alert('Se encontro un error en la lista');
+        Swal.fire(
+          'Se encontro un error en la lista',
+          'Volver al inicio',
+          'error'
+        );
+        //alert('Se encontro un error en la lista');
         //console.log(err);
         this.router.navigate(['']);
       }
@@ -98,12 +101,20 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
     if (id != undefined) {
       this.expService.DeleteExperiencia(id).subscribe(
         (data) => {
-          alert('Se elimino la experiencia');
-          this.CargarExperiencias();
-          this.router.navigate(['']);
+          Swal.fire('Se elimino la experiencia', 'Press Ok', 'success');
+          //alert('Se elimino la experiencia');
+          window.location.reload();
+          this.router.navigate(['/perfil/' + this.idPersonaLogged]);
+
+          //this.CargarExperiencias();
         },
         (err) => {
-          alert('No se ha podido eliminar la experiencia');
+          //alert('No se ha podido eliminar la experiencia');
+          Swal.fire(
+            'No se ha podido eliminar la experiencia',
+            'Volver a intertarlo',
+            'error'
+          );
         }
       );
     }
@@ -123,25 +134,13 @@ export class ExperienciaComponent implements OnInit, AfterViewInit {
         //console.log(this.Persona);
       },
       (err) => {
-        alert('No se pudo encontrar a la persona');
+        //alert('No se pudo encontrar a la persona');
+        Swal.fire(
+          'No se pudo encontrar a la persona',
+          'Volver al inicio',
+          'error'
+        );
         this.router.navigate(['']);
-      }
-    );
-    this.hasPermissions();
-  }
-
-  hasPermissions(): void {
-    this.PersServ.getPersonaByUsername(
-      this.tokenService.getUsername()
-    ).subscribe(
-      (data) => {
-        if (data.idpersona == this.Persona.idpersona) {
-          this.hasPermission = true;
-        }
-        //return 'false';
-      },
-      (err) => {
-        alert('No se pudo encontrar a la persona');
       }
     );
   }
