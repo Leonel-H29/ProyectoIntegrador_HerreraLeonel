@@ -22,7 +22,7 @@ import Swal from 'sweetalert2';
 export class EditExperienciaComponent implements OnInit, AfterViewInit {
   idPersonaLogged: number = this.activatedRouter.snapshot.params['idper'];
   idExperienciaEdit: number = this.activatedRouter.snapshot.params['idexp'];
-  expLab: Experiencialab = null;
+
   Persona: persona = new persona(
     '',
     '',
@@ -37,7 +37,16 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
     new NewUser()
   );
   ListaTiposEmpleos: TipoEmpleo[];
-  selected: TipoEmpleo = null;
+  selected: TipoEmpleo = new TipoEmpleo('');
+  expLab: Experiencialab = new Experiencialab(
+    '',
+    new Date(),
+    new Date(),
+    '',
+    this.Persona,
+    new TipoEmpleo('')
+  );
+
   IsLoadding = false;
   constructor(
     private expService: ExperiencialabService,
@@ -57,6 +66,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.getTiposEmpleos();
     this.getPersona();
     this.getExperiencia();
     if (this.tokenService.getToken()) {
@@ -65,15 +75,16 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
   }
 
   getExperiencia(): void {
-    this.getTiposEmpleos();
     this.expService.GetExperiencia(this.idExperienciaEdit).subscribe(
       (data) => {
         this.expLab = data;
         this.expLab.persona = this.Persona;
+        this.getSelected(this.expLab.idexperiencia);
+
         if (this.expLab.persona.apellido.length == 0) {
           window.location.reload();
         }
-        //console.log('expLab: ', this.expLab);
+        console.log('expLab: ', this.expLab);
       },
       (err) => {
         //console.log('expLab: ', null);
@@ -91,7 +102,7 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
 
   onUpdate(): void {
     this.IsLoadding = true;
-
+    this.expLab.tipoEmpleo = this.selected;
     this.expService
       .UpdateExperiencia(this.idExperienciaEdit, this.expLab)
       .subscribe(
@@ -148,6 +159,18 @@ export class EditExperienciaComponent implements OnInit, AfterViewInit {
     this.TipoEmpServ.ListaTipoEmpleo().subscribe((data) => {
       this.ListaTiposEmpleos = data;
       //console.log('Tipo de empleos: ', this.ListaTiposEmpleos);
+    });
+  }
+
+  getSelected(id: number) {
+    this.TipoEmpServ.GetTipoByExperiencia(id).subscribe((data) => {
+      this.expLab.tipoEmpleo = data;
+
+      if (this.expLab.tipoEmpleo.tipo.length == 0) {
+        window.location.reload();
+      }
+      this.selected = this.expLab.tipoEmpleo;
+      //console.log(this.selected);
     });
   }
 }

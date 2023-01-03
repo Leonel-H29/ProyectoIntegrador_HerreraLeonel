@@ -125,7 +125,10 @@
           </div>
           <!-- Tipo de empleo-->
 
-          <div class="form-floating mb-3">
+          <div
+            class="form-floating mb-3"
+            *ngIf="expLab.tipoEmpleo != undefined"
+          >
             <select
               class="form-select form-select-lg mb-3"
               aria-label=".form-select-lg example"
@@ -133,19 +136,27 @@
               name="idTipo"
               type="text"
               data-sb-validations="idTipo"
-              [(ngModel)]="expLab.tipoEmpleo"
+              [(ngModel)]="selected"
             >
-              <option [ngValue]="tipo" *ngFor="let tipo of ListaTiposEmpleos">
+              <option
+                [ngValue]="tipo"
+                *ngFor="let tipo of ListaTiposEmpleos"
+                [selected]="tipo == selected"
+              >
+                <!--
+                <div *ngIf="tipo.idtipo_empleo == selected.idtipo_empleo">
+                  Essta es
+                </div>
+                -->
                 {{ tipo.idtipo_empleo }}- {{ tipo.tipo }}
               </option>
             </select>
+
             <label for="idTipo">Tipo de empleo</label>
-
-            <div class="invalid-feedback" data-sb-feedback="idTipo:idTipo">
-              El tipo de empleo no es valido
-            </div>
           </div>
-
+          <div *ngIf="expLab.tipoEmpleo != undefined">
+            {{ expLab.tipoEmpleo.tipo }}
+          </div>
           <br />
 
           <!-- Submit Button-->

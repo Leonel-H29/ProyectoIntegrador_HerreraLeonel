@@ -405,13 +405,13 @@ select:disabled {
 [list]::-webkit-calendar-picker-indicator {
   display: none;
 }
-
+/*
 button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
   -webkit-appearance: button;
-}
+}*/
 button:not(:disabled),
 [type='button']:not(:disabled),
 [type='reset']:not(:disabled),
@@ -468,7 +468,7 @@ legend + * {
 
 [type='search'] {
   outline-offset: -2px;
-  -webkit-appearance: textfield;
+  /*-webkit-appearance: textfield;*/
 }
 
 /* rtl:raw:
@@ -2546,8 +2546,10 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  /*
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
+  */
 }
 .form-check-input[type='checkbox'] {
   border-radius: 0.25em;
@@ -2876,7 +2878,9 @@ textarea.form-control-lg {
   border-bottom-right-radius: 0;
 }
 .input-group
-  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+    .valid-feedback
+  ):not(.invalid-tooltip):not(.invalid-feedback) {
   margin-left: -0.125rem;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -11889,5 +11893,11 @@ html {
   background-color: #1a252f;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

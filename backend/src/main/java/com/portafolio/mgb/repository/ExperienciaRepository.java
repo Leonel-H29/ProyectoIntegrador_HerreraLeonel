@@ -19,7 +19,7 @@ public interface ExperienciaRepository extends JpaRepository<Experiencia, Intege
             nativeQuery = true
     )
     public List<Experiencia> ListExperienciaByIdPersona(int idPers);
-    
+
     @Modifying
     @Query(
             value = "INSERT INTO experiencia_laboral(nombre_empresa,fecha_inicio,fecha_fin,descripcion,idpersona,idtipo_empleo) VALUES (?1,?2,?3,?4,?5,?6);",
@@ -33,4 +33,5 @@ public interface ExperienciaRepository extends JpaRepository<Experiencia, Intege
             nativeQuery = true
     )
     public void EditExperienciaSQL(String NameE, LocalDate FInicio, LocalDate FFin, String desc, int idPers, int idTE, int idExp);
+
 }

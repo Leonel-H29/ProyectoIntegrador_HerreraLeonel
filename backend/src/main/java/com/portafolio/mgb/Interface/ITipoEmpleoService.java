@@ -10,5 +10,6 @@ public interface ITipoEmpleoService {
     public void GuardarTipo(TipoEmpleo tipo);
     public void EliminarTipo(int id);
     public boolean existsById(int id);
+    public TipoEmpleo buscarTipobyExperiencia(int idexp); 
     
 }

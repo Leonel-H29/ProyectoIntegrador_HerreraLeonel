@@ -72,5 +72,10 @@ public class TipoEmpleoService implements ITipoEmpleoService{
     public boolean existsById(int id) {
         return RepoTipo.existsById(id);
     }
+
+    @Override
+    public TipoEmpleo buscarTipobyExperiencia(int idexp) {
+        return  RepoTipo.GetTipoByExperiencia(idexp);
+    }
     
 }

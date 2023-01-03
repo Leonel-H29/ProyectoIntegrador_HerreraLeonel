@@ -86,6 +86,14 @@ public class TipoEmpleoController {
 
         return new ResponseEntity(ExpTipo.buscarEmpleo(id), HttpStatus.OK);
     }
+    
+    @GetMapping("/explab/{id}")
+    public ResponseEntity<?> findTipoByExperiencia(@PathVariable int id) {
+        if (ExpTipo.buscarTipobyExperiencia(id) == null) {
+            return new ResponseEntity(new Mensaje("No existe la persona con ese id"), HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity(ExpTipo.buscarTipobyExperiencia(id), HttpStatus.OK);
+    }
 }
     
 

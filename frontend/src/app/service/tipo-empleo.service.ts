@@ -8,12 +8,6 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class TipoEmpleoService {
-  /*
-  expURL = [
-    'http://localhost:8080/tipoemp/',
-    'https://backend-portafolioap.herokuapp.com/tipoemp/',
-  ];
-  */
   expURL = environment.URL + 'tipoemp/';
 
   constructor(private httpClient: HttpClient) {}
@@ -36,5 +30,9 @@ export class TipoEmpleoService {
 
   public DeleteTipoEmpleo(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.expURL + 'delete/' + id);
+  }
+
+  public GetTipoByExperiencia(id: number): Observable<TipoEmpleo> {
+    return this.httpClient.get<TipoEmpleo>(this.expURL + 'explab/' + id);
   }
 }
