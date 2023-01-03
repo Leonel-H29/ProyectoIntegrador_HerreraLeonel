@@ -1,6 +1,8 @@
 .description {
   font-size: 1.4em;
+  white-space: pre-line;
 }
+
 #foto-perfil {
   width: 18.75em;
   height: 18.75em;
