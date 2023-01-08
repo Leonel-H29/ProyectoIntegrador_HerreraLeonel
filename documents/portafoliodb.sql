@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `educacion`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `educacion` (
   `ideducacion` int NOT NULL AUTO_INCREMENT,
-  `nombre_institucion` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `nombre_institucion` varchar(90) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
@@ -54,7 +54,7 @@ DROP TABLE IF EXISTS `experiencia_laboral`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `experiencia_laboral` (
   `idexperiencia` int NOT NULL AUTO_INCREMENT,
-  `nombre_empresa` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
+  `nombre_empresa` varchar(90) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `fecha_inicio` date NOT NULL,
   `fecha_fin` date DEFAULT NULL,
   `descripcion` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
@@ -89,7 +89,7 @@ CREATE TABLE `persona` (
   `idpersona` bigint NOT NULL AUTO_INCREMENT,
   `nombre` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `apellido` varchar(60) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
-  `profesion` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
+  `profesion` varchar(50) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin DEFAULT NULL,
   `provincia` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `pais` varchar(45) CHARACTER SET utf8mb3 COLLATE utf8mb3_bin NOT NULL,
   `codigo_postal` smallint NOT NULL,
