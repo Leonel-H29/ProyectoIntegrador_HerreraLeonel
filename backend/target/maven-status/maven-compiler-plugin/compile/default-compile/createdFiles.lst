@@ -1,8 +1,8 @@
 com/portafolio/mgb/security/Services/RolService.class
 com/portafolio/mgb/service/ExperienciaService.class
 com/portafolio/mgb/security/repository/UsuarioRepository.class
-com/portafolio/mgb/Controller/PersonaController.class
 com/portafolio/mgb/security/jwt/JwtProvider.class
+com/portafolio/mgb/Controller/PersonaController.class
 com/portafolio/mgb/repository/TipoEmpleoRepository.class
 com/portafolio/mgb/Interface/IHardSkillsService.class
 com/portafolio/mgb/MgbApplication.class
@@ -10,8 +10,8 @@ com/portafolio/mgb/security/jwt/JwtEntryPoint.class
 com/portafolio/mgb/security/MainSecurity.class
 com/portafolio/mgb/repository/EducacionRepository.class
 com/portafolio/mgb/security/Dto/JwtDto.class
-com/portafolio/mgb/model/Educacion.class
 com/portafolio/mgb/repository/PersonaRepository.class
+com/portafolio/mgb/model/Educacion.class
 com/portafolio/mgb/Interface/IRedesService.class
 com/portafolio/mgb/repository/HardSkillsRepository.class
 com/portafolio/mgb/security/Enums/RolNombre.class
@@ -21,8 +21,8 @@ com/portafolio/mgb/security/Entidad/Usuario.class
 com/portafolio/mgb/service/HardSkillsService.class
 com/portafolio/mgb/security/Controller/Mensaje.class
 com/portafolio/mgb/Controller/EducacionController.class
-com/portafolio/mgb/Controller/ExperienciaController.class
 com/portafolio/mgb/model/Redes.class
+com/portafolio/mgb/Controller/ExperienciaController.class
 com/portafolio/mgb/model/Persona.class
 com/portafolio/mgb/repository/RedesRepository.class
 com/portafolio/mgb/security/Dto/NuevoUsuario.class
@@ -35,13 +35,13 @@ com/portafolio/mgb/security/Dto/LoginUsuario.class
 com/portafolio/mgb/service/TipoEmpleoService.class
 com/portafolio/mgb/Interface/IPersonaService.class
 com/portafolio/mgb/Interface/IEducacionService.class
-com/portafolio/mgb/model/TipoEmpleo.class
 com/portafolio/mgb/security/Services/UserDetailsImpl.class
+com/portafolio/mgb/model/TipoEmpleo.class
 com/portafolio/mgb/repository/ExperienciaRepository.class
 com/portafolio/mgb/Interface/IProyectosService.class
 com/portafolio/mgb/security/Controller/AuthController.class
-com/portafolio/mgb/model/Experiencia.class
 com/portafolio/mgb/security/Entidad/Rol.class
+com/portafolio/mgb/model/Experiencia.class
 com/portafolio/mgb/Controller/ProyectosController.class
 com/portafolio/mgb/Controller/TipoEmpleoController.class
 com/portafolio/mgb/Interface/IExperienciaService.class

@@ -27,7 +27,7 @@ public class Educacion {
     private int ideducacion;
     
     @NotNull
-    @Size(min = 1, max = 45, message = "La longitud del nombre de la institucion no es valida")
+    @Size(min = 1, max = 90, message = "La longitud del nombre de la institucion no es valida")
     private String nombre_institucion;
     
     @NotNull

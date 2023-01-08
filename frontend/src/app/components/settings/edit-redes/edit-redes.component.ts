@@ -141,11 +141,11 @@ export class EditRedesComponent implements OnInit, AfterViewInit {
       this.saveRed(this.DataGithub);
       //alert('Registros modificados');
       //this.router.navigate(['perfil/' + this.idPersonaLogged]);
+      this.IsLoadding = false;
     } catch (ex) {
       this.IsLoadding = false;
       console.log(ex);
     }
-    this.router.navigate(['perfil/' + this.idPersonaLogged]);
   }
 
   saveRed(red: Redes) {

@@ -14,7 +14,8 @@ export const environment = {
     measurementId: 'G-VYJ1LJ62MJ',
   },
   production: false,
-  URL: 'http://localhost:8080/',
+  //URL: 'http://localhost:8080/',
+  URL: 'http://192.168.1.20:8080/',
   DIR_IMG: 'imagen/',
 };
 
