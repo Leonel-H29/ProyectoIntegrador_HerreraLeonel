@@ -39,20 +39,7 @@
         </form>
       </div>
     </div>
-    <br />
-    <br />
-    <div *ngIf="showMsj">
-      <div
-        class="alert alert-success"
-        role="alert"
-        *ngIf="encontrado; else AlertError"
-      >
-        ¡Usuario encontrado!
-      </div>
-      <ng-template #AlertError>
-        <div class="alert alert-danger" role="alert">Error</div>
-      </ng-template>
-    </div>
+
     <br />
     <br />
     <!-- Formulario para cambiar la contraseña-->

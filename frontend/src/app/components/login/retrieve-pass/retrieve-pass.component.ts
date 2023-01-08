@@ -21,7 +21,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
   dataUser: NewUser = new NewUser();
   idUsuario!: number;
   encontrado = false;
-  showMsj = false;
+
   showPassword = false;
   typeInputPass = 'password';
   IsLoadding = false;
@@ -40,6 +40,7 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
 
   searchUser() {
     //console.log(this.User);
+
     this.authService.getByUsername(this.User).subscribe(
       (data) => {
         if (data != null) {
@@ -50,12 +51,14 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
           this.dataUser.password = data.password;
           this.dataUser.authorities = data.authorities;
           //console.log(this.dataUser);
+          Swal.fire('Usuario Encontrado', this.dataUser.username, 'success');
         }
       },
       (err) => {
         console.log('No se ha encontrado por username');
       }
     );
+
     if (this.encontrado == false) {
       this.authService.getByCorreo(this.User).subscribe(
         (data) => {
@@ -67,14 +70,22 @@ export class RetrievePassComponent implements OnInit, AfterViewInit {
             this.dataUser.password = data.password;
             this.dataUser.authorities = data.authorities;
             //console.log(this.dataUser);
+            Swal.fire('Usuario Encontrado', this.dataUser.username, 'success');
           }
         },
         (err) => {
-          console.log('No se ha encontrado por username');
+          console.log('No se ha encontrado por correo');
         }
       );
     }
-    this.showMsj = true;
+
+    if (this.encontrado == false) {
+      Swal.fire(
+        'Error en la busqueda',
+        'No se ha encontrado por username o correo',
+        'error'
+      );
+    }
   }
 
   changePassword() {
